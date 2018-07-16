@@ -1,0 +1,17 @@
+<?xml version="1.0" encoding="utf-8"?>
+<!-- 单帧动画旋转功能的实现  --><!-- 持续时间：两秒
+          起始角度：0度
+          定义动画的旋转样式..起始和结束都减速..中间过程加速..
+          偏移量：顶部和左部
+          重复的样式：重新开始
+          末端角度：360度
+          背景设置：drawable-->
+<animated-rotate xmlns:android="http://schemas.android.com/apk/res/android"
+    android:drawable="@drawable/ic_launcher"
+    android:duration="200"
+    android:fromDegrees="0.0"
+    android:interpolator="@android:anim/accelerate_decelerate_interpolator"
+    android:pivotX="50.0%"
+    android:pivotY="50.0%"
+    android:repeatMode="restart"
+    android:toDegrees="360.0"/>
