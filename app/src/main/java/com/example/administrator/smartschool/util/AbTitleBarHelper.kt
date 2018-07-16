@@ -5,6 +5,7 @@ import android.graphics.Color
 import android.support.v7.widget.RecyclerView
 import android.view.View
 import android.widget.Button
+import android.widget.LinearLayout
 import com.ab.activity.AbActivity
 import com.ab.global.AbMenuItem
 import com.ab.view.titlebar.AbBottomBar
@@ -21,7 +22,8 @@ object AbTitleBarHelper {
     fun initAbTitleBar(abTitleBar: AbTitleBar,
                        titleText: String,
                        titleBarBackgroundId: Int,
-                       logoId: Int, left: Int, top: Int, right: Int, bottom: Int) {
+                       logoId: Int,
+                       left: Int = 0, top: Int = 0, right: Int = 0, bottom: Int = 0) {
         abTitleBar.clearRightView()
         abTitleBar.setTitleText(titleText)
         abTitleBar.setTitleBarBackground(titleBarBackgroundId)
@@ -32,13 +34,13 @@ object AbTitleBarHelper {
 
     }
 
-    fun initAbTitleBar0(abTitleBar: AbTitleBar, abActivity: AbActivity) {
+    private fun initAbTitleBar0(abTitleBar: AbTitleBar, abActivity: AbActivity) {
         initAbTitleBar(
                 abTitleBar,
                 abActivity.javaClass.simpleName,
                 R.drawable.top_bg,
                 R.drawable.button_selector_back,
-                10, 0, 0, 0)
+                left = 10)
         abTitleBar.setLogoOnClickListener {
             abActivity.finish()
         }
@@ -51,7 +53,7 @@ object AbTitleBarHelper {
                 "正在修改",
                 R.drawable.top_bg2,
                 R.drawable.button_selector_delete,
-                10, 0, 0, 0)
+                left = 10)
 
         abTitleBar.setLogo2(R.drawable.button_selector_app)
         abTitleBar.addRightView(abActivity.mInflater.inflate(R.layout.ok_btn, null))
@@ -61,6 +63,18 @@ object AbTitleBarHelper {
         }
     }
 
+    private fun initAbTitleBar2(abTitleBar: AbTitleBar, abActivity: AbActivity) {
+        AbTitleBarHelper.initAbTitleBar(
+                abTitleBar,
+                abActivity.resources.getString(R.string.app_name),
+                R.color.black,
+                R.drawable.ic_arrow_back_white_24dp)
+        val layoutParams = abTitleBar.logoView.layoutParams as LinearLayout.LayoutParams
+        layoutParams.setMargins(16, 0, 16, 0)
+        abTitleBar.setLogoOnClickListener {
+            abActivity.finish()
+        }
+    }
 
 
     val hideAbTitleBar = { abTitleBar: AbTitleBar ->
