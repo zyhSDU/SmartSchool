@@ -1,6 +1,5 @@
 package com.example.administrator.smartschool.fragment
 
-import android.view.View
 import com.example.administrator.smartschool.R
 
 /**
@@ -11,8 +10,4 @@ class BottomFragment3 : BaseFragment() {
 
     override val layoutId: Int
         get() = R.layout.fr_bottom_main_3
-
-    override fun initView(view: View): View? {
-        return view
-    }
 }

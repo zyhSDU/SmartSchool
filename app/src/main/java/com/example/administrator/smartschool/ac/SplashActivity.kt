@@ -12,7 +12,7 @@ class SplashActivity : BaseAbAc() {
         get() = R.layout.ac_splash
 
     override fun initOnCreate() {
-//        delayEnterHome()
+        delayEnterHome()
     }
 
     private fun delayEnterHome() {
