@@ -1,4 +1,4 @@
-package com.example.administrator.smartschool.fragment
+package com.example.administrator.smartschool.fragment_v4
 
 /**
  * Created by Administrator on 2017/11/14 0014.
@@ -11,12 +11,10 @@ import android.view.ViewGroup
 
 abstract class BaseFragment : Fragment() {
     protected abstract val layoutId: Int
-    private var rootView: View? = null
+    protected lateinit var rootView: View
 
     override fun onCreateView(inflater: LayoutInflater?, container: ViewGroup?, savedInstanceState: Bundle?): View? {
-        if (rootView == null) {
-            rootView = inflater!!.inflate(layoutId, null)
-        }
+        rootView = inflater!!.inflate(layoutId, container, false)
         initView(rootView)
         return rootView
     }

@@ -1,0 +1,28 @@
+<?xml version="1.0" encoding="utf-8"?>
+<LinearLayout xmlns:android="http://schemas.android.com/apk/res/android"
+    android:id="@+id/ll_view_weather"
+    android:layout_width="@dimen/height_bar"
+    android:layout_height="@dimen/height_bar"
+    android:layout_marginRight="8dp"
+    android:layout_marginLeft="8dp"
+    android:orientation="vertical">
+
+    <TextView
+        android:layout_width="match_parent"
+        android:layout_height="0dp"
+        android:layout_weight="4"
+        android:gravity="center"
+        android:text="28℃"
+        android:textColor="@color/white"
+        android:textSize="16sp" />
+
+    <TextView
+        android:layout_width="match_parent"
+        android:layout_height="0dp"
+        android:layout_weight="3"
+        android:gravity="center|top"
+        android:text="济南"
+        android:textColor="@color/white"
+        android:textSize="12sp" />
+
+</LinearLayout>

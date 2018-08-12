@@ -95,26 +95,22 @@ object AbTitleBarHelper {
         }
     }
 
-    fun showRightPartOfAbTitleBar(abTitleBar: AbTitleBar, vararg views: View) {
-        abTitleBar.clearRightView()
+    fun addRightView(abTitleBar: AbTitleBar, vararg views: View) {
         views.map { abTitleBar.addRightView(it) }
     }
 
     @SuppressLint("InflateParams")
-    val showRightPartOfAbTitleBar0 = { abTitleBar: AbTitleBar, abActivity: AbActivity ->
+    val addRightView0 = { abTitleBar: AbTitleBar, abActivity: AbActivity ->
         {
-            abTitleBar.clearRightView()
             val views = ArrayList<View>()
-            val view0 = abActivity.mInflater.inflate(R.layout.more_but, null)
-            val view1 = abActivity.mInflater.inflate(R.layout.app_btn, null)
-            val button0 = view0.findViewById<Button>(R.id.moreBtn)
-            val button1 = view1.findViewById<Button>(R.id.appBtn)
-            button0.setOnClickListener { abActivity.showToast("点击") }
-            button1.setOnClickListener { abActivity.showToast("继续点击") }
+            val view0 = abActivity.mInflater.inflate(R.layout.view_weather, null)
+
             views.add(view0)
-            views.add(view1)
-            views.map { abTitleBar.addRightView(it) }
-            val a = 1//占位保平安
+            val pixels = DimensHelper.getPixelsFromDP(abActivity, 8)
+            views.map {
+                abTitleBar.addRightView(it)
+                ViewHelper.setMargins(it, left = pixels, right = pixels)
+            }
         }
     }
 

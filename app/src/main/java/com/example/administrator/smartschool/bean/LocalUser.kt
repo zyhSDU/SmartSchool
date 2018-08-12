@@ -2,7 +2,6 @@ package com.example.administrator.smartschool.bean
 
 import com.ab.db.orm.annotation.Column
 import com.ab.db.orm.annotation.Id
-import com.ab.db.orm.annotation.Relations
 import com.ab.db.orm.annotation.Table
 
 /**
