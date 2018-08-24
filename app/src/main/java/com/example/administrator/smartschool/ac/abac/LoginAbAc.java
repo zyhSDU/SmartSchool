@@ -1,4 +1,4 @@
-package com.example.administrator.smartschool.ac;
+package com.example.administrator.smartschool.ac.abac;
 
 import com.example.administrator.smartschool.R;
 
@@ -6,10 +6,10 @@ import com.example.administrator.smartschool.R;
  * Created by Administrator on 2018/7/18 0018.
  */
 
-public class RegisterAc extends BaseAbAc{
+public class LoginAbAc extends BaseAbAc{
     @Override
     public int getLayoutResId() {
-        return R.layout.ac_register;
+        return R.layout.ac_login;
     }
 
     @Override

@@ -5,20 +5,13 @@ import android.support.v7.widget.RecyclerView
 import android.view.LayoutInflater
 import android.view.View
 import android.view.ViewGroup
-import kotlin.collections.ArrayList
 
 /**
  * Created by Administrator on 2018/5/31 0031.
  */
-abstract class BaseRVAdapter(
-        protected val context: Context,
-        protected val arrOfData: List<Any>
-) : RecyclerView.Adapter<BaseRVAdapter.MyViewHolder>() {
-    protected abstract val layoutId: Int
-    protected abstract val arrOfResId:ArrayList<Int>
-
+abstract class BaseRVAdapter(val context: Context, val datum: List<Any>) : RecyclerView.Adapter<BaseRVAdapter.MyViewHolder>(), LayoutAndViews {
     override fun getItemCount(): Int {
-        return arrOfData.size
+        return datum.size
     }
 
     override fun onCreateViewHolder(parent: ViewGroup?, viewType: Int): MyViewHolder {
@@ -26,10 +19,6 @@ abstract class BaseRVAdapter(
     }
 
     inner class MyViewHolder(itemView: View) : RecyclerView.ViewHolder(itemView) {
-        val arrOfView = arrayOfNulls<View>(arrOfResId.size)
-
-        init {
-            arrOfResId.indices.forEach { i -> arrOfView[i] = itemView.findViewById(arrOfResId[i]) }
-        }
+        val views = Array<View>(viewsId.size, { i -> itemView.findViewById(viewsId[i]) })
     }
 }

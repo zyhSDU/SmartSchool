@@ -14,7 +14,7 @@
         android:supportsRtl="true"
         android:theme="@style/AppTheme">
         <activity
-            android:name=".ac.MainActivity"
+            android:name=".ac.ac.MainActivity"
             android:label="@string/app_name"
             android:launchMode="singleTask"
             android:theme="@style/AppTheme">
@@ -24,9 +24,9 @@
                 <category android:name="android.intent.category.LAUNCHER" />
             </intent-filter>
         </activity>
-        <activity android:name=".ac.SplashActivity" />
-        <activity android:name=".ac.LoginAc" />
-        <activity android:name=".ac.RegisterAc" />
+        <activity android:name=".ac.abac.SplashAbAc" />
+        <activity android:name=".ac.abac.LoginAbAc" />
+        <activity android:name=".ac.abac.RegisterAbAc" />
     </application>
 
 </manifest>

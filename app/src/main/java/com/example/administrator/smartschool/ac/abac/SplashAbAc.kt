@@ -1,11 +1,12 @@
-package com.example.administrator.smartschool.ac
+package com.example.administrator.smartschool.ac.abac
 
 import android.content.Intent
 import android.os.Handler
 import android.view.MotionEvent
 import com.example.administrator.smartschool.R
+import com.example.administrator.smartschool.ac.ac.MainActivity
 
-class SplashActivity : BaseAbAc() {
+class SplashAbAc : BaseAbAc() {
     private val handler = Handler()
 
     override val layoutResId: Int

@@ -9,6 +9,14 @@ import com.example.administrator.smartschool.fragment_v4.BaseFragment
  * Created by zhangYuHan on 2017/8/17.
  */
 
+/**
+ * 使用例子
+//        ViewPager_main.adapter = object : BaseFragmentPagerAdapter(supportFragmentManager){
+//            init {
+//                fragmentList= arrayListOf(BottomFragment1(), BottomFragment2(), BottomFragment3())
+//            }
+//        }
+ */
 abstract class BaseFragmentPagerAdapter(fm: FragmentManager) : FragmentPagerAdapter(fm) {
     protected lateinit var fragmentList: ArrayList<BaseFragment>
 

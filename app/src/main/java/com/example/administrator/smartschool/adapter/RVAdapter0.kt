@@ -15,12 +15,12 @@ class RVAdapter0(context: Context, arrayList: List<Any>) : BaseRVAdapter(context
     override val layoutId: Int
         get() = R.layout.item0
 
-    override val arrOfResId: ArrayList<Int>
+    override val viewsId: ArrayList<Int>
         get() = arrayListOf(R.id.btn_item_view)
 
     override fun onBindViewHolder(holder: MyViewHolder, position: Int) {
-        val bean0 = arrOfData[position] as Bean0
-        val button = holder.arrOfView[0] as Button
+        val bean0 = datum[position] as Bean0
+        val button = holder.views[0] as Button
         button.text = bean0.str
 
         button.setOnClickListener {
