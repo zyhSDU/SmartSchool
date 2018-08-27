@@ -11,9 +11,4 @@ public class RegisterAbAc extends BaseAbAc{
     public int getLayoutResId() {
         return R.layout.ac_register;
     }
-
-    @Override
-    public void initOnCreate() {
-
-    }
 }

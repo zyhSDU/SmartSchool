@@ -11,9 +11,4 @@ public class LoginAbAc extends BaseAbAc{
     public int getLayoutResId() {
         return R.layout.ac_login;
     }
-
-    @Override
-    public void initOnCreate() {
-
-    }
 }

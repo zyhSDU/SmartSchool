@@ -24,7 +24,7 @@ object Utils {
     /**
      * 递归，优秀
      */
-    fun setOnClickListener(view: View, listener: OnClickListener) {
+    private fun setOnClickListener(view: View, listener: OnClickListener) {
         if (view is ViewGroup) {
             (0 until view.childCount)
                     .map { view.getChildAt(it) }
@@ -71,7 +71,7 @@ object Utils {
             for (i in 0 until cursor.columnCount) {
                 val columnName = cursor.getColumnName(i)
                 val value = cursor.getString(i)
-                Logger.i(Utils::class.java, columnName + "=" + value)
+                Logger.i(Utils::class.java, "$columnName=$value")
             }
         }
     }
