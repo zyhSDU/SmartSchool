@@ -12,7 +12,7 @@ interface UiOperation :View.OnClickListener{
 
     override fun onClick(v: View?) {
         if (v != null) {
-            initOnClick(v,v.id)
+            initOnClick(v)
         }
     }
 }
