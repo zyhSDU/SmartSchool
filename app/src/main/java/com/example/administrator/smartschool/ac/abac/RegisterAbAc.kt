@@ -38,7 +38,9 @@ class RegisterAbAc : BaseAbAc() {
     }
 
     private fun register(username: String, password: String, identify: Int, schoolId: Int) {
-        startThread{CallUtil(registerHandler).register(username, password, identify, schoolId)}
+        startThread{
+            CallUtil(registerHandler).register(username, password, identify, schoolId)
+        }
     }
 
     private val registerHandler = @SuppressLint("HandlerLeak")
