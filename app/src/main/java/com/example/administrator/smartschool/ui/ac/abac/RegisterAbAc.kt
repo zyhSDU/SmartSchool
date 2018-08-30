@@ -1,4 +1,4 @@
-package com.example.administrator.smartschool.ac.abac
+package com.example.administrator.smartschool.ui.ac.abac
 
 import android.annotation.SuppressLint
 import android.os.Handler
@@ -19,10 +19,10 @@ class RegisterAbAc : BaseAbAc() {
         get() = R.layout.ac_register
 
     override fun initOnCreate() {
-        et_username_ac_register.setText("0")
-        et_password_ac_register.setText("0")
+        et_username_ac_register.setText("1")
+        et_password_ac_register.setText("1")
         et_identify_ac_register.setText("0")
-        et_schoolId_ac_register.setText("0")
+        et_schoolId_ac_register.setText("1")
     }
 
     override fun initOnClick(view: View, id: Int) {

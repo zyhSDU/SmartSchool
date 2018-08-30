@@ -1,4 +1,4 @@
-package com.example.administrator.smartschool.ac.abac
+package com.example.administrator.smartschool.ui.ac.abac
 
 import android.content.Intent
 import android.view.View

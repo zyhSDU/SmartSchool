@@ -1,6 +1,5 @@
-package com.example.administrator.smartschool.ac.ac
+package com.example.administrator.smartschool.ui.ac.ac
 
-import android.content.Intent
 import android.os.Bundle
 import android.support.design.widget.Snackbar
 import android.support.design.widget.NavigationView
@@ -11,9 +10,9 @@ import android.view.Menu
 import android.view.MenuItem
 import com.example.administrator.smartschool.R
 import com.example.administrator.smartschool.adapter.BaseFragmentPagerAdapter
-import com.example.administrator.smartschool.fragment_v4.BottomFragment1
-import com.example.administrator.smartschool.fragment_v4.BottomFragment2
-import com.example.administrator.smartschool.fragment_v4.BottomFragment3
+import com.example.administrator.smartschool.ui.fragment.v4.BottomFragment1
+import com.example.administrator.smartschool.ui.fragment.v4.BottomFragment2
+import com.example.administrator.smartschool.ui.fragment.v4.BottomFragment3
 import kotlinx.android.synthetic.main.activity_main.*
 import kotlinx.android.synthetic.main.app_bar_main.*
 import kotlinx.android.synthetic.main.content_main.*
@@ -42,7 +41,7 @@ class MainActivity : AppCompatActivity(), NavigationView.OnNavigationItemSelecte
     private fun setBottomNavigationView() {
         ViewPager_main.adapter = object : BaseFragmentPagerAdapter(supportFragmentManager){
             init {
-                fragmentList= arrayListOf(BottomFragment1(), BottomFragment2(), BottomFragment3())
+               fragmentList= arrayListOf(BottomFragment1(), BottomFragment2(), BottomFragment3())
             }
         }
         bottomNavigationView_main.setOnNavigationItemSelectedListener {

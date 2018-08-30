@@ -1,6 +1,6 @@
 package com.example.administrator.smartschool.bean
 
-import com.example.administrator.smartschool.fragment_v4.BaseFragment
+import com.example.administrator.smartschool.ui.fragment.v4.BaseFragment
 
 /**
  * Created by Administrator on 2018/8/3 0003.

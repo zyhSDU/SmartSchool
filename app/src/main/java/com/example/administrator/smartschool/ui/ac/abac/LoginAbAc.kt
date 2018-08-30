@@ -1,11 +1,11 @@
-package com.example.administrator.smartschool.ac.abac
+package com.example.administrator.smartschool.ui.ac.abac
 
 import android.annotation.SuppressLint
 import android.os.Handler
 import android.os.Message
 import android.view.View
 import com.example.administrator.smartschool.R
-import com.example.administrator.smartschool.ac.ac.MainActivity
+import com.example.administrator.smartschool.ui.ac.ac.MainActivity
 import com.example.administrator.smartschool.bean.BaseBean
 import com.example.administrator.smartschool.util.CallUtil
 import kotlinx.android.synthetic.main.ac_login.*
@@ -19,8 +19,8 @@ class LoginAbAc : BaseAbAc() {
         get() = R.layout.ac_login
 
     override fun initOnCreate() {
-        et_username_ac_login.setText("0")
-        et_password_ac_login.setText("0")
+        et_username_ac_login.setText("1")
+        et_password_ac_login.setText("1")
     }
 
     override fun initOnClick(view: View, id: Int) {

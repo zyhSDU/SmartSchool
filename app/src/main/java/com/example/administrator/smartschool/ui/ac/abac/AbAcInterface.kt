@@ -1,8 +1,8 @@
-package com.example.administrator.smartschool.ac.abac
+package com.example.administrator.smartschool.ui.ac.abac
 
 import android.view.View
 
-interface UiOperation :View.OnClickListener{
+interface AbAcInterface :View.OnClickListener{
 
     val layoutResId: Int
 

@@ -5,10 +5,7 @@ package com.example.administrator.smartschool.bean
  */
 
 class UserInfo {
-    var level: String = ""
-    var nickname: String = ""
-    var trade: String = ""
-    var profess: String = ""
-    var sex: String=""//sex--性别 0-女，1-男 传数字
-    var year: String=""
+    var identify: String = ""
+    var school: School? = null
+    var username: String = ""
 }
