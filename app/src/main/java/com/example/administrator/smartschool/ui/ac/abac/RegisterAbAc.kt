@@ -9,6 +9,8 @@ import com.example.administrator.smartschool.R
 import com.example.administrator.smartschool.bean.BaseBean
 import com.example.administrator.smartschool.util.CallUtil
 import kotlinx.android.synthetic.main.ac_register.*
+import android.widget.ArrayAdapter
+import com.example.administrator.smartschool.bean.SchoolsBean
 
 /**
  * Created by Administrator on 2018/7/18 0018.
@@ -17,12 +19,13 @@ import kotlinx.android.synthetic.main.ac_register.*
 class RegisterAbAc : BaseAbAc() {
     override val layoutResId: Int
         get() = R.layout.ac_register
-
+    lateinit var linkedHashMap: LinkedHashMap<String, Int>
+    lateinit var strings: List<String>
     override fun initOnCreate() {
+        allUniversity()
         et_username_ac_register.setText("1")
         et_password_ac_register.setText("1")
-        et_identify_ac_register.setText("0")
-        et_schoolId_ac_register.setText("1")
+        et_identify_ac_register.setText("1")
     }
 
     override fun initOnClick(view: View, id: Int) {
@@ -30,15 +33,16 @@ class RegisterAbAc : BaseAbAc() {
             R.id.btn_ac_register -> {
                 val username = et_username_ac_register.text.toString()
                 val password = et_password_ac_register.text.toString()
+                val selectedItemId = spinner_school_ac_register.selectedItemId.toInt()
+                val schoolId = linkedHashMap[strings[selectedItemId]]!!
                 val identify = et_identify_ac_register.text.toString().toInt()
-                val schoolId = et_schoolId_ac_register.text.toString().toInt()
                 register(username, password, identify, schoolId)
             }
         }
     }
 
     private fun register(username: String, password: String, identify: Int, schoolId: Int) {
-        startThread{
+        startThread {
             CallUtil(registerHandler).register(username, password, identify, schoolId)
         }
     }
@@ -54,6 +58,30 @@ class RegisterAbAc : BaseAbAc() {
                 0 -> {
                     startActivity(LoginAbAc::class.java)
                     finish()
+                }
+            }
+        }
+    }
+
+    private fun allUniversity() {
+        startThread {
+            CallUtil(allUniversityHandler).allUniversity()
+        }
+    }
+
+    private val allUniversityHandler = @SuppressLint("HandlerLeak")
+    object : Handler() {
+        override fun handleMessage(msg: Message) {
+            val schoolsBean = msg.obj as SchoolsBean
+
+            showToast("" + schoolsBean.code + "==" + schoolsBean.message)
+
+            when (schoolsBean.code) {
+                0 -> {
+                    linkedHashMap = schoolsBean.`object`!!
+                    val keys = linkedHashMap.keys
+                    strings = keys.map { it }
+                    spinner_school_ac_register.adapter = ArrayAdapter(this@RegisterAbAc, R.layout.support_simple_spinner_dropdown_item, strings)
                 }
             }
         }

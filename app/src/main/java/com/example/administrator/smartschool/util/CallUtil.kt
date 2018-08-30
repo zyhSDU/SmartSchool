@@ -2,7 +2,6 @@ package com.example.administrator.smartschool.util
 
 import android.os.Handler
 import android.os.Message
-import android.util.Log
 import com.example.administrator.smartschool.bean.*
 import com.example.administrator.tiaozhanbei.util.NetUtil
 import com.google.gson.Gson
@@ -27,6 +26,7 @@ class CallUtil(private val handler: Handler) {
         private const val registerUrl = "$userUrl/register/"
         private const val loginUrl = "$userUrl/login/"
         private const val getUserInfoUrl = "$userUrl/getInfor"
+        private const val allUniversity = "$baseUrl/university/allUniversity"
     }
 
     fun register(username: String, password: String,identify: Int, schoolId: Int) {
@@ -101,5 +101,32 @@ class CallUtil(private val handler: Handler) {
             }
         }
         NetUtil[getUserInfoUrl, callBackForResult]
+    }
+
+    fun allUniversity() {
+        val callBackForResult = object : NetUtil.CallBackForResult {
+            override fun onFailure(e: IOException) {}
+
+            override fun onSuccess(response: Response) {
+                message = handler.obtainMessage()
+                try {
+                    val string = response.body()!!.string()
+                    Logger.e("allUniversity", string)
+                    val fromJson = gson.fromJson(string, LinkedTreeMapBean::class.java)
+                    val linkedHashMap: LinkedHashMap<*, *> = fromJson.`object`!!
+                    val stringIntLinkedHashMap: LinkedHashMap<String, Int> = LinkedHashMap()
+                    for (i in linkedHashMap.keys) {
+                        stringIntLinkedHashMap[i.toString()]=linkedHashMap[i].toString().toDouble().toInt()
+                    }
+                    message!!.obj = SchoolsBean(fromJson.code,fromJson.message,stringIntLinkedHashMap)
+
+                } catch (e: IOException) {
+                    e.printStackTrace()
+                } finally {
+                    handler.sendMessage(message)
+                }
+            }
+        }
+        NetUtil[allUniversity, callBackForResult]
     }
 }
