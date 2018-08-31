@@ -25,7 +25,7 @@ class BottomFragment3 : BaseFragment() {
 
     private fun getUserInfo() {
         startThread {
-            CallUtil(getUserInfoHandler).getUserInfoUrl()
+            CallUtil(getUserInfoHandler).getUserInfo()
         }
     }
 

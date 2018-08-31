@@ -3,6 +3,7 @@ package com.example.administrator.smartschool.util
 import android.os.Handler
 import android.os.Message
 import com.example.administrator.smartschool.bean.*
+import com.example.administrator.smartschool.bean.weather.WeatherBean
 import com.example.administrator.tiaozhanbei.util.NetUtil
 import com.google.gson.Gson
 import okhttp3.Response
@@ -27,6 +28,9 @@ class CallUtil(private val handler: Handler) {
         private const val loginUrl = "$userUrl/login/"
         private const val getUserInfoUrl = "$userUrl/getInfor"
         private const val allUniversity = "$baseUrl/university/allUniversity"
+
+        private const val getWeatherUrl = "https://www.sojson.com/open/api/weather/json.shtml"
+
     }
 
     fun register(username: String, password: String,identify: Int, schoolId: Int) {
@@ -83,7 +87,7 @@ class CallUtil(private val handler: Handler) {
         }
     }
 
-    fun getUserInfoUrl() {
+    fun getUserInfo() {
         val callBackForResult = object : NetUtil.CallBackForResult {
             override fun onFailure(e: IOException) {}
 
@@ -128,5 +132,24 @@ class CallUtil(private val handler: Handler) {
             }
         }
         NetUtil[allUniversity, callBackForResult]
+    }
+
+    fun getWeather(city: String) {
+        val callBackForResult = object : NetUtil.CallBackForResult {
+            override fun onFailure(e: IOException) {}
+
+            override fun onSuccess(response: Response) {
+                message = handler.obtainMessage()
+                try {
+                    val string = response.body()!!.string()
+                    message!!.obj = gson.fromJson(string, WeatherBean::class.java)
+                } catch (e: IOException) {
+                    e.printStackTrace()
+                } finally {
+                    handler.sendMessage(message)
+                }
+            }
+        }
+        NetUtil["$getWeatherUrl?city=$city", callBackForResult]
     }
 }

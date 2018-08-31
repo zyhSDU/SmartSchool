@@ -15,16 +15,14 @@ class StartAbAc : BaseAbAc() {
     override fun initOnClick(view: View, id: Int) {
         when(id){
             R.id.btn_login->{
-                easyStartActivity(LoginAbAc::class.java)
+                startActivity(LoginAbAc::class.java)
             }
             R.id.btn_register->{
-                easyStartActivity(RegisterAbAc::class.java)
+                startActivity(RegisterAbAc::class.java)
+            }
+            R.id.btn_weather->{
+                startActivity(WeatherAbAc::class.java)
             }
         }
-    }
-
-    private fun easyStartActivity(clazz: Class<*>) {
-        showToast(clazz.simpleName)
-        startActivity(Intent(this, clazz))
     }
 }
