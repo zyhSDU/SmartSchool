@@ -1,6 +1,7 @@
 package com.example.administrator.smartschool.adapter
 
 import android.content.Context
+import android.view.View
 import android.widget.TextView
 import com.ab.global.AbMenuItem
 import com.example.administrator.smartschool.R
@@ -18,8 +19,8 @@ class RVAdapter1(context: Context, arrayList: List<Any>) : BaseRVAdapter(context
         get() = arrayListOf(R.id.pop_item)
 
     override fun onBindViewHolder(holder: BaseRVAdapter.MyViewHolder, position: Int) {
-        val abMenuItem = datum[position] as AbMenuItem
         val textView = holder.views[0] as TextView
+        val abMenuItem = datum[position] as AbMenuItem
         textView.text = abMenuItem.text
     }
 }

@@ -11,6 +11,7 @@ import com.example.administrator.smartschool.util.CallUtil
 import kotlinx.android.synthetic.main.ac_register.*
 import android.widget.ArrayAdapter
 import com.example.administrator.smartschool.bean.SchoolsBean
+import com.example.administrator.smartschool.util.SpinnerHelper
 
 /**
  * Created by Administrator on 2018/7/18 0018.
@@ -81,7 +82,7 @@ class RegisterAbAc : BaseAbAc() {
                     linkedHashMap = schoolsBean.`object`!!
                     val keys = linkedHashMap.keys
                     strings = keys.map { it }
-                    spinner_school_ac_register.adapter = ArrayAdapter(this@RegisterAbAc, R.layout.support_simple_spinner_dropdown_item, strings)
+                    SpinnerHelper.setSpinner(spinner_school_ac_register,this@RegisterAbAc,strings)
                 }
             }
         }

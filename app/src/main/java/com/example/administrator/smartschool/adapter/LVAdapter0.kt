@@ -4,7 +4,6 @@ import android.content.Context
 import android.view.LayoutInflater
 import android.view.View
 import android.view.ViewGroup
-import android.widget.BaseAdapter
 import android.widget.TextView
 import com.ab.global.AbMenuItem
 import com.example.administrator.smartschool.R
@@ -14,42 +13,19 @@ import com.example.administrator.smartschool.R
  */
 
 class LVAdapter0(
-        private val context: Context,
-        private val list: List<AbMenuItem>,
-        private val itemResource: Int = R.layout.list_pop_item
-) : BaseAdapter() {
-    override fun getCount(): Int {
-        return list.size
-    }
+        context: Context,
+        list: List<AbMenuItem>
+) : BaseLVAdapter(context, list) {
 
-    override fun getItem(position: Int): Any {
-        return list[position]
-    }
+    override val layoutId: Int
+        get() = R.layout.list_pop_item
 
-    override fun getItemId(position: Int): Long {
-        return position.toLong()
-    }
+    override val viewsId: ArrayList<Int>
+        get() = arrayListOf(R.id.pop_item)
 
-    //由于我们的ListView中的Item显示的方式都非常的简单，因此ViewHolder类中也就仅仅定义了一个TextView属性...
-    override fun getView(position: Int, convertView: View?, viewGroup: ViewGroup): View {
-        var convertView = convertView
-        val holder: ViewHolder
-        if (convertView == null) {
-            convertView = LayoutInflater.from(context).inflate(itemResource, null) //定义一个视图对象View...
-            holder = ViewHolder()
-            holder.itemText = convertView!!.findViewById(R.id.pop_item) //在当前的View中获取ListView的ID..
-            convertView.tag = holder//设置标志..
-        } else {
-            holder = convertView.tag as ViewHolder//这里可以直接获取标志，对holder进行复用，减少了内存的分配和开销...
-        }
+    override fun setViews(holder: ViewHolder, position: Int) {
         val item = list[position]
-        holder.itemText!!.text = item.text //为每一个Item中的TextView设置值...
-
-        return convertView
+        val textView = holder.views[0] as TextView
+        textView.text = item.text
     }
-
-    internal class ViewHolder {
-        var itemText: TextView? = null
-    }
-
 }
