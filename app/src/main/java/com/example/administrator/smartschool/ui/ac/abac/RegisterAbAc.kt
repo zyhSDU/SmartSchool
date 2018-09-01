@@ -24,9 +24,9 @@ class RegisterAbAc : BaseAbAc() {
     lateinit var strings: List<String>
     override fun initOnCreate() {
         allUniversity()
-        et_username_ac_register.setText("1")
-        et_password_ac_register.setText("1")
-        et_identify_ac_register.setText("1")
+        et_username_ac_register.setText("2")
+        et_password_ac_register.setText("2")
+        et_identify_ac_register.setText("0")
     }
 
     override fun initOnClick(view: View, id: Int) {
@@ -83,6 +83,7 @@ class RegisterAbAc : BaseAbAc() {
                     val keys = linkedHashMap.keys
                     strings = keys.map { it }
                     SpinnerHelper.setSpinner(spinner_school_ac_register,this@RegisterAbAc,strings)
+                    spinner_school_ac_register.setSelection(1)
                 }
             }
         }

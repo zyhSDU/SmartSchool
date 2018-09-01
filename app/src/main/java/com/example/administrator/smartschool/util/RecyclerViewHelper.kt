@@ -12,12 +12,12 @@ import android.support.v7.widget.RecyclerView.*
  */
 
 object RecyclerViewHelper {
-    fun initRecyclerView(recyclerView: RecyclerView,layoutManager: LayoutManager,adapter: Adapter<ViewHolder>) {
+    fun initRecyclerView(recyclerView: RecyclerView,layoutManager: LayoutManager,adapter: Adapter<out ViewHolder>) {
         recyclerView.layoutManager = layoutManager
         recyclerView.itemAnimator = DefaultItemAnimator()
         recyclerView.adapter = adapter
     }
-    fun initGridRecyclerView(recyclerView: RecyclerView,context: Context,spanCount:Int,adapter: Adapter<ViewHolder>) {
+    fun initGridRecyclerView(recyclerView: RecyclerView,context: Context,spanCount:Int,adapter: Adapter<out ViewHolder>) {
         recyclerView.layoutManager = GridLayoutManager(context, spanCount)
         recyclerView.itemAnimator = DefaultItemAnimator()
         recyclerView.adapter = adapter

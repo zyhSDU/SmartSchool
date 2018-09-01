@@ -17,11 +17,11 @@ abstract class BaseFragment : Fragment(), UIInterface,FgInterface {
 
     override fun onCreateView(inflater: LayoutInflater?, container: ViewGroup?, savedInstanceState: Bundle?): View? {
         rootView = inflater!!.inflate(layoutId, container, false)
-        initView(rootView)
+        initView()
         return rootView
     }
 
-    protected open fun initView(view: View) {
+    protected open fun initView() {
     }
 
     protected fun startActivity(clazz: Class<*>) {

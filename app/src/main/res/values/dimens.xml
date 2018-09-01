@@ -10,5 +10,6 @@
     <dimen name="shadow_width">15dp</dimen>
     <dimen name="height_bar">56dp</dimen>
     <dimen name="height_input">50dp</dimen>
+    <dimen name="height_bus_line">36dp</dimen>
 
 </resources>

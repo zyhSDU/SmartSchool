@@ -27,16 +27,21 @@ class CallUtil(private val handler: Handler) {
         private const val registerUrl = "$userUrl/register/"
         private const val loginUrl = "$userUrl/login/"
         private const val getUserInfoUrl = "$userUrl/getInfor"
+
         private const val allUniversity = "$baseUrl/university/allUniversity"
 
-        private const val getWeatherUrl = "https://www.sojson.com/open/api/weather/json.shtml"
+        private const val campusUrl = "$baseUrl/campus"
+        private const val allCampusUrl = "$campusUrl/allCampus"
 
+        private const val busUrl = "$baseUrl/bus"
+        private const val busListUrl = "$busUrl/busList"
+        private const val busListByPathUrl = "$busUrl/busListByPath"
+
+        private const val getWeatherUrl = "https://www.sojson.com/open/api/weather/json.shtml"
     }
 
     fun register(username: String, password: String,identify: Int, schoolId: Int) {
         val callBackForResult = object : NetUtil.CallBackForResult {
-            override fun onFailure(e: IOException) {}
-
             override fun onSuccess(response: Response) {
                 message = handler.obtainMessage()
                 try {
@@ -63,8 +68,6 @@ class CallUtil(private val handler: Handler) {
 
     fun login(username: String, password: String) {
         val callBackForResult = object : NetUtil.CallBackForResult {
-            override fun onFailure(e: IOException) {}
-
             override fun onSuccess(response: Response) {
                 message = handler.obtainMessage()
                 try {
@@ -89,8 +92,6 @@ class CallUtil(private val handler: Handler) {
 
     fun getUserInfo() {
         val callBackForResult = object : NetUtil.CallBackForResult {
-            override fun onFailure(e: IOException) {}
-
             override fun onSuccess(response: Response) {
                 message = handler.obtainMessage()
                 try {
@@ -109,8 +110,6 @@ class CallUtil(private val handler: Handler) {
 
     fun allUniversity() {
         val callBackForResult = object : NetUtil.CallBackForResult {
-            override fun onFailure(e: IOException) {}
-
             override fun onSuccess(response: Response) {
                 message = handler.obtainMessage()
                 try {
@@ -122,7 +121,9 @@ class CallUtil(private val handler: Handler) {
                     for (i in linkedHashMap.keys) {
                         stringIntLinkedHashMap[i.toString()]=linkedHashMap[i].toString().toDouble().toInt()
                     }
+
                     message!!.obj = SchoolsBean(fromJson.code,fromJson.message,stringIntLinkedHashMap)
+
 
                 } catch (e: IOException) {
                     e.printStackTrace()
@@ -134,10 +135,59 @@ class CallUtil(private val handler: Handler) {
         NetUtil[allUniversity, callBackForResult]
     }
 
+    fun allCampus() {
+        val callBackForResult = object : NetUtil.CallBackForResult {
+            override fun onSuccess(response: Response) {
+                message = handler.obtainMessage()
+                try {
+                    val string = response.body()!!.string()
+                    message!!.obj = gson.fromJson(string, CampusBean::class.java)
+                } catch (e: IOException) {
+                    e.printStackTrace()
+                } finally {
+                    handler.sendMessage(message)
+                }
+            }
+        }
+        NetUtil[allCampusUrl, callBackForResult]
+    }
+
+    fun busList() {
+        val callBackForResult = object : NetUtil.CallBackForResult {
+            override fun onSuccess(response: Response) {
+                message = handler.obtainMessage()
+                try {
+                    val string = response.body()!!.string()
+                    message!!.obj = gson.fromJson(string, BusBean::class.java)
+                } catch (e: IOException) {
+                    e.printStackTrace()
+                } finally {
+                    handler.sendMessage(message)
+                }
+            }
+        }
+        NetUtil[busListUrl, callBackForResult]
+    }
+
+    fun busListByPath(from:Int,to:Int) {
+        val callBackForResult = object : NetUtil.CallBackForResult {
+            override fun onSuccess(response: Response) {
+                message = handler.obtainMessage()
+                try {
+                    val string = response.body()!!.string()
+                    message!!.obj = gson.fromJson(string, BusBean::class.java)
+                } catch (e: IOException) {
+                    e.printStackTrace()
+                } finally {
+                    handler.sendMessage(message)
+                }
+            }
+        }
+        NetUtil["$busListByPathUrl?from=$from&to=$to", callBackForResult]
+    }
+
     fun getWeather(city: String) {
         val callBackForResult = object : NetUtil.CallBackForResult {
-            override fun onFailure(e: IOException) {}
-
             override fun onSuccess(response: Response) {
                 message = handler.obtainMessage()
                 try {

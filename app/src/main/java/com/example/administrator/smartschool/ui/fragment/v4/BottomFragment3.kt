@@ -17,9 +17,9 @@ class BottomFragment3 : BaseFragment() {
     override val layoutId: Int
         get() = R.layout.fr_bottom_main_3
     lateinit var tvs: List<TextView>
-    override fun initView(view: View) {
+    override fun initView() {
         val ints = arrayOf(R.id.tv_identify_bottom_fg_setting, R.id.tv_school_bottom_fg_setting, R.id.tv_username_bottom_fg_setting)
-        tvs = ints.map { view.findViewById<TextView>(it) }
+        tvs = ints.map { rootView.findViewById<TextView>(it) }
         getUserInfo()
     }
 

@@ -14,7 +14,6 @@
             style="@style/a_text_black_18sp_center"
             android:layout_width="match_parent"
             android:layout_height="@dimen/height_input"
-            android:layout_margin="16dp"
             android:text="登录" />
 
         <Button
@@ -22,7 +21,6 @@
             style="@style/a_text_black_18sp_center"
             android:layout_width="match_parent"
             android:layout_height="@dimen/height_input"
-            android:layout_margin="16dp"
             android:text="注册" />
 
         <Button
@@ -30,7 +28,13 @@
             style="@style/a_text_black_18sp_center"
             android:layout_width="match_parent"
             android:layout_height="@dimen/height_input"
-            android:layout_margin="16dp"
             android:text="天气" />
+
+        <Button
+            android:id="@+id/btn_main"
+            style="@style/a_text_black_18sp_center"
+            android:layout_width="match_parent"
+            android:layout_height="@dimen/height_input"
+            android:text="主界面" />
     </LinearLayout>
 </RelativeLayout>

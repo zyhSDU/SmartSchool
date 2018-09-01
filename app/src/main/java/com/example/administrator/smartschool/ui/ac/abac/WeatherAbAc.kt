@@ -20,7 +20,7 @@ class WeatherAbAc : BaseAbAc() {
 
     override fun initOnCreate() {
         et_city_weather.setText("云霄县")
-        btn_searcher_weather.performClick()
+//        btn_searcher_weather.performClick()
     }
 
     override fun initOnClick(view: View, id: Int) {

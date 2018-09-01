@@ -19,8 +19,9 @@ class LoginAbAc : BaseAbAc() {
         get() = R.layout.ac_login
 
     override fun initOnCreate() {
-        et_username_ac_login.setText("1")
-        et_password_ac_login.setText("1")
+        et_username_ac_login.setText("2")
+        et_password_ac_login.setText("2")
+        btn_ac_login.performClick()
     }
 
     override fun initOnClick(view: View, id: Int) {

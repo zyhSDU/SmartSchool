@@ -120,7 +120,7 @@ class NetUtil private constructor() {
     }
 
     interface CallBackForResult {
-        fun onFailure(e: IOException)
+        fun onFailure(e: IOException){}
 
         fun onSuccess(response: Response)
     }
