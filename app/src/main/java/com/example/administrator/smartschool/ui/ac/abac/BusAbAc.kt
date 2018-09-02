@@ -82,7 +82,6 @@ class BusAbAc : BaseAbAc() {
         }
     }
 
-
     private fun busList() {
         startThread {
             CallUtil(busListHandler).busList()
@@ -98,7 +97,11 @@ class BusAbAc : BaseAbAc() {
 
             when (busBean.code) {
                 0 -> {
-                    RecyclerViewHelper.initVerticalLinearRecyclerView(rv_bus, this@BusAbAc, BusRVAdapter(this@BusAbAc, busBean.`object`!!))
+                    RecyclerViewHelper.initVerticalLinearRecyclerView(
+                            rv_bus,
+                            this@BusAbAc,
+                            BusRVAdapter(this@BusAbAc, busBean.`object`!!)
+                    )
                 }
             }
         }
@@ -119,7 +122,11 @@ class BusAbAc : BaseAbAc() {
 
             when (busBean.code) {
                 0 -> {
-                    RecyclerViewHelper.initVerticalLinearRecyclerView(rv_bus, this@BusAbAc, BusRVAdapter(this@BusAbAc, busBean.`object`!!))
+                    RecyclerViewHelper.initVerticalLinearRecyclerView(
+                            rv_bus,
+                            this@BusAbAc,
+                            BusRVAdapter(this@BusAbAc, busBean.`object`!!)
+                    )
                 }
             }
         }

@@ -39,9 +39,13 @@ class MainActivity : AppCompatActivity(), NavigationView.OnNavigationItemSelecte
     }
 
     private fun setBottomNavigationView() {
-        ViewPager_main.adapter = object : BaseFragmentPagerAdapter(supportFragmentManager){
+        ViewPager_main.adapter = object : BaseFragmentPagerAdapter(supportFragmentManager) {
             init {
-               fragmentList= arrayListOf(BottomFragment1(), BottomFragment2(), BottomFragment3())
+                fragmentList = arrayListOf(
+                        BottomFragment1(),
+                        BottomFragment2(),
+                        BottomFragment3()
+                )
             }
         }
         bottomNavigationView_main.setOnNavigationItemSelectedListener {

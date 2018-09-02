@@ -18,4 +18,9 @@ object ViewHelper {
         layoutParams.height = height
         layoutParams.width = width
     }
+    fun setViewVisibility(boolean: Boolean, vararg views: View) {
+        views.map {
+            it.visibility = if (boolean) View.VISIBLE else View.GONE
+        }
+    }
 }

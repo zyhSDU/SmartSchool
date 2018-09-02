@@ -5,6 +5,7 @@ import com.example.administrator.smartschool.R
 import com.example.administrator.smartschool.adapter.RVAdapter3
 import com.example.administrator.smartschool.bean.IconBean
 import com.example.administrator.smartschool.ui.ac.abac.BusAbAc
+import com.example.administrator.smartschool.ui.ac.abac.ReportAbAc
 import com.example.administrator.smartschool.ui.ac.abac.WeatherAbAc
 import com.example.administrator.smartschool.util.RecyclerViewHelper
 
@@ -24,10 +25,18 @@ class BottomFragment1 : BaseFragment() {
         val iconBean2 = IconBean(string = "校车查询", onClick = {
             startActivity(BusAbAc::class.java)
         })
+        val iconBean3 = IconBean(string = "提交报修", onClick = {
+            startActivity(ReportAbAc::class.java)
+        })
 
-        val itemList = arrayListOf(iconBean1,iconBean2,iconBean2,iconBean2,iconBean2,iconBean2)
+        val itemList = arrayListOf(iconBean1, iconBean2, iconBean3, iconBean2, iconBean2, iconBean2)
 
         val recyclerView1 = rootView.findViewById<RecyclerView>(R.id.rv1_fg1_main)
         RecyclerViewHelper.initGridRecyclerView(recyclerView1, activity, 3, RVAdapter3(activity, itemList))
+
+        //debug
+        recyclerView1.getChildAt(3).performClick()
+
+        //debug
     }
 }
