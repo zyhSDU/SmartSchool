@@ -1,4 +1,4 @@
-package com.example.administrator.smartschool.adapter
+package com.example.administrator.smartschool.adapter.lv
 
 import android.content.Context
 import android.view.LayoutInflater
@@ -7,6 +7,7 @@ import android.view.ViewGroup
 import android.widget.BaseAdapter
 
 import com.ab.global.AbMenuItem
+import com.example.administrator.smartschool.adapter.LayoutAndViews
 
 /**
  * Created by Administrator on 2018/6/9 0009.

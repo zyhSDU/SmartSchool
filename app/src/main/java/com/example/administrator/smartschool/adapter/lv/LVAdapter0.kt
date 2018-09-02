@@ -1,9 +1,6 @@
-package com.example.administrator.smartschool.adapter
+package com.example.administrator.smartschool.adapter.lv
 
 import android.content.Context
-import android.view.LayoutInflater
-import android.view.View
-import android.view.ViewGroup
 import android.widget.TextView
 import com.ab.global.AbMenuItem
 import com.example.administrator.smartschool.R

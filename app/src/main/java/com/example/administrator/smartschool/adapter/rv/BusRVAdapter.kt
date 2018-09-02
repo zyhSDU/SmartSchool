@@ -1,11 +1,9 @@
-package com.example.administrator.smartschool.adapter
+package com.example.administrator.smartschool.adapter.rv
 
 import android.content.Context
-import android.widget.ImageView
 import android.widget.TextView
 import com.example.administrator.smartschool.R
 import com.example.administrator.smartschool.bean.Bus
-import com.example.administrator.smartschool.bean.IconBean
 import java.util.ArrayList
 
 /**

@@ -2,8 +2,9 @@ package com.example.administrator.smartschool.ui.fragment.v4
 
 import android.support.v7.widget.RecyclerView
 import com.example.administrator.smartschool.R
-import com.example.administrator.smartschool.adapter.RVAdapter3
+import com.example.administrator.smartschool.adapter.rv.RVAdapter3
 import com.example.administrator.smartschool.bean.IconBean
+import com.example.administrator.smartschool.ui.ac.abac.AnswerReportAbAc
 import com.example.administrator.smartschool.ui.ac.abac.BusAbAc
 import com.example.administrator.smartschool.ui.ac.abac.ReportAbAc
 import com.example.administrator.smartschool.ui.ac.abac.WeatherAbAc
@@ -19,24 +20,18 @@ class BottomFragment1 : BaseFragment() {
         get() = R.layout.fr_bottom_main_1
 
     override fun initView() {
-        val iconBean1 = IconBean(string = "天气查询", onClick = {
-            startActivity(WeatherAbAc::class.java)
-        })
-        val iconBean2 = IconBean(string = "校车查询", onClick = {
-            startActivity(BusAbAc::class.java)
-        })
-        val iconBean3 = IconBean(string = "提交报修", onClick = {
-            startActivity(ReportAbAc::class.java)
-        })
+        val iconBean1 = getIconBean("天气查询",WeatherAbAc::class.java)
+        val iconBean2 = getIconBean("校车查询",BusAbAc::class.java)
+        val iconBean3 =getIconBean( "提交报修",ReportAbAc::class.java)
+        val iconBean4 =getIconBean( "回复报修",AnswerReportAbAc::class.java)
 
         val itemList = arrayListOf(iconBean1, iconBean2, iconBean3, iconBean2, iconBean2, iconBean2)
 
         val recyclerView1 = rootView.findViewById<RecyclerView>(R.id.rv1_fg1_main)
         RecyclerViewHelper.initGridRecyclerView(recyclerView1, activity, 3, RVAdapter3(activity, itemList))
+    }
 
-        //debug
-        recyclerView1.getChildAt(3).performClick()
-
-        //debug
+    private fun getIconBean(string: String, clazz: Class<*>):IconBean{
+        return IconBean(string = string,activity = activity,clazz = clazz)
     }
 }

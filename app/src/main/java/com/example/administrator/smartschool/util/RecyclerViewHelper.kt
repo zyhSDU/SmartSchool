@@ -12,24 +12,30 @@ import android.support.v7.widget.RecyclerView.*
  */
 
 object RecyclerViewHelper {
-    fun initRecyclerView(recyclerView: RecyclerView,layoutManager: LayoutManager,adapter: Adapter<out ViewHolder>) {
+    private fun initRecyclerView(recyclerView: RecyclerView, layoutManager: LayoutManager, adapter: Adapter<out ViewHolder>) {
         recyclerView.layoutManager = layoutManager
         recyclerView.itemAnimator = DefaultItemAnimator()
         recyclerView.adapter = adapter
     }
     fun initGridRecyclerView(recyclerView: RecyclerView,context: Context,spanCount:Int,adapter: Adapter<out ViewHolder>) {
-        recyclerView.layoutManager = GridLayoutManager(context, spanCount)
-        recyclerView.itemAnimator = DefaultItemAnimator()
-        recyclerView.adapter = adapter
+        initRecyclerView(
+                recyclerView,
+                GridLayoutManager(context, spanCount),
+                adapter
+        )
     }
-    fun initVerticalLinearRecyclerView(recyclerView: RecyclerView,context: Context,adapter:  Adapter<out ViewHolder>) {
-        recyclerView.layoutManager = LinearLayoutManager(context)
-        recyclerView.itemAnimator = DefaultItemAnimator()
-        recyclerView.adapter = adapter
+    fun initVerticalRecyclerView(recyclerView: RecyclerView, context: Context, adapter:  Adapter<out ViewHolder>) {
+        initRecyclerView(
+                recyclerView,
+                LinearLayoutManager(context),
+                adapter
+        )
     }
-    fun initHorizontalLinearRecyclerView(recyclerView: RecyclerView,context: Context,adapter:  Adapter<out ViewHolder>) {
-        recyclerView.layoutManager = LinearLayoutManager(context,HORIZONTAL,false)
-        recyclerView.itemAnimator = DefaultItemAnimator()
-        recyclerView.adapter = adapter
+    fun initHorizontaRecyclerView(recyclerView: RecyclerView, context: Context, adapter:  Adapter<out ViewHolder>) {
+        initRecyclerView(
+                recyclerView,
+                LinearLayoutManager(context,HORIZONTAL,false),
+                adapter
+        )
     }
 }

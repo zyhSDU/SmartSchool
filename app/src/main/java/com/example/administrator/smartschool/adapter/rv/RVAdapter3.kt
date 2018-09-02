@@ -1,4 +1,4 @@
-package com.example.administrator.smartschool.adapter
+package com.example.administrator.smartschool.adapter.rv
 
 import android.content.Context
 import android.widget.ImageView

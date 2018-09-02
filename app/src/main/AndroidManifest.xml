@@ -24,17 +24,18 @@
         <activity android:name="com.example.administrator.smartschool.ui.ac.abac.LoginAbAc" />
         <activity android:name="com.example.administrator.smartschool.ui.ac.abac.RegisterAbAc" />
         <activity android:name="com.example.administrator.smartschool.ui.ac.abac.StartAbAc" >
-
-        </activity>
-        <activity android:name=".ui.ac.abac.WeatherAbAc" />
-        <activity android:name=".ui.ac.abac.BusAbAc" />
-        <activity android:name=".ui.ac.abac.ReportAbAc" >
             <intent-filter>
                 <action android:name="android.intent.action.MAIN" />
 
                 <category android:name="android.intent.category.LAUNCHER" />
             </intent-filter>
         </activity>
+        <activity android:name=".ui.ac.abac.WeatherAbAc" />
+        <activity android:name=".ui.ac.abac.BusAbAc" />
+        <activity android:name=".ui.ac.abac.ReportAbAc" >
+
+        </activity>
+        <activity android:name=".ui.ac.abac.AnswerReportAbAc" />
     </application>
 
 </manifest>

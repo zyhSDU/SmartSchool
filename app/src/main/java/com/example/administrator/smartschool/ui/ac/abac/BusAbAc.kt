@@ -6,7 +6,7 @@ import android.os.Message
 import android.view.View
 import android.widget.AdapterView
 import com.example.administrator.smartschool.R
-import com.example.administrator.smartschool.adapter.BusRVAdapter
+import com.example.administrator.smartschool.adapter.rv.BusRVAdapter
 import com.example.administrator.smartschool.bean.BusBean
 import com.example.administrator.smartschool.bean.Campus
 import com.example.administrator.smartschool.bean.CampusBean
@@ -97,7 +97,7 @@ class BusAbAc : BaseAbAc() {
 
             when (busBean.code) {
                 0 -> {
-                    RecyclerViewHelper.initVerticalLinearRecyclerView(
+                    RecyclerViewHelper.initVerticalRecyclerView(
                             rv_bus,
                             this@BusAbAc,
                             BusRVAdapter(this@BusAbAc, busBean.`object`!!)
@@ -122,7 +122,7 @@ class BusAbAc : BaseAbAc() {
 
             when (busBean.code) {
                 0 -> {
-                    RecyclerViewHelper.initVerticalLinearRecyclerView(
+                    RecyclerViewHelper.initVerticalRecyclerView(
                             rv_bus,
                             this@BusAbAc,
                             BusRVAdapter(this@BusAbAc, busBean.`object`!!)

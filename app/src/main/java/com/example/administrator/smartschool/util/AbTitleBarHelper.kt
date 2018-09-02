@@ -11,8 +11,8 @@ import com.ab.global.AbMenuItem
 import com.ab.view.titlebar.AbBottomBar
 import com.ab.view.titlebar.AbTitleBar
 import com.example.administrator.smartschool.R
-import com.example.administrator.smartschool.adapter.RVAdapter1
-import com.example.administrator.smartschool.adapter.RVAdapter2
+import com.example.administrator.smartschool.adapter.rv.RVAdapter1
+import com.example.administrator.smartschool.adapter.rv.RVAdapter2
 
 /**
  * Created by Administrator on 2018/5/31 0031.
@@ -140,7 +140,7 @@ object AbTitleBarHelper {
         val view0 = abActivity.mInflater.inflate(R.layout.list_pop, null)
         val recyclerView = view0.findViewById<RecyclerView>(R.id.pop_list)
         val rvAdapter = RVAdapter1(abActivity, listOfAbMenuItem)
-        RecyclerViewHelper.initVerticalLinearRecyclerView(recyclerView, abActivity, rvAdapter)
+        RecyclerViewHelper.initVerticalRecyclerView(recyclerView, abActivity, rvAdapter)
         abTitleBar.setTitleTextDropDown(view0)
     }
 
@@ -171,7 +171,7 @@ object AbTitleBarHelper {
 
         abBottomBar.setBottomView(view1)
         val recyclerView = view0.findViewById<RecyclerView>(R.id.pop_list)
-        RecyclerViewHelper.initVerticalLinearRecyclerView(recyclerView, abActivity, RVAdapter2(abActivity, listOfAbMenuItem))
+        RecyclerViewHelper.initVerticalRecyclerView(recyclerView, abActivity, RVAdapter2(abActivity, listOfAbMenuItem))
         for (i in arrayListOfBtn.indices) {
             abBottomBar.setDropDown(arrayListOfBtn[i], view0)
         }
