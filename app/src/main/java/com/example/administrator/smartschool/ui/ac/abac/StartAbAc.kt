@@ -2,8 +2,8 @@ package com.example.administrator.smartschool.ui.ac.abac
 
 import android.view.View
 import com.example.administrator.smartschool.R
+import com.example.administrator.smartschool.ui.ac.abac.tab.WeatherAbAc
 import com.example.administrator.smartschool.ui.ac.ac.MainActivity
-import kotlinx.android.synthetic.main.ac_start.*
 
 /**
  * Created by Administrator on 2018/7/18 0018.

@@ -1,4 +1,4 @@
-package com.example.administrator.smartschool.ui.ac.abac
+package com.example.administrator.smartschool.ui.ac.abac.tab
 
 import android.annotation.SuppressLint
 import android.os.Handler
@@ -6,6 +6,7 @@ import android.os.Message
 import android.view.View
 import com.example.administrator.smartschool.R
 import com.example.administrator.smartschool.bean.weather.WeatherBean
+import com.example.administrator.smartschool.ui.ac.abac.BaseAbAc
 import com.example.administrator.smartschool.util.CallUtil
 import com.example.administrator.smartschool.util.Logger
 import kotlinx.android.synthetic.main.ac_weather.*

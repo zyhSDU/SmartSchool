@@ -1,8 +1,9 @@
-package com.example.administrator.smartschool.ui.ac.abac
+package com.example.administrator.smartschool.ui.ac.abac.tab
 
 import android.view.View
 import com.example.administrator.smartschool.R
 import com.example.administrator.smartschool.adapter.rv.AnswerReportRVAdapter
+import com.example.administrator.smartschool.ui.ac.abac.BaseAbAc
 import com.example.administrator.smartschool.util.RecyclerViewHelper
 import com.example.administrator.smartschool.util.ViewHelper
 import kotlinx.android.synthetic.main.ac_report.*

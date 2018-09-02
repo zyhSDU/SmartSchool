@@ -4,10 +4,7 @@ import android.support.v7.widget.RecyclerView
 import com.example.administrator.smartschool.R
 import com.example.administrator.smartschool.adapter.rv.RVAdapter3
 import com.example.administrator.smartschool.bean.IconBean
-import com.example.administrator.smartschool.ui.ac.abac.AnswerReportAbAc
-import com.example.administrator.smartschool.ui.ac.abac.BusAbAc
-import com.example.administrator.smartschool.ui.ac.abac.ReportAbAc
-import com.example.administrator.smartschool.ui.ac.abac.WeatherAbAc
+import com.example.administrator.smartschool.ui.ac.abac.tab.*
 import com.example.administrator.smartschool.util.RecyclerViewHelper
 
 /**
@@ -20,12 +17,14 @@ class BottomFragment1 : BaseFragment() {
         get() = R.layout.fr_bottom_main_1
 
     override fun initView() {
-        val iconBean1 = getIconBean("天气查询",WeatherAbAc::class.java)
-        val iconBean2 = getIconBean("校车查询",BusAbAc::class.java)
-        val iconBean3 =getIconBean( "提交报修",ReportAbAc::class.java)
-        val iconBean4 =getIconBean( "回复报修",AnswerReportAbAc::class.java)
+        val iconBean1 = getIconBean("天气查询", WeatherAbAc::class.java)
+        val iconBean2 = getIconBean("校车查询", BusAbAc::class.java)
+        val iconBean3 =getIconBean( "提交报修", ReportAbAc::class.java)
+        val iconBean4 =getIconBean( "回复报修", AnswerReportAbAc::class.java)
+        val iconBean5 =getIconBean( "成绩查询", ScoreAbAc::class.java)
+        val iconBean6 =getIconBean( "考试安排", TestScheduleAbAc::class.java)
 
-        val itemList = arrayListOf(iconBean1, iconBean2, iconBean3, iconBean4, iconBean2, iconBean2)
+        val itemList = arrayListOf(iconBean1, iconBean2, iconBean3, iconBean4, iconBean5, iconBean6)
 
         val recyclerView1 = rootView.findViewById<RecyclerView>(R.id.rv1_fg1_main)
         RecyclerViewHelper.initGridRecyclerView(recyclerView1, activity, 3, RVAdapter3(activity, itemList))

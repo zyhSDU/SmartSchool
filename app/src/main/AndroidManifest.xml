@@ -30,12 +30,14 @@
                 <category android:name="android.intent.category.LAUNCHER" />
             </intent-filter>
         </activity>
-        <activity android:name=".ui.ac.abac.WeatherAbAc" />
-        <activity android:name=".ui.ac.abac.BusAbAc" />
-        <activity android:name=".ui.ac.abac.ReportAbAc" >
+        <activity android:name=".ui.ac.abac.tab.WeatherAbAc" />
+        <activity android:name=".ui.ac.abac.tab.BusAbAc" />
+        <activity android:name=".ui.ac.abac.tab.ReportAbAc" >
 
         </activity>
-        <activity android:name=".ui.ac.abac.AnswerReportAbAc" />
+        <activity android:name=".ui.ac.abac.tab.AnswerReportAbAc" />
+        <activity android:name=".ui.ac.abac.tab.ScoreAbAc" />
+        <activity android:name=".ui.ac.abac.tab.TestScheduleAbAc" />
     </application>
 
 </manifest>
