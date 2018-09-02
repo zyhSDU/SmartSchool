@@ -25,7 +25,7 @@ class BottomFragment1 : BaseFragment() {
         val iconBean3 =getIconBean( "提交报修",ReportAbAc::class.java)
         val iconBean4 =getIconBean( "回复报修",AnswerReportAbAc::class.java)
 
-        val itemList = arrayListOf(iconBean1, iconBean2, iconBean3, iconBean2, iconBean2, iconBean2)
+        val itemList = arrayListOf(iconBean1, iconBean2, iconBean3, iconBean4, iconBean2, iconBean2)
 
         val recyclerView1 = rootView.findViewById<RecyclerView>(R.id.rv1_fg1_main)
         RecyclerViewHelper.initGridRecyclerView(recyclerView1, activity, 3, RVAdapter3(activity, itemList))

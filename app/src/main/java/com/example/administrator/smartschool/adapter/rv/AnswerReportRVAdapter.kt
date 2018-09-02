@@ -19,7 +19,7 @@ class AnswerReportRVAdapter(context: Context, arrayList: List<Any>) : BaseRVAdap
 
     override fun onBindViewHolder(holder: MyViewHolder, position: Int) {
         val textView = holder.views[0] as TextView
-        val abMenuItem = datum[position] as AbMenuItem
-        textView.text = abMenuItem.text
+        val string = datum[position] as String
+        textView.text = string
     }
 }
