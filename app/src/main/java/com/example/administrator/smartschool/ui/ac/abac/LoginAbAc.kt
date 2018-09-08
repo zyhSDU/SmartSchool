@@ -29,12 +29,12 @@ class LoginAbAc : BaseAbAc() {
             R.id.btn_ac_login -> {
                 val username = et_username_ac_login.text.toString()
                 val password = et_password_ac_login.text.toString()
-                register(username, password)
+                login(username, password)
             }
         }
     }
 
-    private fun register(username: String, password: String) {
+    private fun login(username: String, password: String) {
         startThread {
             CallUtil(loginHandler).login(username, password)
         }
