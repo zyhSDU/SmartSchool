@@ -21,7 +21,7 @@ class LoginAbAc : BaseAbAc() {
     override fun initOnCreate() {
         et_username_ac_login.setText("2")
         et_password_ac_login.setText("2")
-        btn_ac_login.performClick()
+//        btn_ac_login.performClick()
     }
 
     override fun initOnClick(view: View, id: Int) {

@@ -1,13 +1,9 @@
 package com.example.administrator.smartschool.ui.ac.abac.tab
 
-import android.annotation.SuppressLint
-import android.os.Handler
-import android.os.Message
 import android.view.View
 import com.example.administrator.smartschool.R
 import com.example.administrator.smartschool.adapter.rv.RepairInfoRVAdapter
 import com.example.administrator.smartschool.bean.BaseBeanWithObject
-import com.example.administrator.smartschool.bean.RepairInfo
 import com.example.administrator.smartschool.bean.RepairInfoBean
 import com.example.administrator.smartschool.ui.ac.abac.BaseAbAc
 import com.example.administrator.smartschool.util.CallUtil
@@ -50,19 +46,17 @@ class ReportAbAc : BaseAbAc() {
     }
 
     private fun submitRepair(describe: String) {
-        startThread {
-            CallUtil({
-                val baseBean = it.obj as BaseBeanWithObject
+        CallUtil({
+            val baseBean = it.obj as BaseBeanWithObject
 
-                showToast("${baseBean.code}==${baseBean.message}")
+            showToast("${baseBean.code}==${baseBean.message}")
 
-                when (baseBean.code) {
-                    0 -> {
-                        showToast("数据库中的报修id${baseBean.`object`.toString().toDouble().toInt()}")
-                    }
+            when (baseBean.code) {
+                0 -> {
+                    showToast("数据库中的报修id${baseBean.`object`.toString().toDouble().toInt()}")
                 }
-            }).submitRepair(describe)
-        }
+            }
+        }).submitRepair(describe)
     }
 
     private fun getPrivateRepairs(page: Int) {
