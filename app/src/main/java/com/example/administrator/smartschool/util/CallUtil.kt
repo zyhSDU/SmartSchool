@@ -58,20 +58,26 @@ class CallUtil(private val initHandleMessage: (msg: Message) -> Unit) {
         private const val getWeatherUrl = "https://www.sojson.com/open/api/weather/json.shtml"
     }
 
+    private fun initInitOnSuccess(response: Response, initInitInitOnSuccess: () -> Unit) {
+        message = handler.obtainMessage()
+        try {
+            initInitInitOnSuccess()
+        } catch (e: IOException) {
+            e.printStackTrace()
+        } finally {
+            handler.sendMessage(message)
+        }
+    }
+
     /**
      * @param id 报修id
      */
     fun finishRepair(id: Int) {
         NetUtil.get("$finishRepairUrl?id=$id", {
-            message = handler.obtainMessage()
-            try {
+            initInitOnSuccess(it, {
                 val string = it.body()!!.string()
                 message!!.obj = gson.fromJson(string, BaseBean::class.java)
-            } catch (e: IOException) {
-                e.printStackTrace()
-            } finally {
-                handler.sendMessage(message)
-            }
+            })
         })
     }
 
@@ -80,15 +86,10 @@ class CallUtil(private val initHandleMessage: (msg: Message) -> Unit) {
      */
     fun dealRepair(id: Int) {
         NetUtil.get("$dealRepairUrl?id=$id", {
-            message = handler.obtainMessage()
-            try {
+            initInitOnSuccess(it, {
                 val string = it.body()!!.string()
                 message!!.obj = gson.fromJson(string, BaseBean::class.java)
-            } catch (e: IOException) {
-                e.printStackTrace()
-            } finally {
-                handler.sendMessage(message)
-            }
+            })
         })
     }
 
@@ -97,15 +98,10 @@ class CallUtil(private val initHandleMessage: (msg: Message) -> Unit) {
      */
     fun getRepairs(page: Int) {
         NetUtil.get("$getRepairsUrl?page=$page", {
-            message = handler.obtainMessage()
-            try {
+            initInitOnSuccess(it, {
                 val string = it.body()!!.string()
                 message!!.obj = gson.fromJson(string, RepairInfoBean::class.java)
-            } catch (e: IOException) {
-                e.printStackTrace()
-            } finally {
-                handler.sendMessage(message)
-            }
+            })
         })
     }
 
@@ -114,15 +110,10 @@ class CallUtil(private val initHandleMessage: (msg: Message) -> Unit) {
      */
     fun getPrivateRepairs(page: Int) {
         NetUtil.get("$getPrivateRepairsUrl?page=$page", {
-            message = handler.obtainMessage()
-            try {
+            initInitOnSuccess(it, {
                 val string = it.body()!!.string()
                 message!!.obj = gson.fromJson(string, RepairInfoBean::class.java)
-            } catch (e: IOException) {
-                e.printStackTrace()
-            } finally {
-                handler.sendMessage(message)
-            }
+            })
         })
     }
 
@@ -135,14 +126,9 @@ class CallUtil(private val initHandleMessage: (msg: Message) -> Unit) {
 
         try {
             NetUtil.post(submitRepairUrl, params, {
-                message = handler.obtainMessage()
-                try {
+                initInitOnSuccess(it, {
                     message!!.obj = gson.fromJson(it.body()!!.string(), BaseBeanWithObject::class.java)
-                } catch (e: IOException) {
-                    e.printStackTrace()
-                } finally {
-                    handler.sendMessage(message)
-                }
+                })
             })
         } catch (e: IOException) {
             e.printStackTrace()
@@ -157,14 +143,9 @@ class CallUtil(private val initHandleMessage: (msg: Message) -> Unit) {
         params["schoolId"] = "$schoolId"
         try {
             NetUtil.post(registerUrl, params, {
-                message = handler.obtainMessage()
-                try {
+                initInitOnSuccess(it, {
                     message!!.obj = gson.fromJson(it.body()!!.string(), BaseBean::class.java)
-                } catch (e: IOException) {
-                    e.printStackTrace()
-                } finally {
-                    handler.sendMessage(message)
-                }
+                })
             })
         } catch (e: IOException) {
             e.printStackTrace()
@@ -177,14 +158,9 @@ class CallUtil(private val initHandleMessage: (msg: Message) -> Unit) {
         params["password"] = password
         try {
             NetUtil.post(loginUrl, params, {
-                message = handler.obtainMessage()
-                try {
+                initInitOnSuccess(it, {
                     message!!.obj = gson.fromJson(it.body()!!.string(), BaseBean::class.java)
-                } catch (e: IOException) {
-                    e.printStackTrace()
-                } finally {
-                    handler.sendMessage(message)
-                }
+                })
             })
         } catch (e: IOException) {
             e.printStackTrace()
@@ -193,23 +169,16 @@ class CallUtil(private val initHandleMessage: (msg: Message) -> Unit) {
 
     fun getUserInfo() {
         NetUtil.get(getUserInfoUrl, {
-            message = handler.obtainMessage()
-            try {
+            initInitOnSuccess(it, {
                 val string = it.body()!!.string()
-                Logger.e("getUserInfoUrl", string)
                 message!!.obj = gson.fromJson(string, UserInfoBean::class.java)
-            } catch (e: IOException) {
-                e.printStackTrace()
-            } finally {
-                handler.sendMessage(message)
-            }
+            })
         })
     }
 
     fun allUniversity() {
         NetUtil.get(allUniversity, {
-            message = handler.obtainMessage()
-            try {
+            initInitOnSuccess(it, {
                 val string = it.body()!!.string()
                 val fromJson = gson.fromJson(string, LinkedTreeMapBean::class.java)
                 val linkedHashMap: LinkedHashMap<*, *> = fromJson.`object`!!
@@ -218,67 +187,43 @@ class CallUtil(private val initHandleMessage: (msg: Message) -> Unit) {
                     stringIntLinkedHashMap[i.toString()] = linkedHashMap[i].toString().toDouble().toInt()
                 }
                 message!!.obj = SchoolsBean(fromJson.code, fromJson.message, stringIntLinkedHashMap)
-            } catch (e: IOException) {
-                e.printStackTrace()
-            } finally {
-                handler.sendMessage(message)
-            }
+            })
         })
     }
 
     fun allCampus() {
         NetUtil.get(allCampusUrl, {
-            message = handler.obtainMessage()
-            try {
+            initInitOnSuccess(it, {
                 val string = it.body()!!.string()
                 message!!.obj = gson.fromJson(string, CampusBean::class.java)
-            } catch (e: IOException) {
-                e.printStackTrace()
-            } finally {
-                handler.sendMessage(message)
-            }
+            })
         })
     }
 
     fun busList() {
         NetUtil.get(busListUrl, {
-            message = handler.obtainMessage()
-            try {
+            initInitOnSuccess(it, {
                 val string = it.body()!!.string()
                 message!!.obj = gson.fromJson(string, BusBean::class.java)
-            } catch (e: IOException) {
-                e.printStackTrace()
-            } finally {
-                handler.sendMessage(message)
-            }
+            })
         })
     }
 
     fun busListByPath(from: Int, to: Int) {
         NetUtil.get("$busListByPathUrl?from=$from&to=$to", {
-            message = handler.obtainMessage()
-            try {
+            initInitOnSuccess(it, {
                 val string = it.body()!!.string()
                 message!!.obj = gson.fromJson(string, BusBean::class.java)
-            } catch (e: IOException) {
-                e.printStackTrace()
-            } finally {
-                handler.sendMessage(message)
-            }
+            })
         })
     }
 
     fun getWeather(city: String) {
         NetUtil.get("$getWeatherUrl?city=$city", {
-            message = handler.obtainMessage()
-            try {
+            initInitOnSuccess(it, {
                 val string = it.body()!!.string()
                 message!!.obj = gson.fromJson(string, WeatherBean::class.java)
-            } catch (e: IOException) {
-                e.printStackTrace()
-            } finally {
-                handler.sendMessage(message)
-            }
+            })
         })
     }
 }
