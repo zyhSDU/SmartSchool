@@ -5,12 +5,14 @@ import android.os.Handler
 import android.os.Message
 import com.example.administrator.smartschool.bean.*
 import com.example.administrator.smartschool.bean.weather.WeatherBean
-import com.example.administrator.smartschool.temp.Temp
 import com.example.administrator.tiaozhanbei.util.NetUtil
 import com.google.gson.Gson
 import okhttp3.Response
 import java.io.IOException
 import java.util.HashMap
+import kotlin.collections.LinkedHashMap
+import kotlin.collections.get
+import kotlin.collections.set
 
 /**
  * Created by Administrator on 2018/2/2 0002.
@@ -72,6 +74,7 @@ class CallUtil(private val initHandleMessage: (msg: Message) -> Unit) {
     private fun initInitOnSuccess(response: Response, clazz: Class<*>) {
         initInitOnSuccess {
             val string = response.body()!!.string()
+            Logger.e(this,string)
             message!!.obj = gson.fromJson(string, clazz)
         }
     }
