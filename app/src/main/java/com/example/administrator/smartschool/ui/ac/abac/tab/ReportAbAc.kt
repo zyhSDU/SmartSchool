@@ -7,6 +7,7 @@ import android.view.View
 import com.example.administrator.smartschool.R
 import com.example.administrator.smartschool.adapter.rv.RepairInfoRVAdapter
 import com.example.administrator.smartschool.bean.BaseBeanWithObject
+import com.example.administrator.smartschool.bean.RepairInfo
 import com.example.administrator.smartschool.bean.RepairInfoBean
 import com.example.administrator.smartschool.ui.ac.abac.BaseAbAc
 import com.example.administrator.smartschool.util.CallUtil
