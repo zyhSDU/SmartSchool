@@ -49,8 +49,8 @@ class BusAbAc : BaseAbAc() {
 
     private fun allCampus() {
         startThread {
-            CallUtil(initHandleMessage = { msg ->
-                val campusBean = msg.obj as CampusBean
+            CallUtil({
+                val campusBean = it.obj as CampusBean
 
                 showToast("" + campusBean.code + "==" + campusBean.message)
 
@@ -79,8 +79,8 @@ class BusAbAc : BaseAbAc() {
     }
 
     private fun busList() {
-        CallUtil(initHandleMessage = { msg ->
-            val busBean = msg.obj as BusBean
+        CallUtil({
+            val busBean = it.obj as BusBean
 
             showToast("" + busBean.code + "==" + busBean.message)
 
@@ -97,8 +97,8 @@ class BusAbAc : BaseAbAc() {
     }
 
     private fun busListByPath(from: Int, to: Int) {
-        CallUtil(initHandleMessage = { msg ->
-            val busBean = msg.obj as BusBean
+        CallUtil({
+            val busBean = it.obj as BusBean
 
             showToast("" + busBean.code + "==" + busBean.message)
 

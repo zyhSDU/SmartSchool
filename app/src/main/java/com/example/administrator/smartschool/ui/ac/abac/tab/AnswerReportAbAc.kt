@@ -24,8 +24,8 @@ class AnswerReportAbAc : BaseAbAc() {
     }
 
     private fun getPrivateRepairs(page: Int) {
-        CallUtil(initHandleMessage = { msg ->
-            val repairInfoBean = msg.obj as RepairInfoBean
+        CallUtil({
+            val repairInfoBean = it.obj as RepairInfoBean
 
             showToast("${repairInfoBean.code}==${repairInfoBean.message}")
 

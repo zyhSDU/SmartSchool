@@ -154,32 +154,69 @@ class NetUtil private constructor() {
             }
 
         /**
-         * 对外公布的方法
+         * 对外公布的方法1.0
          */
-        @Throws(IOException::class)
-        fun post(url: String, params: Map<String, String>, headers: Map<String, String>, callBackForResult: CallBackForResult) {
+        private fun post(url: String, params: Map<String, String>, headers: Map<String, String>, callBackForResult: CallBackForResult) {
             Temp.startThread {
                 instance.mPost(url, params, headers, callBackForResult)
             }
         }
 
-        @Throws(IOException::class)
-        fun post(url: String, params: Map<String, String>, callBackForResult: CallBackForResult) {
+        private fun post(url: String, params: Map<String, String>, callBackForResult: CallBackForResult) {
             Temp.startThread {
                 instance.mPost(url, params, callBackForResult)
             }
         }
 
-        operator fun get(url: String, callBackForResult: CallBackForResult) {
+        private fun get(url: String, callBackForResult: CallBackForResult) {
             Temp.startThread {
                 instance.mGet(url, callBackForResult)
             }
         }
 
-        operator fun get(url: String, headers: Map<String, String>, callBackForResult: CallBackForResult) {
+        private fun get(url: String, headers: Map<String, String>, callBackForResult: CallBackForResult) {
             Temp.startThread {
                 instance.mGet(url, headers, callBackForResult)
             }
+        }
+
+        /**
+         * 对外公布的方法2.0
+         */
+        fun post(url: String, params: Map<String, String>, headers: Map<String, String>, initOnSuccess: (response: Response) -> Unit) {
+            val callBackForResult = object : NetUtil.CallBackForResult {
+                override fun onSuccess(response: Response) {
+                    initOnSuccess(response)
+                }
+            }
+            post(url, params, headers, callBackForResult)
+        }
+
+        fun post(url: String, params: Map<String, String>, initOnSuccess: (response: Response) -> Unit) {
+            val callBackForResult = object : NetUtil.CallBackForResult {
+                override fun onSuccess(response: Response) {
+                    initOnSuccess(response)
+                }
+            }
+            post(url, params, callBackForResult)
+        }
+
+        fun get(url: String, initOnSuccess: (response: Response) -> Unit) {
+            val callBackForResult = object : NetUtil.CallBackForResult {
+                override fun onSuccess(response: Response) {
+                    initOnSuccess(response)
+                }
+            }
+            get(url, callBackForResult)
+        }
+
+        fun get(url: String, headers: Map<String, String>, initOnSuccess: (response: Response) -> Unit) {
+            val callBackForResult = object : NetUtil.CallBackForResult {
+                override fun onSuccess(response: Response) {
+                    initOnSuccess(response)
+                }
+            }
+            get(url, headers, callBackForResult)
         }
     }
 }

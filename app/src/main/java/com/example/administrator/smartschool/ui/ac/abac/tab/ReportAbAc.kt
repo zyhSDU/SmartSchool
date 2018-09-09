@@ -50,8 +50,8 @@ class ReportAbAc : BaseAbAc() {
 
     private fun submitRepair(describe: String) {
         startThread {
-            CallUtil(initHandleMessage = { msg ->
-                val baseBean = msg.obj as BaseBeanWithObject
+            CallUtil({
+                val baseBean = it.obj as BaseBeanWithObject
 
                 showToast("${baseBean.code}==${baseBean.message}")
 
@@ -65,8 +65,8 @@ class ReportAbAc : BaseAbAc() {
     }
 
     private fun getPrivateRepairs(page: Int) {
-        CallUtil(initHandleMessage = { msg ->
-            val repairInfoBean = msg.obj as RepairInfoBean
+        CallUtil({
+            val repairInfoBean = it.obj as RepairInfoBean
 
             showToast("${repairInfoBean.code}==${repairInfoBean.message}")
 

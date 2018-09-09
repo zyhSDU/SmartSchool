@@ -43,8 +43,8 @@ class StartAbAc : BaseAbAc() {
     }
 
     private fun login(username: String, password: String) {
-        CallUtil(initHandleMessage = { msg ->
-            val baseBean = msg.obj as BaseBean
+        CallUtil({
+            val baseBean = it.obj as BaseBean
 
             showToast("" + baseBean.code + "==" + baseBean.message)
 

@@ -62,265 +62,223 @@ class CallUtil(private val initHandleMessage: (msg: Message) -> Unit) {
      * @param id 报修id
      */
     fun finishRepair(id: Int) {
-        val callBackForResult = object : NetUtil.CallBackForResult {
-            override fun onSuccess(response: Response) {
-                message = handler.obtainMessage()
-                try {
-                    val string = response.body()!!.string()
-                    message!!.obj = gson.fromJson(string, BaseBean::class.java)
-                } catch (e: IOException) {
-                    e.printStackTrace()
-                } finally {
-                    handler.sendMessage(message)
-                }
+        NetUtil.get("$finishRepairUrl?id=$id", {
+            message = handler.obtainMessage()
+            try {
+                val string = it.body()!!.string()
+                message!!.obj = gson.fromJson(string, BaseBean::class.java)
+            } catch (e: IOException) {
+                e.printStackTrace()
+            } finally {
+                handler.sendMessage(message)
             }
-        }
-        NetUtil.get("$finishRepairUrl?id=$id", callBackForResult)
+        })
     }
 
     /**
      * @param id 报修id
      */
     fun dealRepair(id: Int) {
-        val callBackForResult = object : NetUtil.CallBackForResult {
-            override fun onSuccess(response: Response) {
-                message = handler.obtainMessage()
-                try {
-                    val string = response.body()!!.string()
-                    message!!.obj = gson.fromJson(string, BaseBean::class.java)
-                } catch (e: IOException) {
-                    e.printStackTrace()
-                } finally {
-                    handler.sendMessage(message)
-                }
+        NetUtil.get("$dealRepairUrl?id=$id", {
+            message = handler.obtainMessage()
+            try {
+                val string = it.body()!!.string()
+                message!!.obj = gson.fromJson(string, BaseBean::class.java)
+            } catch (e: IOException) {
+                e.printStackTrace()
+            } finally {
+                handler.sendMessage(message)
             }
-        }
-        NetUtil.get("$dealRepairUrl?id=$id", callBackForResult)
+        })
     }
 
     /**
      * @param page --  报修列表页码(每页最多20条)
      */
     fun getRepairs(page: Int) {
-        val callBackForResult = object : NetUtil.CallBackForResult {
-            override fun onSuccess(response: Response) {
-                message = handler.obtainMessage()
-                try {
-                    val string = response.body()!!.string()
-                    message!!.obj = gson.fromJson(string, RepairInfoBean::class.java)
-                } catch (e: IOException) {
-                    e.printStackTrace()
-                } finally {
-                    handler.sendMessage(message)
-                }
+        NetUtil.get("$getRepairsUrl?page=$page", {
+            message = handler.obtainMessage()
+            try {
+                val string = it.body()!!.string()
+                message!!.obj = gson.fromJson(string, RepairInfoBean::class.java)
+            } catch (e: IOException) {
+                e.printStackTrace()
+            } finally {
+                handler.sendMessage(message)
             }
-        }
-        NetUtil.get("$getRepairsUrl?page=$page", callBackForResult)
+        })
     }
 
     /**
      * @param page --  报修列表页码(每页最多20条)
      */
     fun getPrivateRepairs(page: Int) {
-        val callBackForResult = object : NetUtil.CallBackForResult {
-            override fun onSuccess(response: Response) {
-                message = handler.obtainMessage()
-                try {
-                    val string = response.body()!!.string()
-                    message!!.obj = gson.fromJson(string, RepairInfoBean::class.java)
-                } catch (e: IOException) {
-                    e.printStackTrace()
-                } finally {
-                    handler.sendMessage(message)
-                }
+        NetUtil.get("$getPrivateRepairsUrl?page=$page", {
+            message = handler.obtainMessage()
+            try {
+                val string = it.body()!!.string()
+                message!!.obj = gson.fromJson(string, RepairInfoBean::class.java)
+            } catch (e: IOException) {
+                e.printStackTrace()
+            } finally {
+                handler.sendMessage(message)
             }
-        }
-        NetUtil.get("$getPrivateRepairsUrl?page=$page", callBackForResult)
+        })
     }
 
     /**
      * @param describe（不得超过80个字）
      */
     fun submitRepair(describe: String) {
-        val callBackForResult = object : NetUtil.CallBackForResult {
-            override fun onSuccess(response: Response) {
+        val params = HashMap<String, String>()
+        params["describe"] = describe
+
+        try {
+            NetUtil.post(submitRepairUrl, params, {
                 message = handler.obtainMessage()
                 try {
-                    message!!.obj = gson.fromJson(response.body()!!.string(), BaseBeanWithObject::class.java)
+                    message!!.obj = gson.fromJson(it.body()!!.string(), BaseBeanWithObject::class.java)
                 } catch (e: IOException) {
                     e.printStackTrace()
                 } finally {
                     handler.sendMessage(message)
                 }
-            }
-        }
-        val params = HashMap<String, String>()
-        params["describe"] = describe
-
-        try {
-            NetUtil.post(submitRepairUrl, params, callBackForResult)
+            })
         } catch (e: IOException) {
             e.printStackTrace()
         }
     }
 
     fun register(username: String, password: String, identify: Int, schoolId: Int) {
-        val callBackForResult = object : NetUtil.CallBackForResult {
-            override fun onSuccess(response: Response) {
-                message = handler.obtainMessage()
-                try {
-                    message!!.obj = gson.fromJson(response.body()!!.string(), BaseBean::class.java)
-                } catch (e: IOException) {
-                    e.printStackTrace()
-                } finally {
-                    handler.sendMessage(message)
-                }
-            }
-        }
         val params = HashMap<String, String>()
         params["username"] = username
         params["password"] = password
         params["identify"] = "$identify"
         params["schoolId"] = "$schoolId"
-
         try {
-            NetUtil.post(registerUrl, params, callBackForResult)
+            NetUtil.post(registerUrl, params, {
+                message = handler.obtainMessage()
+                try {
+                    message!!.obj = gson.fromJson(it.body()!!.string(), BaseBean::class.java)
+                } catch (e: IOException) {
+                    e.printStackTrace()
+                } finally {
+                    handler.sendMessage(message)
+                }
+            })
         } catch (e: IOException) {
             e.printStackTrace()
         }
     }
 
     fun login(username: String, password: String) {
-        val callBackForResult = object : NetUtil.CallBackForResult {
-            override fun onSuccess(response: Response) {
+        val params = HashMap<String, String>()
+        params["username"] = username
+        params["password"] = password
+        try {
+            NetUtil.post(loginUrl, params, {
                 message = handler.obtainMessage()
                 try {
-                    message!!.obj = gson.fromJson(response.body()!!.string(), BaseBean::class.java)
+                    message!!.obj = gson.fromJson(it.body()!!.string(), BaseBean::class.java)
                 } catch (e: IOException) {
                     e.printStackTrace()
                 } finally {
                     handler.sendMessage(message)
                 }
-            }
-        }
-        val params = HashMap<String, String>()
-        params["username"] = username
-        params["password"] = password
-
-        try {
-            NetUtil.post(loginUrl, params, callBackForResult)
+            })
         } catch (e: IOException) {
             e.printStackTrace()
         }
     }
 
     fun getUserInfo() {
-        val callBackForResult = object : NetUtil.CallBackForResult {
-            override fun onSuccess(response: Response) {
-                message = handler.obtainMessage()
-                try {
-                    val string = response.body()!!.string()
-                    Logger.e("getUserInfoUrl", string)
-                    message!!.obj = gson.fromJson(string, UserInfoBean::class.java)
-                } catch (e: IOException) {
-                    e.printStackTrace()
-                } finally {
-                    handler.sendMessage(message)
-                }
+        NetUtil.get(getUserInfoUrl, {
+            message = handler.obtainMessage()
+            try {
+                val string = it.body()!!.string()
+                Logger.e("getUserInfoUrl", string)
+                message!!.obj = gson.fromJson(string, UserInfoBean::class.java)
+            } catch (e: IOException) {
+                e.printStackTrace()
+            } finally {
+                handler.sendMessage(message)
             }
-        }
-        NetUtil.get(getUserInfoUrl, callBackForResult)
+        })
     }
 
     fun allUniversity() {
-        val callBackForResult = object : NetUtil.CallBackForResult {
-            override fun onSuccess(response: Response) {
-                message = handler.obtainMessage()
-                try {
-                    val string = response.body()!!.string()
-                    Logger.e("allUniversity", string)
-                    val fromJson = gson.fromJson(string, LinkedTreeMapBean::class.java)
-                    val linkedHashMap: LinkedHashMap<*, *> = fromJson.`object`!!
-                    val stringIntLinkedHashMap: LinkedHashMap<String, Int> = LinkedHashMap()
-                    for (i in linkedHashMap.keys) {
-                        stringIntLinkedHashMap[i.toString()] = linkedHashMap[i].toString().toDouble().toInt()
-                    }
-                    message!!.obj = SchoolsBean(fromJson.code, fromJson.message, stringIntLinkedHashMap)
-                } catch (e: IOException) {
-                    e.printStackTrace()
-                } finally {
-                    handler.sendMessage(message)
+        NetUtil.get(allUniversity, {
+            message = handler.obtainMessage()
+            try {
+                val string = it.body()!!.string()
+                val fromJson = gson.fromJson(string, LinkedTreeMapBean::class.java)
+                val linkedHashMap: LinkedHashMap<*, *> = fromJson.`object`!!
+                val stringIntLinkedHashMap: LinkedHashMap<String, Int> = LinkedHashMap()
+                for (i in linkedHashMap.keys) {
+                    stringIntLinkedHashMap[i.toString()] = linkedHashMap[i].toString().toDouble().toInt()
                 }
+                message!!.obj = SchoolsBean(fromJson.code, fromJson.message, stringIntLinkedHashMap)
+            } catch (e: IOException) {
+                e.printStackTrace()
+            } finally {
+                handler.sendMessage(message)
             }
-        }
-        NetUtil.get(allUniversity, callBackForResult)
+        })
     }
 
     fun allCampus() {
-        val callBackForResult = object : NetUtil.CallBackForResult {
-            override fun onSuccess(response: Response) {
-                message = handler.obtainMessage()
-                try {
-                    val string = response.body()!!.string()
-                    message!!.obj = gson.fromJson(string, CampusBean::class.java)
-                } catch (e: IOException) {
-                    e.printStackTrace()
-                } finally {
-                    handler.sendMessage(message)
-                }
+        NetUtil.get(allCampusUrl, {
+            message = handler.obtainMessage()
+            try {
+                val string = it.body()!!.string()
+                message!!.obj = gson.fromJson(string, CampusBean::class.java)
+            } catch (e: IOException) {
+                e.printStackTrace()
+            } finally {
+                handler.sendMessage(message)
             }
-        }
-        NetUtil.get(allCampusUrl, callBackForResult)
+        })
     }
 
     fun busList() {
-        val callBackForResult = object : NetUtil.CallBackForResult {
-            override fun onSuccess(response: Response) {
-                message = handler.obtainMessage()
-                try {
-                    val string = response.body()!!.string()
-                    message!!.obj = gson.fromJson(string, BusBean::class.java)
-                } catch (e: IOException) {
-                    e.printStackTrace()
-                } finally {
-                    handler.sendMessage(message)
-                }
+        NetUtil.get(busListUrl, {
+            message = handler.obtainMessage()
+            try {
+                val string = it.body()!!.string()
+                message!!.obj = gson.fromJson(string, BusBean::class.java)
+            } catch (e: IOException) {
+                e.printStackTrace()
+            } finally {
+                handler.sendMessage(message)
             }
-        }
-        NetUtil.get(busListUrl, callBackForResult)
+        })
     }
 
     fun busListByPath(from: Int, to: Int) {
-        val callBackForResult = object : NetUtil.CallBackForResult {
-            override fun onSuccess(response: Response) {
-                message = handler.obtainMessage()
-                try {
-                    val string = response.body()!!.string()
-                    message!!.obj = gson.fromJson(string, BusBean::class.java)
-                } catch (e: IOException) {
-                    e.printStackTrace()
-                } finally {
-                    handler.sendMessage(message)
-                }
+        NetUtil.get("$busListByPathUrl?from=$from&to=$to", {
+            message = handler.obtainMessage()
+            try {
+                val string = it.body()!!.string()
+                message!!.obj = gson.fromJson(string, BusBean::class.java)
+            } catch (e: IOException) {
+                e.printStackTrace()
+            } finally {
+                handler.sendMessage(message)
             }
-        }
-        NetUtil.get("$busListByPathUrl?from=$from&to=$to", callBackForResult)
+        })
     }
 
     fun getWeather(city: String) {
-        val callBackForResult = object : NetUtil.CallBackForResult {
-            override fun onSuccess(response: Response) {
-                message = handler.obtainMessage()
-                try {
-                    val string = response.body()!!.string()
-                    message!!.obj = gson.fromJson(string, WeatherBean::class.java)
-                } catch (e: IOException) {
-                    e.printStackTrace()
-                } finally {
-                    handler.sendMessage(message)
-                }
+        NetUtil.get("$getWeatherUrl?city=$city", {
+            message = handler.obtainMessage()
+            try {
+                val string = it.body()!!.string()
+                message!!.obj = gson.fromJson(string, WeatherBean::class.java)
+            } catch (e: IOException) {
+                e.printStackTrace()
+            } finally {
+                handler.sendMessage(message)
             }
-        }
-        NetUtil.get("$getWeatherUrl?city=$city", callBackForResult)
+        })
     }
 }

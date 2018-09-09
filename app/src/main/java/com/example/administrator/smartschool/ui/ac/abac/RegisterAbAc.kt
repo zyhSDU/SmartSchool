@@ -58,8 +58,8 @@ class RegisterAbAc : BaseAbAc() {
     }
 
     private fun allUniversity() {
-        CallUtil(initHandleMessage = { msg ->
-            val schoolsBean = msg.obj as SchoolsBean
+        CallUtil({
+            val schoolsBean = it.obj as SchoolsBean
 
             showToast("" + schoolsBean.code + "==" + schoolsBean.message)
 
