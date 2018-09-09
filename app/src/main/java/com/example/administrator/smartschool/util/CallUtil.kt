@@ -121,14 +121,9 @@ class CallUtil(private val initHandleMessage: (msg: Message) -> Unit) {
     fun submitRepair(describe: String) {
         val params = HashMap<String, String>()
         params["describe"] = describe
-
-        try {
-            NetUtil.post(submitRepairUrl, params, {
-                initInitOnSuccess(it, BaseBeanWithObject::class.java)
-            })
-        } catch (e: IOException) {
-            e.printStackTrace()
-        }
+        NetUtil.post(submitRepairUrl, params, {
+            initInitOnSuccess(it, BaseBeanWithObject::class.java)
+        })
     }
 
     fun register(username: String, password: String, identify: Int, schoolId: Int) {
@@ -137,26 +132,18 @@ class CallUtil(private val initHandleMessage: (msg: Message) -> Unit) {
         params["password"] = password
         params["identify"] = "$identify"
         params["schoolId"] = "$schoolId"
-        try {
-            NetUtil.post(registerUrl, params, {
-                initInitOnSuccess(it, BaseBean::class.java)
-            })
-        } catch (e: IOException) {
-            e.printStackTrace()
-        }
+        NetUtil.post(registerUrl, params, {
+            initInitOnSuccess(it, BaseBean::class.java)
+        })
     }
 
     fun login(username: String, password: String) {
         val params = HashMap<String, String>()
         params["username"] = username
         params["password"] = password
-        try {
-            NetUtil.post(loginUrl, params, {
-                initInitOnSuccess(it, BaseBean::class.java)
-            })
-        } catch (e: IOException) {
-            e.printStackTrace()
-        }
+        NetUtil.post(loginUrl, params, {
+            initInitOnSuccess(it, BaseBean::class.java)
+        })
     }
 
     fun getUserInfo() {
