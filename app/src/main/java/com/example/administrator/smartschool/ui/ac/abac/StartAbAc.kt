@@ -28,7 +28,7 @@ class StartAbAc : BaseAbAc() {
                 startActivity(LoginAbAc::class.java)
             }
             R.id.btn_login_administrator -> {
-                login("zyh","123456")
+                login("zyh", "123456")
             }
             R.id.btn_register -> {
                 startActivity(RegisterAbAc::class.java)
@@ -43,14 +43,7 @@ class StartAbAc : BaseAbAc() {
     }
 
     private fun login(username: String, password: String) {
-        startThread {
-            CallUtil(loginHandler).login(username, password)
-        }
-    }
-
-    private val loginHandler= @SuppressLint("HandlerLeak")
-    object : Handler(){
-        override fun handleMessage(msg: Message) {
+        CallUtil(initHandleMessage = { msg ->
             val baseBean = msg.obj as BaseBean
 
             showToast("" + baseBean.code + "==" + baseBean.message)
@@ -61,6 +54,6 @@ class StartAbAc : BaseAbAc() {
                     finish()
                 }
             }
-        }
+        }).login(username, password)
     }
 }

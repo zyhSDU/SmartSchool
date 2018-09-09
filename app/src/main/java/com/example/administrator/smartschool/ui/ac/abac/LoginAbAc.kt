@@ -35,14 +35,7 @@ class LoginAbAc : BaseAbAc() {
     }
 
     private fun login(username: String, password: String) {
-        startThread {
-            CallUtil(loginHandler).login(username, password)
-        }
-    }
-
-    private val loginHandler= @SuppressLint("HandlerLeak")
-    object :Handler(){
-        override fun handleMessage(msg: Message) {
+        CallUtil(initHandleMessage = { msg ->
             val baseBean = msg.obj as BaseBean
 
             showToast("" + baseBean.code + "==" + baseBean.message)
@@ -53,6 +46,6 @@ class LoginAbAc : BaseAbAc() {
                     finish()
                 }
             }
-        }
+        }).login(username, password)
     }
 }

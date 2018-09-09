@@ -49,49 +49,37 @@ class BusAbAc : BaseAbAc() {
 
     private fun allCampus() {
         startThread {
-            CallUtil(allCampusHandler).allCampus()
-        }
-    }
+            CallUtil(initHandleMessage = { msg ->
+                val campusBean = msg.obj as CampusBean
 
-    private val allCampusHandler = @SuppressLint("HandlerLeak")
-    object : Handler() {
-        override fun handleMessage(msg: Message) {
-            val campusBean = msg.obj as CampusBean
+                showToast("" + campusBean.code + "==" + campusBean.message)
 
-            showToast("" + campusBean.code + "==" + campusBean.message)
+                when (campusBean.code) {
+                    0 -> {
+                        campusList = campusBean.`object`!!
+                        val campusNameList = campusList.map { it.name!! }
 
-            when (campusBean.code) {
-                0 -> {
-                    campusList = campusBean.`object`!!
-                    val campusNameList = campusList.map { it.name!! }
+                        SpinnerHelper.setSpinner(spinner_from_campus, this@BusAbAc, campusNameList)
+                        SpinnerHelper.setSpinner(spinner_to_campus, this@BusAbAc, campusNameList)
 
-                    SpinnerHelper.setSpinner(spinner_from_campus, this@BusAbAc, campusNameList)
-                    SpinnerHelper.setSpinner(spinner_to_campus, this@BusAbAc, campusNameList)
-
-                    spinner_from_campus.onItemSelectedListener = object : SpinnerHelper.SpinnerOnItemSelectedListener {
-                        override fun onItemSelected(parent: AdapterView<*>?, view: View?, position: Int, id: Long) {
-                            tv_from_campus.text = campusList[position].name
+                        spinner_from_campus.onItemSelectedListener = object : SpinnerHelper.SpinnerOnItemSelectedListener {
+                            override fun onItemSelected(parent: AdapterView<*>?, view: View?, position: Int, id: Long) {
+                                tv_from_campus.text = campusList[position].name
+                            }
                         }
-                    }
-                    spinner_to_campus.onItemSelectedListener = object : SpinnerHelper.SpinnerOnItemSelectedListener {
-                        override fun onItemSelected(parent: AdapterView<*>?, view: View?, position: Int, id: Long) {
-                            tv_to_campus.text = campusList[position].name
+                        spinner_to_campus.onItemSelectedListener = object : SpinnerHelper.SpinnerOnItemSelectedListener {
+                            override fun onItemSelected(parent: AdapterView<*>?, view: View?, position: Int, id: Long) {
+                                tv_to_campus.text = campusList[position].name
+                            }
                         }
                     }
                 }
-            }
+            }).allCampus()
         }
     }
 
     private fun busList() {
-        startThread {
-            CallUtil(busListHandler).busList()
-        }
-    }
-
-    private val busListHandler = @SuppressLint("HandlerLeak")
-    object : Handler() {
-        override fun handleMessage(msg: Message) {
+        CallUtil(initHandleMessage = { msg ->
             val busBean = msg.obj as BusBean
 
             showToast("" + busBean.code + "==" + busBean.message)
@@ -105,18 +93,11 @@ class BusAbAc : BaseAbAc() {
                     )
                 }
             }
-        }
+        }).busList()
     }
 
     private fun busListByPath(from: Int, to: Int) {
-        startThread {
-            CallUtil(busListByPathHandler).busListByPath(from, to)
-        }
-    }
-
-    private val busListByPathHandler = @SuppressLint("HandlerLeak")
-    object : Handler() {
-        override fun handleMessage(msg: Message) {
+        CallUtil(initHandleMessage = { msg ->
             val busBean = msg.obj as BusBean
 
             showToast("" + busBean.code + "==" + busBean.message)
@@ -130,6 +111,6 @@ class BusAbAc : BaseAbAc() {
                     )
                 }
             }
-        }
+        }).busListByPath(from, to)
     }
 }

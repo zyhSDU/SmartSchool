@@ -43,14 +43,7 @@ class RegisterAbAc : BaseAbAc() {
     }
 
     private fun register(username: String, password: String, identify: Int, schoolId: Int) {
-        startThread {
-            CallUtil(registerHandler).register(username, password, identify, schoolId)
-        }
-    }
-
-    private val registerHandler = @SuppressLint("HandlerLeak")
-    object : Handler() {
-        override fun handleMessage(msg: Message) {
+        CallUtil(initHandleMessage = { msg ->
             val baseBean = msg.obj as BaseBean
 
             showToast("" + baseBean.code + "==" + baseBean.message)
@@ -61,18 +54,11 @@ class RegisterAbAc : BaseAbAc() {
                     finish()
                 }
             }
-        }
+        }).register(username, password, identify, schoolId)
     }
 
     private fun allUniversity() {
-        startThread {
-            CallUtil(allUniversityHandler).allUniversity()
-        }
-    }
-
-    private val allUniversityHandler = @SuppressLint("HandlerLeak")
-    object : Handler() {
-        override fun handleMessage(msg: Message) {
+        CallUtil(initHandleMessage = { msg ->
             val schoolsBean = msg.obj as SchoolsBean
 
             showToast("" + schoolsBean.code + "==" + schoolsBean.message)
@@ -82,10 +68,10 @@ class RegisterAbAc : BaseAbAc() {
                     linkedHashMap = schoolsBean.`object`!!
                     val keys = linkedHashMap.keys
                     strings = keys.map { it }
-                    SpinnerHelper.setSpinner(spinner_school_ac_register,this@RegisterAbAc,strings)
+                    SpinnerHelper.setSpinner(spinner_school_ac_register, this@RegisterAbAc, strings)
                     spinner_school_ac_register.setSelection(1)
                 }
             }
-        }
+        }).allUniversity()
     }
 }

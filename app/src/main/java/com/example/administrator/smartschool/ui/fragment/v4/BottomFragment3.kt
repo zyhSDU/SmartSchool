@@ -24,26 +24,19 @@ class BottomFragment3 : BaseFragment() {
     }
 
     private fun getUserInfo() {
-        startThread {
-            CallUtil(getUserInfoHandler).getUserInfo()
-        }
-    }
-
-    private val getUserInfoHandler = @SuppressLint("HandlerLeak")
-    object : Handler() {
-        override fun handleMessage(msg: Message) {
+        CallUtil(initHandleMessage = { msg ->
             val userInfoBean = msg.obj as UserInfoBean
 
             showToast("" + userInfoBean.code + "==" + userInfoBean.message)
 
             when (userInfoBean.code) {
                 0 -> {
-                    val userInfo= userInfoBean.`object`!!
-                    tvs[0].text= userInfo.identify
-                    tvs[1].text= userInfo.school!!.name
-                    tvs[2].text= userInfo.username
+                    val userInfo = userInfoBean.`object`!!
+                    tvs[0].text = userInfo.identify
+                    tvs[1].text = userInfo.school!!.name
+                    tvs[2].text = userInfo.username
                 }
             }
-        }
+        }).getUserInfo()
     }
 }

@@ -50,34 +50,22 @@ class ReportAbAc : BaseAbAc() {
 
     private fun submitRepair(describe: String) {
         startThread {
-            CallUtil(submitRepairHandler).submitRepair(describe)
-        }
-    }
+            CallUtil(initHandleMessage = { msg ->
+                val baseBean = msg.obj as BaseBeanWithObject
 
-    private val submitRepairHandler = @SuppressLint("HandlerLeak")
-    object : Handler() {
-        override fun handleMessage(msg: Message) {
-            val baseBean = msg.obj as BaseBeanWithObject
+                showToast("${baseBean.code}==${baseBean.message}")
 
-            showToast("${baseBean.code}==${baseBean.message}")
-
-            when (baseBean.code) {
-                0 -> {
-                    showToast("数据库中的报修id${baseBean.`object`.toString().toDouble().toInt()}")
+                when (baseBean.code) {
+                    0 -> {
+                        showToast("数据库中的报修id${baseBean.`object`.toString().toDouble().toInt()}")
+                    }
                 }
-            }
+            }).submitRepair(describe)
         }
     }
 
     private fun getPrivateRepairs(page: Int) {
-        startThread {
-            CallUtil(getPrivateRepairsHandler).getPrivateRepairs(page)
-        }
-    }
-
-    private val getPrivateRepairsHandler = @SuppressLint("HandlerLeak")
-    object : Handler() {
-        override fun handleMessage(msg: Message) {
+        CallUtil(initHandleMessage = { msg ->
             val repairInfoBean = msg.obj as RepairInfoBean
 
             showToast("${repairInfoBean.code}==${repairInfoBean.message}")
@@ -90,6 +78,6 @@ class ReportAbAc : BaseAbAc() {
                     )
                 }
             }
-        }
+        }).getPrivateRepairs(page)
     }
 }

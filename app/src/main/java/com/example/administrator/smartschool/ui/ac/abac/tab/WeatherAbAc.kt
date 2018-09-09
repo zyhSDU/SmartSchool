@@ -29,14 +29,7 @@ class WeatherAbAc : BaseAbAc() {
     }
 
     private fun getWeather(city: String) {
-        startThread {
-            CallUtil(getWeatherHandler).getWeather(city)
-        }
-    }
-
-    private val getWeatherHandler = @SuppressLint("HandlerLeak")
-    object : Handler() {
-        override fun handleMessage(msg: Message) {
+        CallUtil(initHandleMessage = { msg ->
             val weatherBean = msg.obj as WeatherBean
 
             showToast("" + weatherBean.status + "==" + weatherBean.message)
@@ -48,6 +41,6 @@ class WeatherAbAc : BaseAbAc() {
                     tv_show_weather.text = toString
                 }
             }
-        }
+        }).getWeather(city)
     }
 }

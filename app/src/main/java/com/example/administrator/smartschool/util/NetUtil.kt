@@ -1,5 +1,6 @@
 package com.example.administrator.tiaozhanbei.util
 
+import com.example.administrator.smartschool.temp.Temp
 import java.io.IOException
 import java.util.ArrayList
 import java.util.HashMap
@@ -120,7 +121,7 @@ class NetUtil private constructor() {
     }
 
     interface CallBackForResult {
-        fun onFailure(e: IOException){}
+        fun onFailure(e: IOException) {}
 
         fun onSuccess(response: Response)
     }
@@ -157,20 +158,28 @@ class NetUtil private constructor() {
          */
         @Throws(IOException::class)
         fun post(url: String, params: Map<String, String>, headers: Map<String, String>, callBackForResult: CallBackForResult) {
-            instance.mPost(url, params, headers, callBackForResult)
+            Temp.startThread {
+                instance.mPost(url, params, headers, callBackForResult)
+            }
         }
 
         @Throws(IOException::class)
         fun post(url: String, params: Map<String, String>, callBackForResult: CallBackForResult) {
-            instance.mPost(url, params, callBackForResult)
+            Temp.startThread {
+                instance.mPost(url, params, callBackForResult)
+            }
         }
 
         operator fun get(url: String, callBackForResult: CallBackForResult) {
-            instance.mGet(url, callBackForResult)
+            Temp.startThread {
+                instance.mGet(url, callBackForResult)
+            }
         }
 
         operator fun get(url: String, headers: Map<String, String>, callBackForResult: CallBackForResult) {
-            instance.mGet(url, headers, callBackForResult)
+            Temp.startThread {
+                instance.mGet(url, headers, callBackForResult)
+            }
         }
     }
 }

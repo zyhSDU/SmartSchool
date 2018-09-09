@@ -1,9 +1,11 @@
 package com.example.administrator.smartschool.util
 
+import android.annotation.SuppressLint
 import android.os.Handler
 import android.os.Message
 import com.example.administrator.smartschool.bean.*
 import com.example.administrator.smartschool.bean.weather.WeatherBean
+import com.example.administrator.smartschool.temp.Temp
 import com.example.administrator.tiaozhanbei.util.NetUtil
 import com.google.gson.Gson
 import okhttp3.Response
@@ -14,9 +16,18 @@ import java.util.HashMap
  * Created by Administrator on 2018/2/2 0002.
  */
 
-class CallUtil(private val handler: Handler) {
-
+class CallUtil(private val initHandleMessage: (msg: Message) -> Unit) {
+    private var handler: Handler
     private var message: Message? = null
+
+    init {
+        handler = @SuppressLint("HandlerLeak")
+        object : Handler() {
+            override fun handleMessage(msg: Message) {
+                initHandleMessage(msg)
+            }
+        }
+    }
 
     companion object {
         private val gson: Gson = Gson()
@@ -64,7 +75,7 @@ class CallUtil(private val handler: Handler) {
                 }
             }
         }
-        NetUtil["$finishRepairUrl?id=$id", callBackForResult]
+        NetUtil.get("$finishRepairUrl?id=$id", callBackForResult)
     }
 
     /**
@@ -84,7 +95,7 @@ class CallUtil(private val handler: Handler) {
                 }
             }
         }
-        NetUtil["$dealRepairUrl?id=$id", callBackForResult]
+        NetUtil.get("$dealRepairUrl?id=$id", callBackForResult)
     }
 
     /**
@@ -104,7 +115,7 @@ class CallUtil(private val handler: Handler) {
                 }
             }
         }
-        NetUtil["$getRepairsUrl?page=$page", callBackForResult]
+        NetUtil.get("$getRepairsUrl?page=$page", callBackForResult)
     }
 
     /**
@@ -124,7 +135,7 @@ class CallUtil(private val handler: Handler) {
                 }
             }
         }
-        NetUtil["$getPrivateRepairsUrl?page=$page", callBackForResult]
+        NetUtil.get("$getPrivateRepairsUrl?page=$page", callBackForResult)
     }
 
     /**
@@ -218,7 +229,7 @@ class CallUtil(private val handler: Handler) {
                 }
             }
         }
-        NetUtil[getUserInfoUrl, callBackForResult]
+        NetUtil.get(getUserInfoUrl, callBackForResult)
     }
 
     fun allUniversity() {
@@ -234,10 +245,7 @@ class CallUtil(private val handler: Handler) {
                     for (i in linkedHashMap.keys) {
                         stringIntLinkedHashMap[i.toString()] = linkedHashMap[i].toString().toDouble().toInt()
                     }
-
                     message!!.obj = SchoolsBean(fromJson.code, fromJson.message, stringIntLinkedHashMap)
-
-
                 } catch (e: IOException) {
                     e.printStackTrace()
                 } finally {
@@ -245,7 +253,7 @@ class CallUtil(private val handler: Handler) {
                 }
             }
         }
-        NetUtil[allUniversity, callBackForResult]
+        NetUtil.get(allUniversity, callBackForResult)
     }
 
     fun allCampus() {
@@ -262,7 +270,7 @@ class CallUtil(private val handler: Handler) {
                 }
             }
         }
-        NetUtil[allCampusUrl, callBackForResult]
+        NetUtil.get(allCampusUrl, callBackForResult)
     }
 
     fun busList() {
@@ -279,7 +287,7 @@ class CallUtil(private val handler: Handler) {
                 }
             }
         }
-        NetUtil[busListUrl, callBackForResult]
+        NetUtil.get(busListUrl, callBackForResult)
     }
 
     fun busListByPath(from: Int, to: Int) {
@@ -296,7 +304,7 @@ class CallUtil(private val handler: Handler) {
                 }
             }
         }
-        NetUtil["$busListByPathUrl?from=$from&to=$to", callBackForResult]
+        NetUtil.get("$busListByPathUrl?from=$from&to=$to", callBackForResult)
     }
 
     fun getWeather(city: String) {
@@ -313,6 +321,6 @@ class CallUtil(private val handler: Handler) {
                 }
             }
         }
-        NetUtil["$getWeatherUrl?city=$city", callBackForResult]
+        NetUtil.get("$getWeatherUrl?city=$city", callBackForResult)
     }
 }

@@ -22,15 +22,9 @@ class AnswerReportAbAc : BaseAbAc() {
     override fun initOnCreate() {
         getPrivateRepairs(0)
     }
-    private fun getPrivateRepairs(page: Int) {
-        startThread {
-            CallUtil(getRepairsHandler).getRepairs(page)
-        }
-    }
 
-    private val getRepairsHandler = @SuppressLint("HandlerLeak")
-    object : Handler() {
-        override fun handleMessage(msg: Message) {
+    private fun getPrivateRepairs(page: Int) {
+        CallUtil(initHandleMessage = { msg ->
             val repairInfoBean = msg.obj as RepairInfoBean
 
             showToast("${repairInfoBean.code}==${repairInfoBean.message}")
@@ -43,7 +37,6 @@ class AnswerReportAbAc : BaseAbAc() {
                     )
                 }
             }
-        }
+        }).getRepairs(page)
     }
-
 }
