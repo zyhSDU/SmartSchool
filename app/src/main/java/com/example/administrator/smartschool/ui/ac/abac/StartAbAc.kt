@@ -1,11 +1,10 @@
 package com.example.administrator.smartschool.ui.ac.abac
 
-import android.annotation.SuppressLint
-import android.os.Handler
-import android.os.Message
+import android.content.Intent
 import android.view.View
 import com.example.administrator.smartschool.R
 import com.example.administrator.smartschool.bean.BaseBean
+import com.example.administrator.smartschool.constants.UserConstantsList
 import com.example.administrator.smartschool.ui.ac.abac.tab.WeatherAbAc
 import com.example.administrator.smartschool.ui.ac.ac.MainActivity
 import com.example.administrator.smartschool.util.CallUtil
@@ -28,7 +27,8 @@ class StartAbAc : BaseAbAc() {
                 startActivity(LoginAbAc::class.java)
             }
             R.id.btn_login_administrator -> {
-                login("zyh", "123456")
+                val userPwd = UserConstantsList.administrator
+                login(userPwd.username, userPwd.password)
             }
             R.id.btn_register -> {
                 startActivity(RegisterAbAc::class.java)
@@ -45,12 +45,9 @@ class StartAbAc : BaseAbAc() {
     private fun login(username: String, password: String) {
         CallUtil({
             val baseBean = it.obj as BaseBean
-
-            showToast("" + baseBean.code + "==" + baseBean.message)
-
             when (baseBean.code) {
                 0 -> {
-                    startActivity(MainActivity::class.java)
+                    MainActivity.start(this@StartAbAc,true.toString())
                     finish()
                 }
             }

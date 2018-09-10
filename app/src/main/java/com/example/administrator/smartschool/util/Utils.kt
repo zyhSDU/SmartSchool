@@ -16,7 +16,7 @@ import android.view.View.OnClickListener
 import android.view.ViewGroup
 import android.view.WindowManager
 import android.widget.Toast
-import com.example.administrator.smartschool.interfaces.Constants
+import com.example.administrator.smartschool.constants.Constants
 import java.util.*
 
 object Utils {

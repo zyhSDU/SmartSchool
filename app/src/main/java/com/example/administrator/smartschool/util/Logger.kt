@@ -5,7 +5,7 @@ import android.util.Log
 object Logger {
     private var isShowLog = true
 
-    fun i(objTag: Any, msg: String) {
+    fun i(objTag: Any, msg: String?) {
         if (!isShowLog) {
             return
         }
@@ -14,10 +14,10 @@ object Logger {
             is Class<*> -> objTag.simpleName
             else -> objTag.javaClass.simpleName
         }
-        Log.i(tag, msg)
+        Log.i(tag,""+ msg)
     }
 
-    fun e(objTag: Any, msg: String) {
+    fun e(objTag: Any, msg: String?) {
         if (!isShowLog) {
             return
         }
@@ -26,7 +26,6 @@ object Logger {
             is Class<*> -> objTag.simpleName
             else -> objTag.javaClass.simpleName
         }
-        Log.e(tag, msg)
+        Log.e(tag,""+ msg)
     }
-
 }
