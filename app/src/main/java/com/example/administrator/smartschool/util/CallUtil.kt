@@ -41,7 +41,7 @@ class CallUtil(private val initHandleMessage: (msg: Message) -> Unit) {
         private const val loginUrl = "$userUrl/login/"
         private const val getUserInfoUrl = "$userUrl/getInfor"
 
-        private const val allUniversity = "$baseUrl/university/allUniversity"
+        private const val allUniversityUrl = "$baseUrl/university/allUniversity"
 
         private const val campusUrl = "$baseUrl/campus"
         private const val allCampusUrl = "$campusUrl/allCampus"
@@ -71,20 +71,23 @@ class CallUtil(private val initHandleMessage: (msg: Message) -> Unit) {
         }
     }
 
-    private fun initInitOnSuccess(response: Response, clazz: Class<*>) {
+    private fun initInitOnSuccess(response: Response, clazz: Class<*>, objTag: String = this.javaClass.simpleName) {
         initInitOnSuccess {
             val string = response.body()!!.string()
-            Logger.e(this,string)
             message!!.obj = gson.fromJson(string, clazz)
+            Logger.e(objTag, string!!)
         }
     }
+
+    private fun getLatterChars(string: String): String = string.substring(baseUrl.length)
 
     /**
      * @param id 报修id
      */
     fun finishRepair(id: Int) {
-        NetUtil.get("$finishRepairUrl?id=$id", {
-            initInitOnSuccess(it, BaseBean::class.java)
+        val url = finishRepairUrl
+        NetUtil.get("$url?id=$id", {
+            initInitOnSuccess(it, BaseBean::class.java, getLatterChars(url))
         })
     }
 
@@ -92,8 +95,9 @@ class CallUtil(private val initHandleMessage: (msg: Message) -> Unit) {
      * @param id 报修id
      */
     fun dealRepair(id: Int) {
+        val url = dealRepairUrl
         NetUtil.get("$dealRepairUrl?id=$id", {
-            initInitOnSuccess(it, BaseBean::class.java)
+            initInitOnSuccess(it, BaseBean::class.java,getLatterChars(url))
         })
     }
 
@@ -101,8 +105,9 @@ class CallUtil(private val initHandleMessage: (msg: Message) -> Unit) {
      * @param page --  报修列表页码(每页最多20条)
      */
     fun getRepairs(page: Int) {
-        NetUtil.get("$getRepairsUrl?page=$page", {
-            initInitOnSuccess(it, RepairInfoBean::class.java)
+        val url = getRepairsUrl
+        NetUtil.get("$url?page=$page", {
+            initInitOnSuccess(it, RepairInfoBean::class.java,getLatterChars(url))
         })
     }
 
@@ -110,8 +115,9 @@ class CallUtil(private val initHandleMessage: (msg: Message) -> Unit) {
      * @param page --  报修列表页码(每页最多20条)
      */
     fun getPrivateRepairs(page: Int) {
-        NetUtil.get("$getPrivateRepairsUrl?page=$page", {
-            initInitOnSuccess(it, RepairInfoBean::class.java)
+        val url = getPrivateRepairsUrl
+        NetUtil.get("$url?page=$page", {
+            initInitOnSuccess(it, RepairInfoBean::class.java,getLatterChars(url))
         })
     }
 
@@ -121,8 +127,9 @@ class CallUtil(private val initHandleMessage: (msg: Message) -> Unit) {
     fun submitRepair(describe: String) {
         val params = HashMap<String, String>()
         params["describe"] = describe
-        NetUtil.post(submitRepairUrl, params, {
-            initInitOnSuccess(it, BaseBeanWithObject::class.java)
+        val url = submitRepairUrl
+        NetUtil.post(url, params, {
+            initInitOnSuccess(it, BaseBeanWithObject::class.java,getLatterChars(url))
         })
     }
 
@@ -132,8 +139,9 @@ class CallUtil(private val initHandleMessage: (msg: Message) -> Unit) {
         params["password"] = password
         params["identify"] = "$identify"
         params["schoolId"] = "$schoolId"
-        NetUtil.post(registerUrl, params, {
-            initInitOnSuccess(it, BaseBean::class.java)
+        val url = registerUrl
+        NetUtil.post(url, params, {
+            initInitOnSuccess(it, BaseBean::class.java,getLatterChars(url))
         })
     }
 
@@ -141,19 +149,24 @@ class CallUtil(private val initHandleMessage: (msg: Message) -> Unit) {
         val params = HashMap<String, String>()
         params["username"] = username
         params["password"] = password
-        NetUtil.post(loginUrl, params, {
-            initInitOnSuccess(it, BaseBean::class.java)
+        val url = loginUrl
+        NetUtil.post(url, params, {
+            initInitOnSuccess(it, BaseBean::class.java, getLatterChars(url))
         })
     }
 
     fun getUserInfo() {
-        NetUtil.get(getUserInfoUrl, {
-            initInitOnSuccess(it, UserInfoBean::class.java)
+        val url = getUserInfoUrl
+        NetUtil.get(url, {
+            initInitOnSuccess(it, UserInfoBean::class.java,getLatterChars(url))
         })
     }
 
+    /**
+     * 例外
+     */
     fun allUniversity() {
-        NetUtil.get(allUniversity, {
+        NetUtil.get(allUniversityUrl, {
             initInitOnSuccess({
                 val string = it.body()!!.string()
                 val fromJson = gson.fromJson(string, LinkedTreeMapBean::class.java)
@@ -168,26 +181,30 @@ class CallUtil(private val initHandleMessage: (msg: Message) -> Unit) {
     }
 
     fun allCampus() {
-        NetUtil.get(allCampusUrl, {
-            initInitOnSuccess(it, CampusBean::class.java)
+        val url = allCampusUrl
+        NetUtil.get(url, {
+            initInitOnSuccess(it, CampusBean::class.java,getLatterChars(url))
         })
     }
 
     fun busList() {
-        NetUtil.get(busListUrl, {
-            initInitOnSuccess(it, BusBean::class.java)
+        val url = busListUrl
+        NetUtil.get(url, {
+            initInitOnSuccess(it, BusBean::class.java,getLatterChars(url))
         })
     }
 
     fun busListByPath(from: Int, to: Int) {
-        NetUtil.get("$busListByPathUrl?from=$from&to=$to", {
-            initInitOnSuccess(it, BusBean::class.java)
+        val url = busListByPathUrl
+        NetUtil.get("$url?from=$from&to=$to", {
+            initInitOnSuccess(it, BusBean::class.java,getLatterChars(url))
         })
     }
 
     fun getWeather(city: String) {
-        NetUtil.get("$getWeatherUrl?city=$city", {
-            initInitOnSuccess(it, WeatherBean::class.java)
+        val url = getWeatherUrl
+        NetUtil.get("$url?city=$city", {
+            initInitOnSuccess(it, WeatherBean::class.java,getLatterChars(url))
         })
     }
 }
