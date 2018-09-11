@@ -1,9 +1,5 @@
 package com.example.administrator.smartschool.ui.fragment.v4
 
-import android.annotation.SuppressLint
-import android.os.Handler
-import android.os.Message
-import android.view.View
 import android.widget.TextView
 import com.example.administrator.smartschool.R
 import com.example.administrator.smartschool.bean.UserInfoBean

@@ -3,7 +3,6 @@ package com.example.administrator.smartschool.bean
 /**
  * Created by Administrator on 2018/3/9 0009.
  */
-
 class UserPwd(val username: String, val password: String){
     override fun equals(other: Any?): Boolean {
         if (this === other) return true

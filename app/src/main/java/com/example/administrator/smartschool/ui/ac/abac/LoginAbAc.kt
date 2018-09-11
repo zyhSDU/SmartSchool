@@ -37,13 +37,13 @@ class LoginAbAc : BaseAbAc() {
     }
 
     private fun login(username: String, password: String) {
-        userPwd= UserPwd(username,password)
+        userPwd = UserPwd(username, password)
         CallUtil({
             val baseBean = it.obj as BaseBean
             when (baseBean.code) {
                 0 -> {
-                    if (userPwd== UserConstantsList.administrator)
-                        MainActivity.start(this@LoginAbAc, true.toString())
+                    val b = userPwd == UserConstantsList.administrator
+                    MainActivity.start(this@LoginAbAc, b)
                     finish()
                 }
             }

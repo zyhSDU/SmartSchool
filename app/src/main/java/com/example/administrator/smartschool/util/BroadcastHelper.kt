@@ -15,13 +15,15 @@ class BroadcastHelper {
     var activity: Activity? = null
     var canUnRegister: Boolean = false
     fun registerReceiver(activity: Activity, string: String, initOnReceive: (context: Context, intent: Intent) -> Unit) {
+        if (canUnRegister)
+            return
         receiver = object : BroadcastReceiver() {
             override fun onReceive(context: Context, intent: Intent) {
                 initOnReceive(context, intent)
             }
         }
         activity.registerReceiver(receiver, IntentFilter(string))
-        this.activity=activity
+        this.activity = activity
         canUnRegister = true
     }
 

@@ -20,4 +20,19 @@
         android:id="@+id/tv_reportTime_item_repair_info"
         android:layout_width="match_parent"
         android:layout_height="wrap_content" />
+
+    <Button
+        android:visibility="gone"
+        android:id="@+id/btn_deal_repair_item_repair_info"
+        style="@style/a_text_black_18sp_center"
+        android:layout_width="match_parent"
+        android:layout_height="wrap_content"
+        android:text="管理员受理报修" />
+
+    <Button
+        android:id="@+id/btn_finish_repair_item_repair_info"
+        style="@style/a_text_black_18sp_center"
+        android:layout_width="match_parent"
+        android:layout_height="wrap_content"
+        android:text="结束此次报修" />
 </LinearLayout>

@@ -1,6 +1,5 @@
 package com.example.administrator.smartschool.ui.ac.abac
 
-import android.content.Intent
 import android.view.View
 import com.example.administrator.smartschool.R
 import com.example.administrator.smartschool.bean.BaseBean
@@ -47,7 +46,7 @@ class StartAbAc : BaseAbAc() {
             val baseBean = it.obj as BaseBean
             when (baseBean.code) {
                 0 -> {
-                    MainActivity.start(this@StartAbAc,true.toString())
+                    MainActivity.start(this@StartAbAc,true)
                     finish()
                 }
             }

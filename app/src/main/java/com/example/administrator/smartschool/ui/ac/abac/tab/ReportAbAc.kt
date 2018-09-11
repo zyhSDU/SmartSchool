@@ -48,9 +48,6 @@ class ReportAbAc : BaseAbAc() {
     private fun submitRepair(describe: String) {
         CallUtil({
             val baseBean = it.obj as BaseBeanWithObject
-
-            showToast("${baseBean.code}==${baseBean.message}")
-
             when (baseBean.code) {
                 0 -> {
                     showToast("数据库中的报修id${baseBean.`object`.toString().toDouble().toInt()}")
@@ -62,14 +59,11 @@ class ReportAbAc : BaseAbAc() {
     private fun getPrivateRepairs(page: Int) {
         CallUtil({
             val repairInfoBean = it.obj as RepairInfoBean
-
-            showToast("${repairInfoBean.code}==${repairInfoBean.message}")
-
             when (repairInfoBean.code) {
                 0 -> {
                     RecyclerViewHelper.initVerticalRecyclerView(
                             rv_report, this@ReportAbAc,
-                            RepairInfoRVAdapter(this@ReportAbAc, repairInfoBean.`object`!!)
+                            RepairInfoRVAdapter(this@ReportAbAc, repairInfoBean.`object`!!,false)
                     )
                 }
             }

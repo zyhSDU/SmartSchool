@@ -12,16 +12,15 @@ import android.view.Menu
 import android.view.MenuItem
 import com.example.administrator.smartschool.R
 import com.example.administrator.smartschool.adapter.BaseFragmentPagerAdapter
+import com.example.administrator.smartschool.constants.Setting
 import com.example.administrator.smartschool.ui.fragment.v4.BottomFragment1
 import com.example.administrator.smartschool.ui.fragment.v4.BottomFragment2
 import com.example.administrator.smartschool.ui.fragment.v4.BottomFragment3
-import com.example.administrator.smartschool.util.BroadcastHelper
 import kotlinx.android.synthetic.main.activity_main.*
 import kotlinx.android.synthetic.main.app_bar_main.*
 import kotlinx.android.synthetic.main.content_main.*
 
 class MainActivity : AppCompatActivity(), NavigationView.OnNavigationItemSelectedListener {
-    private var isAdministrator = false
     override fun onCreate(savedInstanceState: Bundle?) {
         super.onCreate(savedInstanceState)
         setContentView(R.layout.activity_main)
@@ -41,23 +40,6 @@ class MainActivity : AppCompatActivity(), NavigationView.OnNavigationItemSelecte
 
         nav_view.setNavigationItemSelectedListener(this)
 
-        val stringExtra = intent.getStringExtra(string_isAdministrator)
-        isAdministrator = stringExtra == "true"
-        registerIsBottomFragment1RecyclerView1AdapterOkReceiver()
-    }
-
-    private fun registerIsBottomFragment1RecyclerView1AdapterOkReceiver() {
-        val broadcastHelper = BroadcastHelper()
-        broadcastHelper.registerReceiver(
-                this@MainActivity,
-                string_isBottomFragment1RecyclerView1AdapterOk,
-                { context, intent ->
-                    if (isAdministrator) {
-                        sendBroadcast(Intent(MainActivity.string_updateAdministratorUIReceiver))
-                    }
-                    broadcastHelper.unregisterReceiver()
-                }
-        )
     }
 
     private fun setBottomNavigationView() {
@@ -120,12 +102,9 @@ class MainActivity : AppCompatActivity(), NavigationView.OnNavigationItemSelecte
     }
 
     companion object {
-        val string_isAdministrator = "isAdministrator"
-        val string_updateAdministratorUIReceiver = "updateAdministratorUIReceiver"
-        val string_isBottomFragment1RecyclerView1AdapterOk = "isBottomFragment1RecyclerView1AdapterOk"
-        fun start(context: Context, string: String) {
+        fun start(context: Context, isAdministratorLogin: Boolean = false) {
             val starter = Intent(context, MainActivity::class.java)
-            starter.putExtra(string_isAdministrator, string)
+            Setting.isAdministratorLogin = isAdministratorLogin
             context.startActivity(starter)
         }
     }

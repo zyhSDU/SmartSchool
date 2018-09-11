@@ -1,8 +1,5 @@
 package com.example.administrator.smartschool.ui.ac.abac.tab
 
-import android.annotation.SuppressLint
-import android.os.Handler
-import android.os.Message
 import android.view.View
 import com.example.administrator.smartschool.R
 import com.example.administrator.smartschool.bean.weather.WeatherBean
