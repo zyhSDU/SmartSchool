@@ -4,11 +4,11 @@ import android.view.View
 import android.widget.AdapterView
 import com.example.administrator.smartschool.R
 import com.example.administrator.smartschool.adapter.rv.BusRVAdapter
-import com.example.administrator.smartschool.bean.BusBean
+import com.example.administrator.smartschool.bean.BusListBean
 import com.example.administrator.smartschool.bean.Campus
-import com.example.administrator.smartschool.bean.CampusBean
+import com.example.administrator.smartschool.bean.CampusListBean
 import com.example.administrator.smartschool.ui.ac.abac.BaseAbAc
-import com.example.administrator.smartschool.util.CallUtil
+import com.example.administrator.smartschool.net.CallUtil
 import com.example.administrator.smartschool.util.RecyclerViewHelper
 import com.example.administrator.smartschool.util.SpinnerHelper
 import kotlinx.android.synthetic.main.ac_bus.*
@@ -45,42 +45,34 @@ class BusAbAc : BaseAbAc() {
     }
 
     private fun allCampus() {
-        startThread {
-            CallUtil({
-                val campusBean = it.obj as CampusBean
+        CallUtil({
+            val campusBean = it.obj as CampusListBean
+            when (campusBean.code) {
+                0 -> {
+                    campusList = campusBean.`object`!!
+                    val campusNameList = campusList.map { it.name!! }
 
-                showToast("" + campusBean.code + "==" + campusBean.message)
+                    SpinnerHelper.setSpinner(spinner_from_campus, this@BusAbAc, campusNameList)
+                    SpinnerHelper.setSpinner(spinner_to_campus, this@BusAbAc, campusNameList)
 
-                when (campusBean.code) {
-                    0 -> {
-                        campusList = campusBean.`object`!!
-                        val campusNameList = campusList.map { it.name!! }
-
-                        SpinnerHelper.setSpinner(spinner_from_campus, this@BusAbAc, campusNameList)
-                        SpinnerHelper.setSpinner(spinner_to_campus, this@BusAbAc, campusNameList)
-
-                        spinner_from_campus.onItemSelectedListener = object : SpinnerHelper.SpinnerOnItemSelectedListener {
-                            override fun onItemSelected(parent: AdapterView<*>?, view: View?, position: Int, id: Long) {
-                                tv_from_campus.text = campusList[position].name
-                            }
+                    spinner_from_campus.onItemSelectedListener = object : SpinnerHelper.SpinnerOnItemSelectedListener {
+                        override fun onItemSelected(parent: AdapterView<*>?, view: View?, position: Int, id: Long) {
+                            tv_from_campus.text = campusList[position].name
                         }
-                        spinner_to_campus.onItemSelectedListener = object : SpinnerHelper.SpinnerOnItemSelectedListener {
-                            override fun onItemSelected(parent: AdapterView<*>?, view: View?, position: Int, id: Long) {
-                                tv_to_campus.text = campusList[position].name
-                            }
+                    }
+                    spinner_to_campus.onItemSelectedListener = object : SpinnerHelper.SpinnerOnItemSelectedListener {
+                        override fun onItemSelected(parent: AdapterView<*>?, view: View?, position: Int, id: Long) {
+                            tv_to_campus.text = campusList[position].name
                         }
                     }
                 }
-            }).allCampus()
-        }
+            }
+        }).allCampus()
     }
 
     private fun busList() {
         CallUtil({
-            val busBean = it.obj as BusBean
-
-            showToast("" + busBean.code + "==" + busBean.message)
-
+            val busBean = it.obj as BusListBean
             when (busBean.code) {
                 0 -> {
                     RecyclerViewHelper.initVerticalRecyclerView(
@@ -95,10 +87,7 @@ class BusAbAc : BaseAbAc() {
 
     private fun busListByPath(from: Int, to: Int) {
         CallUtil({
-            val busBean = it.obj as BusBean
-
-            showToast("" + busBean.code + "==" + busBean.message)
-
+            val busBean = it.obj as BusListBean
             when (busBean.code) {
                 0 -> {
                     RecyclerViewHelper.initVerticalRecyclerView(

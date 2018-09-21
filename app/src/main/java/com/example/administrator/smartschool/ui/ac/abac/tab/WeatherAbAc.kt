@@ -4,7 +4,7 @@ import android.view.View
 import com.example.administrator.smartschool.R
 import com.example.administrator.smartschool.bean.weather.WeatherBean
 import com.example.administrator.smartschool.ui.ac.abac.BaseAbAc
-import com.example.administrator.smartschool.util.CallUtil
+import com.example.administrator.smartschool.net.CallUtil
 import com.example.administrator.smartschool.util.Logger
 import kotlinx.android.synthetic.main.ac_weather.*
 

@@ -6,7 +6,7 @@ import com.example.administrator.smartschool.ui.ac.ac.MainActivity
 import com.example.administrator.smartschool.bean.BaseBean
 import com.example.administrator.smartschool.bean.UserPwd
 import com.example.administrator.smartschool.constants.UserConstantsList
-import com.example.administrator.smartschool.util.CallUtil
+import com.example.administrator.smartschool.net.CallUtil
 import kotlinx.android.synthetic.main.ac_login.*
 
 /**

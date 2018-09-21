@@ -3,9 +3,10 @@ package com.example.administrator.smartschool.ui.ac.ac
 import android.content.Context
 import android.content.Intent
 import android.os.Bundle
-import android.support.design.widget.Snackbar
 import android.support.design.widget.NavigationView
+import android.support.design.widget.Snackbar
 import android.support.v4.view.GravityCompat
+import android.support.v4.view.ViewPager
 import android.support.v7.app.ActionBarDrawerToggle
 import android.support.v7.app.AppCompatActivity
 import android.view.Menu
@@ -43,7 +44,7 @@ class MainActivity : AppCompatActivity(), NavigationView.OnNavigationItemSelecte
     }
 
     private fun setBottomNavigationView() {
-        ViewPager_main.adapter = object : BaseFragmentPagerAdapter(supportFragmentManager) {
+        viewPager_main.adapter = object : BaseFragmentPagerAdapter(supportFragmentManager) {
             init {
                 fragmentList = arrayListOf(
                         BottomFragment1(),
@@ -52,11 +53,18 @@ class MainActivity : AppCompatActivity(), NavigationView.OnNavigationItemSelecte
                 )
             }
         }
+        viewPager_main.setOnPageChangeListener(object :ViewPager.OnPageChangeListener{
+            override fun onPageScrollStateChanged(state: Int) {}
+            override fun onPageScrolled(position: Int, positionOffset: Float, positionOffsetPixels: Int) {}
+            override fun onPageSelected(position: Int) {
+                bottomNavigationView_main.menu.getItem(position).isChecked = true
+            }
+        })
         bottomNavigationView_main.setOnNavigationItemSelectedListener {
             when (it.itemId) {
-                R.id.item_0_menu_bottom_main -> ViewPager_main.currentItem = 0
-                R.id.item_1_menu_bottom_main -> ViewPager_main.currentItem = 1
-                R.id.item_2_menu_bottom_main -> ViewPager_main.currentItem = 2
+                R.id.item_0_menu_bottom_main -> viewPager_main.currentItem = 0
+                R.id.item_1_menu_bottom_main -> viewPager_main.currentItem = 1
+                R.id.item_2_menu_bottom_main -> viewPager_main.currentItem = 2
             }
             true
         }

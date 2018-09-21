@@ -6,7 +6,7 @@ import com.example.administrator.smartschool.bean.BaseBean
 import com.example.administrator.smartschool.constants.UserConstantsList
 import com.example.administrator.smartschool.ui.ac.abac.tab.WeatherAbAc
 import com.example.administrator.smartschool.ui.ac.ac.MainActivity
-import com.example.administrator.smartschool.util.CallUtil
+import com.example.administrator.smartschool.net.CallUtil
 
 /**
  * Created by Administrator on 2018/7/18 0018.
@@ -46,7 +46,7 @@ class StartAbAc : BaseAbAc() {
             val baseBean = it.obj as BaseBean
             when (baseBean.code) {
                 0 -> {
-                    MainActivity.start(this@StartAbAc,true)
+                    MainActivity.start(this@StartAbAc, true)
                     finish()
                 }
             }

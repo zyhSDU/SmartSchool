@@ -5,7 +5,7 @@ package com.example.administrator.smartschool.bean
  */
 
 class UserInfo {
-    var identify: String = ""
-    var school: School? = null
-    var username: String = ""
+    val identify: String = ""
+    val school: School? = null
+    val username: String = ""
 }

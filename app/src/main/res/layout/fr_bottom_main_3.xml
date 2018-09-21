@@ -58,7 +58,7 @@
                 style="@style/a_text_black_18sp_center"
                 android:layout_width="wrap_content"
                 android:layout_height="match_parent"
-                android:text="姓名：" />
+                android:text="@string/suername" />
 
             <TextView
                 android:id="@+id/tv_username_bottom_fg_setting"

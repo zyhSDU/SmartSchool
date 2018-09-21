@@ -5,6 +5,7 @@ import java.util.ArrayList
 
 object UserConstantsList {
     val administrator = UserPwd("zyh", "123456")
+    val teacher = UserPwd("zls", "123456")
     val arrayList = ArrayList<UserPwd>()
 
     init {

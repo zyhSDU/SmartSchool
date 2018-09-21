@@ -3,7 +3,7 @@ package com.example.administrator.smartschool.ui.fragment.v4
 import android.widget.TextView
 import com.example.administrator.smartschool.R
 import com.example.administrator.smartschool.bean.UserInfoBean
-import com.example.administrator.smartschool.util.CallUtil
+import com.example.administrator.smartschool.net.CallUtil
 
 /**
  * Created by zhangYuHan on 2017/8/2.

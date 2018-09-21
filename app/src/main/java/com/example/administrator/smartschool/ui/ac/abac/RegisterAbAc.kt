@@ -1,15 +1,11 @@
 package com.example.administrator.smartschool.ui.ac.abac
 
-import android.annotation.SuppressLint
-import android.os.Handler
-import android.os.Message
 import android.view.View
 
 import com.example.administrator.smartschool.R
 import com.example.administrator.smartschool.bean.BaseBean
-import com.example.administrator.smartschool.util.CallUtil
+import com.example.administrator.smartschool.net.CallUtil
 import kotlinx.android.synthetic.main.ac_register.*
-import android.widget.ArrayAdapter
 import com.example.administrator.smartschool.bean.SchoolsBean
 import com.example.administrator.smartschool.util.SpinnerHelper
 
@@ -45,9 +41,6 @@ class RegisterAbAc : BaseAbAc() {
     private fun register(username: String, password: String, identify: Int, schoolId: Int) {
         CallUtil(initHandleMessage = { msg ->
             val baseBean = msg.obj as BaseBean
-
-            showToast("" + baseBean.code + "==" + baseBean.message)
-
             when (baseBean.code) {
                 0 -> {
                     startActivity(LoginAbAc::class.java)
@@ -60,9 +53,6 @@ class RegisterAbAc : BaseAbAc() {
     private fun allUniversity() {
         CallUtil({
             val schoolsBean = it.obj as SchoolsBean
-
-            showToast("" + schoolsBean.code + "==" + schoolsBean.message)
-
             when (schoolsBean.code) {
                 0 -> {
                     linkedHashMap = schoolsBean.`object`!!

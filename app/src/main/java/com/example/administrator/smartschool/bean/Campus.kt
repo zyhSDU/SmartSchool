@@ -5,7 +5,7 @@ package com.example.administrator.smartschool.bean
  */
 
 class Campus {
-    var schoolId: Int = 0
-    var name: String? = null
-    var id: Int = 0
+    val schoolId: Int = 0
+    val name: String = ""
+    val id: Int = 0
 }

@@ -1,20 +1,8 @@
-package com.example.administrator.tiaozhanbei.util
+package com.example.administrator.smartschool.net
 
-import com.example.administrator.smartschool.temp.Temp
+import okhttp3.*
 import java.io.IOException
-import java.util.ArrayList
-import java.util.HashMap
-
-import okhttp3.Call
-import okhttp3.Callback
-import okhttp3.Cookie
-import okhttp3.CookieJar
-import okhttp3.FormBody
-import okhttp3.HttpUrl
-import okhttp3.OkHttpClient
-import okhttp3.Request
-import okhttp3.RequestBody
-import okhttp3.Response
+import java.util.*
 
 /**
  * Created by Administrator on 2016/7/11.
@@ -132,7 +120,7 @@ class NetUtil private constructor() {
         private var mInstance: NetUtil? = null
         private val mOkHttpClient = OkHttpClient.Builder().cookieJar(object : CookieJar {
             override fun saveFromResponse(httpUrl: HttpUrl, list: List<Cookie>) {
-                cookieStore.put(httpUrl.host(), list)
+                cookieStore[httpUrl.host()] = list
             }
 
             override fun loadForRequest(httpUrl: HttpUrl): List<Cookie> {
@@ -150,73 +138,71 @@ class NetUtil private constructor() {
                         }
                     }
                 }
-                return this.mInstance!!
+                return mInstance!!
             }
 
         /**
-         * 对外公布的方法1.0
+         * 对外公布的方法
          */
-        private fun post(url: String, params: Map<String, String>, headers: Map<String, String>, callBackForResult: CallBackForResult) {
-            Temp.startThread {
+        fun post(url: String, params: Map<String, String>, headers: Map<String, String>, initOnSuccess: (response: Response) -> Unit) {
+            val callBackForResult = object : CallBackForResult {
+                override fun onSuccess(response: Response) {
+                    initOnSuccess(response)
+                }
+            }
+            startThread {
                 instance.mPost(url, params, headers, callBackForResult)
             }
         }
 
-        private fun post(url: String, params: Map<String, String>, callBackForResult: CallBackForResult) {
-            Temp.startThread {
+        fun post(url: String, params: Map<String, String>, initOnSuccess: (response: Response) -> Unit) {
+            val callBackForResult = object : CallBackForResult {
+                override fun onSuccess(response: Response) {
+                    initOnSuccess(response)
+                }
+            }
+            startThread {
                 instance.mPost(url, params, callBackForResult)
             }
         }
 
-        private fun get(url: String, callBackForResult: CallBackForResult) {
-            Temp.startThread {
+        fun get(url: String, initOnSuccess: (response: Response) -> Unit) {
+            val callBackForResult = object : CallBackForResult {
+                override fun onSuccess(response: Response) {
+                    initOnSuccess(response)
+                }
+            }
+            startThread {
                 instance.mGet(url, callBackForResult)
             }
         }
 
-        private fun get(url: String, headers: Map<String, String>, callBackForResult: CallBackForResult) {
-            Temp.startThread {
+        fun get(url: String, headers: Map<String, String>, initOnSuccess: (response: Response) -> Unit) {
+            val callBackForResult = object : CallBackForResult {
+                override fun onSuccess(response: Response) {
+                    initOnSuccess(response)
+                }
+            }
+            startThread {
                 instance.mGet(url, headers, callBackForResult)
             }
         }
 
-        /**
-         * 对外公布的方法2.0
-         */
-        fun post(url: String, params: Map<String, String>, headers: Map<String, String>, initOnSuccess: (response: Response) -> Unit) {
-            val callBackForResult = object : NetUtil.CallBackForResult {
-                override fun onSuccess(response: Response) {
-                    initOnSuccess(response)
+        private fun startThread(init: () -> Unit) {
+            object : Thread() {
+                override fun run() {
+                    init()
                 }
-            }
-            post(url, params, headers, callBackForResult)
+            }.start()
         }
 
-        fun post(url: String, params: Map<String, String>, initOnSuccess: (response: Response) -> Unit) {
-            val callBackForResult = object : NetUtil.CallBackForResult {
-                override fun onSuccess(response: Response) {
-                    initOnSuccess(response)
-                }
+        fun urlGet(url: String, map: HashMap<String, String>): String {
+            val s = StringBuffer("$url?")
+            map.map {
+                s.append(it.key + "=" + it.value + "&")
             }
-            post(url, params, callBackForResult)
-        }
-
-        fun get(url: String, initOnSuccess: (response: Response) -> Unit) {
-            val callBackForResult = object : NetUtil.CallBackForResult {
-                override fun onSuccess(response: Response) {
-                    initOnSuccess(response)
-                }
-            }
-            get(url, callBackForResult)
-        }
-
-        fun get(url: String, headers: Map<String, String>, initOnSuccess: (response: Response) -> Unit) {
-            val callBackForResult = object : NetUtil.CallBackForResult {
-                override fun onSuccess(response: Response) {
-                    initOnSuccess(response)
-                }
-            }
-            get(url, headers, callBackForResult)
+            if (map.size != 0) s.deleteCharAt(s.length - 1)
+            return s.toString()
         }
     }
 }
