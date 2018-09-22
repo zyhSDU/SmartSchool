@@ -45,7 +45,10 @@ class RepairInfoRVAdapter(
         tv_describe.text = repairInfo.zdescribe
         tv_status.text = "status:${repairInfo.status}"
         tv_reportTime.text = repairInfo.reportTime
-        ViewHelper.setViewVisibility(isAdministrator, btn_deal_repair)
+        ViewHelper.run {
+            setViewVisibility(isAdministrator, btn_deal_repair)
+            setViewVisibility(!isAdministrator, btn_finish_repair)
+        }
         btn_deal_repair.setOnClickListener {
             dealRepair(repairInfo.id)
         }

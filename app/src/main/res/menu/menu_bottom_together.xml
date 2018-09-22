@@ -1,0 +1,13 @@
+<?xml version="1.0" encoding="utf-8"?>
+<menu xmlns:android="http://schemas.android.com/apk/res/android">
+
+    <item
+        android:id="@+id/item_0_menu_bottom_together"
+        android:icon="@drawable/ic_launcher"
+        android:title="查看本校的约车约自习列表" />
+
+    <item
+        android:id="@+id/item_1_menu_bottom_together"
+        android:icon="@drawable/ic_launcher"
+        android:title="查看自己曾经发起的活动" />
+</menu>

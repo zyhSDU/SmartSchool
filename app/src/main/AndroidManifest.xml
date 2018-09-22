@@ -14,16 +14,14 @@
         android:supportsRtl="true"
         android:theme="@style/AppTheme">
         <activity
-            android:name="com.example.administrator.smartschool.ui.ac.ac.MainActivity"
+            android:name=".ui.ac.ac.MainActivity"
             android:label="@string/app_name"
             android:launchMode="singleTask"
-            android:theme="@style/AppTheme">
-
-        </activity>
-        <activity android:name="com.example.administrator.smartschool.ui.ac.abac.SplashAbAc" />
-        <activity android:name="com.example.administrator.smartschool.ui.ac.abac.LoginAbAc" />
-        <activity android:name="com.example.administrator.smartschool.ui.ac.abac.RegisterAbAc" />
-        <activity android:name="com.example.administrator.smartschool.ui.ac.abac.StartAbAc" >
+            android:theme="@style/AppTheme" />
+        <activity android:name=".ui.ac.abac.SplashAbAc" />
+        <activity android:name=".ui.ac.abac.LoginAbAc" />
+        <activity android:name=".ui.ac.abac.RegisterAbAc" />
+        <activity android:name=".ui.ac.abac.StartAbAc">
             <intent-filter>
                 <action android:name="android.intent.action.MAIN" />
 
@@ -32,12 +30,14 @@
         </activity>
         <activity android:name=".ui.ac.abac.tab.WeatherAbAc" />
         <activity android:name=".ui.ac.abac.tab.BusAbAc" />
-        <activity android:name=".ui.ac.abac.tab.ReportAbAc" >
-
-        </activity>
+        <activity android:name=".ui.ac.abac.tab.ReportAbAc" />
         <activity android:name=".ui.ac.abac.tab.AnswerReportAbAc" />
         <activity android:name=".ui.ac.abac.tab.ScoreAbAc" />
         <activity android:name=".ui.ac.abac.tab.TestScheduleAbAc" />
+        <activity android:name=".ui.ac.abac.tab.LostActivity" />
+        <activity android:name=".ui.ac.abac.tab.LostListActivity" />
+        <activity android:name=".ui.ac.abac.tab.TogetherListActivity" />
+        <activity android:name=".ui.ac.abac.tab.TogetherParterListActivity"></activity>
     </application>
 
 </manifest>

@@ -1,0 +1,42 @@
+<?xml version="1.0" encoding="utf-8"?>
+<LinearLayout xmlns:android="http://schemas.android.com/apk/res/android"
+    xmlns:tools="http://schemas.android.com/tools"
+    android:layout_width="match_parent"
+    android:layout_height="match_parent"
+    android:orientation="vertical"
+    android:padding="16dp"
+    tools:context="com.example.administrator.smartschool.ui.ac.abac.tab.LostActivity">
+
+    <EditText
+        android:id="@+id/et_zdescribe_ac_lost"
+        android:layout_width="match_parent"
+        android:layout_height="wrap_content"
+        android:background="@null"
+        android:gravity="start"
+        android:hint="请输入您的认领描述（不得超过80个字）"
+        android:maxLines="8"
+        android:minLines="8" />
+
+    <EditText
+        android:id="@+id/et_phone_ac_lost"
+        android:layout_width="match_parent"
+        android:layout_height="wrap_content"
+        android:background="@null"
+        android:layout_marginBottom="16dp"
+        android:hint="请输入您的联系方式（不超过11位）"
+        android:inputType="number"
+        android:maxLines="1" />
+
+    <ImageView
+        android:id="@+id/iv_ac_lost"
+        android:background="@color/gray"
+        android:layout_weight="1"
+        android:layout_width="match_parent"
+        android:layout_height="0dp" />
+
+    <Button
+        android:id="@+id/btn_ac_lost"
+        android:text="提交认领"
+        android:layout_width="match_parent"
+        android:layout_height="wrap_content" />
+</LinearLayout>

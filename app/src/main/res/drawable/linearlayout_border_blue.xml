@@ -1,0 +1,13 @@
+<?xml version="1.0" encoding="UTF-8"?>
+<!-- 
+tc 2015-0615-17:10
+ -->
+<shape xmlns:android="http://schemas.android.com/apk/res/android" >
+
+    <solid android:color="#FFFFFF" />
+
+    <stroke
+        android:width="2px"
+        android:color="#008bcc" />
+
+</shape>

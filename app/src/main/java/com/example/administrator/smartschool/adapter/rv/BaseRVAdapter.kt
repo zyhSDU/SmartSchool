@@ -1,10 +1,12 @@
 package com.example.administrator.smartschool.adapter.rv
 
+import android.annotation.SuppressLint
 import android.content.Context
 import android.support.v7.widget.RecyclerView
 import android.view.LayoutInflater
 import android.view.View
 import android.view.ViewGroup
+import android.widget.Toast
 import com.example.administrator.smartschool.adapter.LayoutAndViews
 
 /**
@@ -21,5 +23,10 @@ abstract class BaseRVAdapter(val context: Context, val datum: List<Any>) : Recyc
 
     inner class MyViewHolder(itemView: View) : RecyclerView.ViewHolder(itemView) {
         val views = Array<View>(viewsId.size, { i -> itemView.findViewById(viewsId[i]) })
+    }
+
+    @SuppressLint("WrongConstant", "ShowToast")
+    fun showToast(text: String?) {
+        Toast.makeText(context, text.toString(), 0).show()
     }
 }

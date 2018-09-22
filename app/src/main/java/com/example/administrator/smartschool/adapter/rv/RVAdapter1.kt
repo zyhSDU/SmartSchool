@@ -18,8 +18,8 @@ class RVAdapter1(context: Context, arrayList: List<Any>) : BaseRVAdapter(context
         get() = arrayListOf(R.id.pop_item)
 
     override fun onBindViewHolder(holder: MyViewHolder, position: Int) {
-        val textView = holder.views[0] as TextView
         val abMenuItem = datum[position] as AbMenuItem
+        val textView = holder.views[0] as TextView
         textView.text = abMenuItem.text
     }
 }

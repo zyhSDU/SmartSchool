@@ -15,7 +15,12 @@ class BusRVAdapter(context: Context, arrayList: List<Any>) : BaseRVAdapter(conte
         get() = R.layout.item_bus
 
     override val viewsId: ArrayList<Int>
-        get() = arrayListOf(R.id.tv_time_item_bus,R.id.tv_date_item_bus,R.id.tv_from_item_bus,R.id.tv_to_item_bus)
+        get() = arrayListOf(
+                R.id.tv_time_item_bus,
+                R.id.tv_date_item_bus,
+                R.id.tv_from_item_bus,
+                R.id.tv_to_item_bus
+        )
 
     override fun onBindViewHolder(holder: MyViewHolder, position: Int) {
         val bus = datum[position] as Bus

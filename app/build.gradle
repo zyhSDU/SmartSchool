@@ -36,4 +36,7 @@ dependencies {
     compile 'com.squareup.okhttp3:okhttp:3.8.1'
     compile 'com.google.code.gson:gson:2.8.1'
     implementation files('libs/andbase.jar')
+    compile 'com.robbypond:material-dialogs:1.0.0'
+//https://blog.csdn.net/mp624183768/article/details/54670674
+
 }

@@ -1,0 +1,76 @@
+<?xml version="1.0" encoding="utf-8"?>
+<LinearLayout xmlns:android="http://schemas.android.com/apk/res/android"
+    xmlns:app="http://schemas.android.com/apk/res-auto"
+    android:layout_width="match_parent"
+    android:layout_height="match_parent"
+    android:layout_margin="16dp"
+    android:orientation="vertical"
+    android:padding="16dp">
+
+    <LinearLayout
+        android:layout_width="match_parent"
+        android:layout_height="wrap_content"
+        android:gravity="center"
+        android:orientation="horizontal">
+
+        <TextView
+            android:layout_width="wrap_content"
+            android:layout_height="wrap_content"
+            android:layout_gravity="center"
+            android:gravity="center|left"
+            android:text="一共需要参与的人数："
+            android:textColor="@color/black"
+            android:textSize="18sp" />
+
+        <com.example.administrator.smartschool.view.QuantityChooseView
+            android:id="@+id/quantityChooseView_dialog_start_together"
+            android:layout_width="wrap_content"
+            android:layout_height="wrap_content"
+            android:layout_gravity="center_vertical"
+            android:background="@drawable/linearlayout_border_blue"
+            android:padding="1px"
+            app:leftViewDisableSrc="@mipmap/icon_subtract_gray"
+            app:leftViewEnableSrc="@mipmap/icon_subtract_orange"
+            app:quantity="1"
+            app:quantityTextColor="@color/white"
+            app:quantityTextSize="12"
+            app:rightViewDisableSrc="@mipmap/icon_add_gray"
+            app:rightViewEnableSrc="@mipmap/icon_add" />
+
+    </LinearLayout>
+
+
+    <RadioGroup
+        android:id="@+id/rg_dialog_start_together"
+        android:layout_width="match_parent"
+        android:layout_height="wrap_content"
+        android:layout_margin="16dp"
+        android:gravity="center"
+        android:orientation="horizontal">
+
+        <RadioButton
+            android:tag="0"
+            android:id="@+id/rb1_dialog_start_together"
+            android:layout_width="wrap_content"
+            android:layout_height="wrap_content"
+            android:layout_marginEnd="30dp"
+            android:checked="true"
+            android:text="约车" />
+
+        <RadioButton
+            android:tag="1"
+            android:id="@+id/rb2_dialog_start_together"
+            android:layout_width="wrap_content"
+            android:layout_height="wrap_content"
+            android:layout_marginEnd="30dp"
+            android:text="约自习" />
+    </RadioGroup>
+
+    <EditText
+        android:id="@+id/et_dialog_start_together"
+        android:layout_width="match_parent"
+        android:layout_height="wrap_content"
+        android:background="@null"
+        android:hint="活动描述（不超过80个字）"
+        android:maxLines="6" />
+</LinearLayout>

@@ -209,22 +209,24 @@ class CallUtil(private val initHandleMessage: (msg: Message) -> Unit) {
     }
 
     /**
+     * 13
+     * 提交一条认领
      * 	@param zdescribe --  认领描述（不得超过80个字）
      *  @param phone -- 联系方式（不超过11位）
      *  @param picCode -- 图片base64编码后的字符串，若没有图片，传"null" 字符串
      */
-    fun lost_submitLost(zdescribe: String, phone: String, picCode: String) {
+    fun lost_submitLost(zdescribe: String, phone: String, picCode: String?) {
         val params = HashMap<String, String>()
         params["zdescribe"] = zdescribe
         params["phone"] = phone
-        params["picCode"] = picCode
+        params["picCode"] = picCode.toString()
         val url = lost_submitLostUrl
         NetUtil.post(url, params, {
             initInitOnSuccess(it, BaseBeanWithObject::class.java, url)
         })
     }
 
-    fun lost_getLostListUrl(page: Int) {
+    fun lost_getLostList(page: Int) {
         val params = HashMap<String, String>()
         params["page"] = page.toString()
         val url = urlGet(lost_getLostListUrl, params)
@@ -233,7 +235,7 @@ class CallUtil(private val initHandleMessage: (msg: Message) -> Unit) {
         })
     }
 
-    fun lost_getLostInfoUrl(id: Int) {
+    fun lost_getLostInfo(id: Int) {
         val params = HashMap<String, String>()
         params["id"] = id.toString()
         val url = urlGet(lost_getLostInfoUrl, params)
@@ -242,7 +244,7 @@ class CallUtil(private val initHandleMessage: (msg: Message) -> Unit) {
         })
     }
 
-    fun lost_submitLost(id: Int) {
+    fun lost_finishLost(id: Int) {
         val params = HashMap<String, String>()
         params["id"] = id.toString()
         val url = lost_finishLostUrl
@@ -290,7 +292,7 @@ class CallUtil(private val initHandleMessage: (msg: Message) -> Unit) {
      * 停止一条约车约自习
      * @param toId 约id
      */
-    fun together_start(toId: Int) {
+    fun together_stop(toId: Int) {
         val params = HashMap<String, String>()
         params["toId"] = toId.toString()
         val url = together_stopUrl
@@ -305,9 +307,10 @@ class CallUtil(private val initHandleMessage: (msg: Message) -> Unit) {
      * @param toId 约id
      * @param info 联系说明，如手机号等(不超过80个字)
      */
-    fun together_start(toId: Int, info: String) {
+    fun together_partTog(toId: Int, info: String) {
         val params = HashMap<String, String>()
         params["toId"] = toId.toString()
+        params["info"] = info
         val url = together_partTogUrl
         NetUtil.post(url, params, {
             initInitOnSuccess(it, BaseBean::class.java, url)

@@ -8,8 +8,7 @@
     <color name="green">#5CB292</color>
     <color name="blue_gray">#364F6E</color>
     <color name="black">#000000</color>
-    <color name="white">#ffffff</color>
-    <color name="gray">#BFBFBF</color>
+    <color name="gray">#fff2f2f2</color>
     <color name="blue_gray_light">#E6E6FA</color>
     <color name="black_light">#2C2E2F</color>
     <color name="gray_table">#CCCCCC</color>
@@ -31,4 +30,13 @@
     <color name="text_yellow">#FFC800</color>
     <color name="text_topbar">#694E42</color>
     <color name="div_white">#E5E5E5</color>
+
+    <color name="white">#ffffffff</color>
+    <color name="blue_new">#008bcc</color>
+    <!--MD_dialog相关-->
+    <color name="card_background">#ffffff</color>
+    <color name="card_shadow">#10000000</color>
+    <color name="lite_blue">#ff359ff2</color>
+    <color name="window_background">#00000000</color>
+    <!--MD_dialog相关-->
 </resources>

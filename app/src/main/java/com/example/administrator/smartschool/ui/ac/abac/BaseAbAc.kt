@@ -14,7 +14,7 @@ abstract class BaseAbAc : AbActivity(),AbAcInterface , UIInterface {
         super.onCreate(savedInstanceState)
         setAbContentView(layoutResId)
         Utils.setAllOnClickListener(this, this)//Activity的根View
-        AbTitleBarHelper.hideAbTitleBar(mAbTitleBar)()
+        AbTitleBarHelper.initAbTitleBar3(mAbTitleBar, this, this.javaClass.simpleName)
         initOnCreate()
     }
 

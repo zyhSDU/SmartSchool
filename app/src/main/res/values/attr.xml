@@ -1,0 +1,13 @@
+<?xml version="1.0" encoding="utf-8"?>
+<resources>
+    <declare-styleable name="QuantityChooseView">
+        <attr name="maxQuantity" format="integer" />
+        <attr name="quantity" format="integer" />
+        <attr name="rightViewEnableSrc" format="integer" />
+        <attr name="rightViewDisableSrc" format="integer" />
+        <attr name="leftViewEnableSrc" format="integer" />
+        <attr name="leftViewDisableSrc" format="integer" />
+        <attr name="quantityTextSize" format="integer" />
+        <attr name="quantityTextColor" format="color" />
+    </declare-styleable>
+</resources>

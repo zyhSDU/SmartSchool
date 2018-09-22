@@ -1,0 +1,17 @@
+<?xml version="1.0" encoding="utf-8"?>
+<com.tomtop.shop.widgets.QuantityChooseView
+    android:id="@+id/qcv_shopping_cart_quantity"
+    xmlns:android="http://schemas.android.com/apk/res/android"
+    xmlns:app="http://schemas.android.com/apk/res-auto"
+    android:layout_width="wrap_content"
+    android:layout_height="wrap_content"
+    android:layout_gravity="bottom"
+    android:background="@drawable/linearlayout_border_blue"
+    android:padding="1px"
+    app:leftViewDisableSrc="@mipmap/icon_subtract_gray"
+    app:leftViewEnableSrc="@mipmap/icon_subtract_orange"
+    app:quantity="1"
+    app:quantityTextColor="@color/white"
+    app:quantityTextSize="12"
+    app:rightViewDisableSrc="@mipmap/icon_add_gray"
+    app:rightViewEnableSrc="@mipmap/icon_add"/>

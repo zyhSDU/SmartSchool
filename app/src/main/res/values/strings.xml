@@ -17,4 +17,10 @@
     <string name="home">主页</string>
     <string name="title_activity_main">MainActivity</string>
     <string name="suername">姓名：</string>
+
+    <string name="msg_null_number">Please input number!</string>
+    <string name="msg_error_onlyOneAbove">Can only enter one above!</string>
+    <string name="dialog_title_quantity">Input Quantity</string>
+    <string name="cancel">Cancel</string>
+    <string name="confirm">Confirm</string>
 </resources>
