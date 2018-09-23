@@ -40,7 +40,6 @@ class CallUtil(private val initHandleMessage: (msg: Message) -> Unit) {
 
     private fun initInitOnSuccess(response: Response, clazz: Class<*>, url: String) {
         initInitOnSuccess {
-            Logger.e(url, "")
             val string = response.body()!!.string()
             Logger.e(url, string)
             message!!.obj = gson.fromJson(string, clazz)
@@ -56,7 +55,7 @@ class CallUtil(private val initHandleMessage: (msg: Message) -> Unit) {
         val params = HashMap<String, String>()
         params["id"] = id.toString()
         val url = repair_finishRepairUrl
-        NetUtil.post(url,params, {
+        NetUtil.post(url, params, {
             initInitOnSuccess(it, BaseBean::class.java, url)
         })
     }
@@ -70,7 +69,7 @@ class CallUtil(private val initHandleMessage: (msg: Message) -> Unit) {
         val params = HashMap<String, String>()
         params["id"] = id.toString()
         val url = repair_dealRepairUrl
-        NetUtil.post(url,params, {
+        NetUtil.post(url, params, {
             initInitOnSuccess(it, BaseBean::class.java, url)
         })
     }
@@ -373,6 +372,7 @@ class CallUtil(private val initHandleMessage: (msg: Message) -> Unit) {
             initInitOnSuccess(it, TogetherListBean::class.java, url)
         })
     }
+
     /**
      * 25
      * 发起者一场签到
@@ -382,10 +382,11 @@ class CallUtil(private val initHandleMessage: (msg: Message) -> Unit) {
         val params = HashMap<String, String>()
         params["password"] = password
         val url = sign_startSignUrl
-        NetUtil.post(url, params,{
+        NetUtil.post(url, params, {
             initInitOnSuccess(it, BaseBeanWithObject::class.java, url)
         })
     }
+
     /**
      * 26
      * 发起者结束一场签到
@@ -395,43 +396,45 @@ class CallUtil(private val initHandleMessage: (msg: Message) -> Unit) {
         val params = HashMap<String, String>()
         params["signId"] = signId.toString()
         val url = sign_stopSignUrl
-        NetUtil.post(url, params,{
+        NetUtil.post(url, params, {
             initInitOnSuccess(it, BaseBean::class.java, url)
         })
     }
+
     /**
      * 27
      * 进行某一次签到
      * @param signId 签到id
      * @param password 密码
      */
-    fun sign_partOne(signId: Int,password:String) {
+    fun sign_partOne(signId: Int, password: String) {
         val params = HashMap<String, String>()
         params["signId"] = signId.toString()
         params["password"] = password
         val url = sign_partOneUrl
-        NetUtil.post(url, params,{
+        NetUtil.post(url, params, {
             initInitOnSuccess(it, BaseBean::class.java, url)
         })
     }
+
     /**
      * 28
      * 获取已经签到人的名单
      * @param signId 签到id
      * @param page 页码（可选，默认为1） 每页30条
      */
-    fun sign_getSignList(signId: Int,page:Int) {
+    fun sign_getSignList(signId: Int, page: Int) {
         val params = HashMap<String, String>()
         params["signId"] = signId.toString()
         params["page"] = page.toString()
-        val url = sign_getSignListUrl
-        NetUtil.post(url, params,{
+        val url = urlGet(sign_getSignListUrl, params)
+        NetUtil.get(url, {
             initInitOnSuccess(it, SignerListBean::class.java, url)
         })
     }
 
     companion object {
-        private val gson = Gson()
+        val gson = Gson()
 
         private const val baseUrl = "http://106.14.212.49/smartCampus"
 

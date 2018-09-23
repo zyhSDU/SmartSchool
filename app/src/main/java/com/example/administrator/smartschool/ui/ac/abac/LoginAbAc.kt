@@ -42,8 +42,7 @@ class LoginAbAc : BaseAbAc() {
             val baseBean = it.obj as BaseBean
             when (baseBean.code) {
                 0 -> {
-                    val b = userPwd == UserConstantsList.administrator
-                    MainActivity.start(this@LoginAbAc, b)
+                    MainActivity.start(this@LoginAbAc, 0)
                     finish()
                 }
             }

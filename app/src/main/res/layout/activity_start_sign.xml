@@ -1,0 +1,45 @@
+<?xml version="1.0" encoding="utf-8"?>
+<LinearLayout xmlns:android="http://schemas.android.com/apk/res/android"
+    xmlns:tools="http://schemas.android.com/tools"
+    android:layout_width="match_parent"
+    android:layout_height="match_parent"
+    android:layout_margin="16dp"
+    android:orientation="vertical"
+    tools:context="com.example.administrator.smartschool.ui.ac.abac.tab.StartSignActivity">
+
+    <EditText
+        android:id="@+id/et_pwd_startSign"
+        android:layout_width="match_parent"
+        android:layout_height="wrap_content"
+        android:hint="请输入签到密码"
+        android:inputType="number" />
+
+    <Button
+        android:id="@+id/btn_startSign"
+        android:layout_width="match_parent"
+        android:layout_height="wrap_content"
+        android:text="发起签到" />
+
+    <ImageView
+        android:id="@+id/iv_erWeiMa_startSign"
+        android:layout_width="match_parent"
+        android:layout_height="wrap_content" />
+
+    <Button
+        android:visibility="gone"
+        android:id="@+id/btn_stopSign"
+        android:layout_width="match_parent"
+        android:layout_height="wrap_content"
+        android:text="结束签到" />
+
+    <Button
+        android:visibility="gone"
+        android:id="@+id/btn_getSignList"
+        android:layout_width="match_parent"
+        android:layout_height="wrap_content"
+        android:text="获取已经签到人的名单" />
+    <android.support.v7.widget.RecyclerView
+        android:id="@+id/rv_signList"
+        android:layout_width="match_parent"
+        android:layout_height="match_parent"/>
+</LinearLayout>

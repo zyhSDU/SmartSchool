@@ -110,9 +110,9 @@ class MainActivity : AppCompatActivity(), NavigationView.OnNavigationItemSelecte
     }
 
     companion object {
-        fun start(context: Context, isAdministratorLogin: Boolean = false) {
+        fun start(context: Context, identity:Int =0) {
             val starter = Intent(context, MainActivity::class.java)
-            Setting.isAdministratorLogin = isAdministratorLogin
+            Setting.identity = identity
             context.startActivity(starter)
         }
     }

@@ -23,6 +23,13 @@
             android:text="管理员登录" />
 
         <Button
+            android:id="@+id/btn_login_teacher"
+            style="@style/a_text_black_18sp_center"
+            android:layout_width="match_parent"
+            android:layout_height="@dimen/height_input"
+            android:text="教师登录" />
+
+        <Button
             android:id="@+id/btn_register"
             style="@style/a_text_black_18sp_center"
             android:layout_width="match_parent"

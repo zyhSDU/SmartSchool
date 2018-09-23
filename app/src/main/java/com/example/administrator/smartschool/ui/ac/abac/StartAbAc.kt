@@ -4,9 +4,9 @@ import android.view.View
 import com.example.administrator.smartschool.R
 import com.example.administrator.smartschool.bean.BaseBean
 import com.example.administrator.smartschool.constants.UserConstantsList
+import com.example.administrator.smartschool.net.CallUtil
 import com.example.administrator.smartschool.ui.ac.abac.tab.WeatherAbAc
 import com.example.administrator.smartschool.ui.ac.ac.MainActivity
-import com.example.administrator.smartschool.net.CallUtil
 
 /**
  * Created by Administrator on 2018/7/18 0018.
@@ -27,7 +27,11 @@ class StartAbAc : BaseAbAc() {
             }
             R.id.btn_login_administrator -> {
                 val userPwd = UserConstantsList.administrator
-                login(userPwd.username, userPwd.password)
+                login(userPwd.username, userPwd.password,2)
+            }
+            R.id.btn_login_teacher -> {
+                val userPwd = UserConstantsList.teacher
+                login(userPwd.username, userPwd.password,1)
             }
             R.id.btn_register -> {
                 startActivity(RegisterAbAc::class.java)
@@ -41,12 +45,12 @@ class StartAbAc : BaseAbAc() {
         }
     }
 
-    private fun login(username: String, password: String) {
+    private fun login(username: String, password: String,identity:Int) {
         CallUtil({
             val baseBean = it.obj as BaseBean
             when (baseBean.code) {
                 0 -> {
-                    MainActivity.start(this@StartAbAc, true)
+                    MainActivity.start(this@StartAbAc, identity)
                     finish()
                 }
             }

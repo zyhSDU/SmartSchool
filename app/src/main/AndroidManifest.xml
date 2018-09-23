@@ -4,8 +4,12 @@
 
     <uses-permission android:name="android.permission.READ_EXTERNAL_STORAGE" />
     <uses-permission android:name="android.permission.WRITE_EXTERNAL_STORAGE" />
-    <uses-permission android:name="android.permission.INTERNET" />
+    <uses-permission android:name="android.permission.INTERNET" /> <!-- 网络权限 -->
+    <uses-permission android:name="android.permission.VIBRATE" /> <!-- 震动权限 -->
+    <uses-permission android:name="android.permission.CAMERA" /> <!-- 摄像头权限 -->
+    <uses-feature android:name="android.hardware.camera.autofocus" />
 
+    <!-- 自动聚焦权限 -->
     <application
         android:allowBackup="true"
         android:icon="@mipmap/ic_launcher"
@@ -37,7 +41,10 @@
         <activity android:name=".ui.ac.abac.tab.LostActivity" />
         <activity android:name=".ui.ac.abac.tab.LostListActivity" />
         <activity android:name=".ui.ac.abac.tab.TogetherListActivity" />
-        <activity android:name=".ui.ac.abac.tab.TogetherParterListActivity"></activity>
+        <activity android:name=".ui.ac.abac.tab.TogetherParterListActivity" />
+        <activity android:name=".ui.ac.abac.tab.StartSignActivity" />
+        <activity android:name=".ui.ac.abac.tab.SignActivity"></activity>
+        <activity android:name="com.google.zxing.activity.CaptureActivity" />
     </application>
 
 </manifest>

@@ -8,6 +8,7 @@ import com.example.administrator.smartschool.bean.BaseBeanWithObject
 import com.example.administrator.smartschool.net.CallUtil
 import com.example.administrator.smartschool.ui.ac.abac.BaseAbAc
 import com.example.administrator.smartschool.util.Base64Util
+import com.example.administrator.smartschool.util.Logger
 import kotlinx.android.synthetic.main.activity_lost.*
 import java.io.FileNotFoundException
 
@@ -24,6 +25,7 @@ class LostActivity : BaseAbAc() {
             val bitmap = Bitmap.createBitmap(iv_ac_lost.drawingCache)
             iv_ac_lost.isDrawingCacheEnabled = false
             val bitmapToBase64 = Base64Util.bitmapToBase64(bitmap)
+            Logger.e("smartCampus",bitmapToBase64)
             lost_submitLost(et_zdescribe_ac_lost.text.toString(), et_phone_ac_lost.text.toString(), bitmapToBase64)
         }
     }

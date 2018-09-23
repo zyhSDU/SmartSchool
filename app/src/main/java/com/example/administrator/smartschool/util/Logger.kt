@@ -28,4 +28,11 @@ object Logger {
         }
         Log.e(tag,""+ msg)
     }
+
+    fun e( msg: String?) {
+        if (!isShowLog) {
+            return
+        }
+        Log.e("smartCampus",""+ msg)
+    }
 }

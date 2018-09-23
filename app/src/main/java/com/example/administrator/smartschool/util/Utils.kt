@@ -85,7 +85,7 @@ object Utils {
     }
 
     @SuppressLint("ObsoleteSdkInt")
-    fun dynamicPermission(activity: Activity, vararg permissions: String) {//例子：Manifest.permission.CALL_PHONE
+    fun dynamicPermission(activity: Activity, vararg permissions: String) {//例子：android.Manifest.permission.CAMERA
         if (Build.VERSION.SDK_INT >= 23) {
             permissions
                     .filter { ContextCompat.checkSelfPermission(activity, it) != PackageManager.PERMISSION_GRANTED }

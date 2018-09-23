@@ -38,5 +38,6 @@ dependencies {
     implementation files('libs/andbase.jar')
     compile 'com.robbypond:material-dialogs:1.0.0'
 //https://blog.csdn.net/mp624183768/article/details/54670674
-
+    compile 'com.google.zxing:core:3.3.0'
+//https://blog.csdn.net/ahuyangdong/article/details/76405557?utm_source=copy
 }
