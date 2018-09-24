@@ -1,7 +1,5 @@
 package com.example.administrator.smartschool.ui.ac.abac.tab
 
-import android.view.MenuInflater
-import android.view.MenuItem
 import android.widget.EditText
 import android.widget.RadioButton
 import android.widget.RadioGroup
@@ -21,33 +19,33 @@ class TogetherListActivity : BaseAbAc() {
     override val layoutResId: Int
         get() = R.layout.activity_together_list
 
-    private val menuItem0 :MenuItem
-        get()= bottomNavigationView_together.menu.getItem(0)
-    private val menuItem1 :MenuItem
-        get()= bottomNavigationView_together.menu.getItem(1)
-
     override fun initOnCreate() {
-        menuItem0.isEnabled = false
-        menuItem1.isEnabled = false
         together_list(1, -1)
         btn_to_ac_add_together.setOnClickListener {
             showDialog()
         }
         bottomNavigationView_together.setOnNavigationItemSelectedListener {
-            menuItem0.isEnabled = false
-            menuItem1.isEnabled = false
             when (it.itemId) {
-                R.id.item_0_menu_bottom_together -> together_list(1, -1)
-                R.id.item_1_menu_bottom_together -> together_getSelfTog(1)
+                R.id.item_0_menu_bottom_together -> {
+                    if (!it.isChecked) {
+                        together_list(1, -1)
+                    }
+                }
+                R.id.item_1_menu_bottom_together -> {
+                    if (!it.isChecked) {
+                        together_getSelfTog(1)
+                    }
+                }
             }
             true
         }
 
     }
-    private fun together_getSelfTog(page: Int){
-        CallUtil{
+
+    private fun together_getSelfTog(page: Int) {
+        CallUtil {
             val togetherListBean = it.obj as TogetherListBean
-            when(togetherListBean.code){
+            when (togetherListBean.code) {
                 0 -> {
                     RecyclerViewHelper.initVerticalRecyclerView(
                             rv_ac_together_list,
@@ -59,7 +57,6 @@ class TogetherListActivity : BaseAbAc() {
                     )
                 }
             }
-            menuItem0.isEnabled = true
         }.together_getSelfTog(page)
     }
 
@@ -113,7 +110,6 @@ class TogetherListActivity : BaseAbAc() {
                     )
                 }
             }
-            menuItem1.isEnabled = true
         }.together_list(page, type)
     }
 }

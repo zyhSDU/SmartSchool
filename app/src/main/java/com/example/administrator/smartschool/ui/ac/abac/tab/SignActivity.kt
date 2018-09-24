@@ -1,6 +1,5 @@
 package com.example.administrator.smartschool.ui.ac.abac.tab
 
-import android.app.Activity
 import android.content.Intent
 import com.dommy.qrcode.util.Constant
 import com.dommy.qrcode.util.Constant.INTENT_EXTRA_KEY_QR_SCAN
@@ -28,13 +27,17 @@ class SignActivity : BaseAbAc() {
 
     override fun onActivityResult(requestCode: Int, resultCode: Int, data: Intent) {
         super.onActivityResult(requestCode, resultCode, data)
-        if (requestCode == REQ_QR_CODE && resultCode == Activity.RESULT_OK) {
+        if (requestCode == REQ_QR_CODE && resultCode == -1) {
             val bundle = data.extras
             val string = bundle.getString(INTENT_EXTRA_KEY_QR_SCAN)
             val sign = CallUtil.gson.fromJson(string, Sign::class.java)
             CallUtil {
                 val baseBean = it.obj as BaseBean
-                showToast(baseBean.message)
+                val toast = when {
+                    baseBean.code == 0 -> "签到成功"
+                    else -> baseBean.message
+                }
+                tv_ac_sign.text = toast
             }.sign_partOne(sign.signId!!.toInt(), sign.password!!)
         }
     }

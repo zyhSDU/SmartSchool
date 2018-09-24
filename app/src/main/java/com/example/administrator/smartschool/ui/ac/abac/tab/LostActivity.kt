@@ -17,8 +17,12 @@ class LostActivity : BaseAbAc() {
         get() = R.layout.activity_lost
 
     override fun initOnCreate() {
+        mAbTitleBar.setTitleText("上报丢失")
         iv_ac_lost.setOnClickListener {
             openAlbum()
+        }
+        tv_ac_lost.setOnClickListener {
+            iv_ac_lost.performClick()
         }
         btn_ac_lost.setOnClickListener {
             iv_ac_lost.isDrawingCacheEnabled = true
@@ -26,7 +30,11 @@ class LostActivity : BaseAbAc() {
             iv_ac_lost.isDrawingCacheEnabled = false
             val bitmapToBase64 = Base64Util.bitmapToBase64(bitmap)
             Logger.e("smartCampus",bitmapToBase64)
-            lost_submitLost(et_zdescribe_ac_lost.text.toString(), et_phone_ac_lost.text.toString(), bitmapToBase64)
+            lost_submitLost(
+                    et_zdescribe_ac_lost.text.toString(),
+                    et_phone_ac_lost.text.toString(),
+                    bitmapToBase64
+            )
         }
     }
 

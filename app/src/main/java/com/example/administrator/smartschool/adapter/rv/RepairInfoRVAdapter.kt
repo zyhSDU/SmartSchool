@@ -43,7 +43,20 @@ class RepairInfoRVAdapter(
         val repairInfo = datum[position] as RepairInfo
 
         tv_describe.text = repairInfo.zdescribe
-        tv_status.text = "status:${repairInfo.status}"
+        when {
+            repairInfo.status==0 -> {
+                tv_status.text = "未受理"
+                tv_status.setTextColor(context.resources.getColor(R.color.red_label))
+            }
+            repairInfo.status==1 -> {
+                tv_status.text = "受理中"
+                tv_status.setTextColor(context.resources.getColor(R.color.yellow))
+            }
+            repairInfo.status==2 -> {
+                tv_status.text = "已解决"
+                tv_status.setTextColor(context.resources.getColor(R.color.green))
+            }
+        }
         tv_reportTime.text = repairInfo.reportTime
         ViewHelper.run {
             setViewVisibility(isAdministrator, btn_deal_repair)
@@ -60,16 +73,14 @@ class RepairInfoRVAdapter(
     private fun dealRepair(id: Int) {
         CallUtil {
             val baseBean = it.obj as BaseBean
-            when (baseBean.code) {
-            }
+            showToast(baseBean.message)
         }.dealRepair(id)
     }
 
     private fun finishRepair(id: Int) {
         CallUtil {
             val baseBean = it.obj as BaseBean
-            when (baseBean.code) {
-            }
+            showToast(baseBean.message)
         }.finishRepair(id)
     }
 }

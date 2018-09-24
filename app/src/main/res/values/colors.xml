@@ -48,4 +48,6 @@
     <color name="laser_color">#0F0</color>
     <color name="corner_color">#00FF00</color>
     <!-- QRCode scanner color end -->
+    
+    <color name="base">#ff3C6869</color>
 </resources>

@@ -1,0 +1,17 @@
+<?xml version="1.0" encoding="utf-8"?>
+<menu xmlns:android="http://schemas.android.com/apk/res/android">
+
+    <item
+        android:id="@+id/item_0_menu_bottom_main2"
+        android:icon="@drawable/ic_xiangmu_menu_bottom_main"
+        android:title="主页" />
+
+    <item
+        android:id="@+id/item_1_menu_bottom_main2"
+        android:icon="@drawable/ic_look_menu_bottom_main"
+        android:title="逛一逛" />
+    <item
+        android:id="@+id/item_2_menu_bottom_main2"
+        android:icon="@drawable/ic_self_menu_bottom_main"
+        android:title="设置" />
+</menu>

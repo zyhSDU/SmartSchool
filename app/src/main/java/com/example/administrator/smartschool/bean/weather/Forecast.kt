@@ -11,6 +11,6 @@ class Forecast {
     var low: String? = null
     var date: String? = null
     override fun toString(): String {
-        return "Forecast(fengxiang=$fengxiang, fengli=$fengli, high=$high, type=$type, low=$low, date=$date)"
+        return "$date：$type，风向：$fengxiang, 风力：$fengli\n  $high, $low"
     }
 }

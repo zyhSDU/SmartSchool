@@ -50,10 +50,20 @@ class BusAbAc : BaseAbAc() {
             when (campusBean.code) {
                 0 -> {
                     campusList = campusBean.`object`!!
-                    val campusNameList = campusList.map { it.name!! }
+                    val campusNameList = campusList.map { it.name }
 
-                    SpinnerHelper.setSpinner(spinner_from_campus, this@BusAbAc, campusNameList)
-                    SpinnerHelper.setSpinner(spinner_to_campus, this@BusAbAc, campusNameList)
+                    SpinnerHelper.setSpinner(
+                            spinner_from_campus,
+                            this@BusAbAc,
+                            campusNameList,
+                            R.layout.support_simple_spinner_dropdown_item
+                    )
+                    SpinnerHelper.setSpinner(
+                            spinner_to_campus,
+                            this@BusAbAc,
+                            campusNameList,
+                            R.layout.support_simple_spinner_dropdown_item
+                    )
 
                     spinner_from_campus.onItemSelectedListener = object : SpinnerHelper.SpinnerOnItemSelectedListener {
                         override fun onItemSelected(parent: AdapterView<*>?, view: View?, position: Int, id: Long) {
@@ -78,7 +88,10 @@ class BusAbAc : BaseAbAc() {
                     RecyclerViewHelper.initVerticalRecyclerView(
                             rv_bus,
                             this@BusAbAc,
-                            BusRVAdapter(this@BusAbAc, busBean.`object`!!)
+                            BusRVAdapter(
+                                    this@BusAbAc,
+                                    busBean.`object`!!
+                            )
                     )
                 }
             }
@@ -93,7 +106,10 @@ class BusAbAc : BaseAbAc() {
                     RecyclerViewHelper.initVerticalRecyclerView(
                             rv_bus,
                             this@BusAbAc,
-                            BusRVAdapter(this@BusAbAc, busBean.`object`!!)
+                            BusRVAdapter(
+                                    this@BusAbAc,
+                                    busBean.`object`!!
+                            )
                     )
                 }
             }

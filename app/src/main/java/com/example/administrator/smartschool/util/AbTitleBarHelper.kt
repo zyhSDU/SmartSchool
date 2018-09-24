@@ -33,10 +33,11 @@ object AbTitleBarHelper {
         showAbTitleBar(abTitleBar)()
 
     }
+
     fun initAbTitleBar2(abTitleBar: AbTitleBar,
-                       titleText: String,
-                       titleBarBackgroundId: Int,
-                       left: Int = 32, top: Int = 0, right: Int = 0, bottom: Int = 0) {
+                        titleText: String,
+                        titleBarBackgroundId: Int,
+                        left: Int = 32, top: Int = 0, right: Int = 0, bottom: Int = 0) {
         abTitleBar.clearRightView()
         abTitleBar.setTitleText(titleText)
         abTitleBar.setTitleBarBackground(titleBarBackgroundId)
@@ -87,17 +88,23 @@ object AbTitleBarHelper {
         }
     }
 
-    fun initAbTitleBar3(abTitleBar: AbTitleBar, abActivity: AbActivity,string: String) {
-        initAbTitleBar2(
-                abTitleBar,
-                string,
-                R.color.colorPrimary)
+    fun initAbTitleBar3(abTitleBar: AbTitleBar, abActivity: AbActivity, string: String) {
+        initAbTitleBar2(abTitleBar, string, R.color.white)
+        val layoutParams = abTitleBar.logoView.layoutParams as LinearLayout.LayoutParams
+        layoutParams.setMargins(16, 0, 16, 0)
+        abTitleBar.setLogoOnClickListener {
+            abActivity.finish()
+        }
+    }
+    fun initAbTitleBar4(abTitleBar: AbTitleBar, abActivity: AbActivity, string: String) {
+        initAbTitleBar2(abTitleBar, string, R.color.base)
         val layoutParams = abTitleBar.logoView.layoutParams as LinearLayout.LayoutParams
         layoutParams.setMargins(32, 0, 16, 0)
         abTitleBar.setLogoOnClickListener {
             abActivity.finish()
         }
     }
+
     val hideAbTitleBar = { abTitleBar: AbTitleBar ->
         {
             abTitleBar.visibility = View.GONE

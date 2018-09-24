@@ -2,7 +2,6 @@ package com.example.administrator.smartschool.ui.ac.abac.tab
 
 import com.example.administrator.smartschool.R
 import com.example.administrator.smartschool.adapter.rv.LostRVAdapter
-import com.example.administrator.smartschool.bean.BaseBean
 import com.example.administrator.smartschool.bean.LostListBean
 import com.example.administrator.smartschool.net.CallUtil
 import com.example.administrator.smartschool.ui.ac.abac.BaseAbAc
@@ -14,6 +13,9 @@ class LostListActivity : BaseAbAc() {
         get() = R.layout.activity_lost_list
 
     override fun initOnCreate() {
+        btn_add_lost.setOnClickListener {
+            startActivity(LostActivity::class.java)
+        }
         lost_getLostList(0)
     }
 
@@ -28,7 +30,6 @@ class LostListActivity : BaseAbAc() {
                             this,
                             LostRVAdapter(this, list)
                     )
-
                 }
             }
         }.lost_getLostList(page)

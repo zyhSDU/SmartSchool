@@ -52,7 +52,17 @@ class LostRVAdapter(context: Context, arrayList: List<Any>) : BaseRVAdapter(cont
 
         tv_zdescribe_item_lost.text = lost.zdescribe
         tv_time_item_lost.text = lost.time
-        tv_status_item_lost.text = "status:${lost.status}"
+        when {
+            lost.status==0 -> {
+                tv_status_item_lost.text = "未认领"
+                tv_status_item_lost.setTextColor(context.resources.getColor(R.color.red_label))
+            }
+            lost.status==1 -> {
+                tv_status_item_lost.text = "已认领"
+                tv_status_item_lost.setTextColor(context.resources.getColor(R.color.green))
+            }
+        }
+
         ll_tvs_item_lost.setOnClickListener {
             val i = ints[position]
             when (i) {

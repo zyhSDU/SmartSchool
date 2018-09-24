@@ -22,9 +22,6 @@ class BottomFragment3 : BaseFragment() {
     private fun getUserInfo() {
         CallUtil({
             val userInfoBean = it.obj as UserInfoBean
-
-            showToast("" + userInfoBean.code + "==" + userInfoBean.message)
-
             when (userInfoBean.code) {
                 0 -> {
                     val userInfo = userInfoBean.`object`!!

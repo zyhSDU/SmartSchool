@@ -4,12 +4,22 @@
     xmlns:tools="http://schemas.android.com/tools"
     android:layout_width="match_parent"
     android:layout_height="match_parent"
+    android:background="@color/gray"
     android:orientation="vertical"
     tools:context="com.example.administrator.smartschool.ui.ac.abac.tab.SignActivity">
 
     <Button
         android:id="@+id/btn_partOne_ac_sign"
-        android:layout_width="match_parent"
+        style="@style/a_text_white_16sp_center"
+        android:layout_width="wrap_content"
         android:layout_height="wrap_content"
+        android:layout_margin="16dp"
         android:text="签到" />
+
+    <TextView
+        android:id="@+id/tv_ac_sign"
+        style="@style/a_text_black_18sp_left_center"
+        android:layout_width="wrap_content"
+        android:layout_height="wrap_content"
+        android:layout_marginStart="16dp" />
 </LinearLayout>

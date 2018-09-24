@@ -5,20 +5,28 @@ package com.example.administrator.smartschool.ui.ac.abac
  */
 import android.os.Bundle
 import com.ab.activity.AbActivity
+import com.example.administrator.smartschool.R
 import com.example.administrator.smartschool.ui.UIInterface
-import com.example.administrator.smartschool.util.Utils
 import com.example.administrator.smartschool.util.AbTitleBarHelper
+import com.example.administrator.smartschool.util.Utils
 
-abstract class BaseAbAc : AbActivity(),AbAcInterface , UIInterface {
+abstract class BaseAbAc : AbActivity(), AbAcInterface, UIInterface {
     override fun onCreate(savedInstanceState: Bundle?) {
         super.onCreate(savedInstanceState)
         setAbContentView(layoutResId)
         Utils.setAllOnClickListener(this, this)//Activity的根View
-        AbTitleBarHelper.initAbTitleBar3(mAbTitleBar, this, this.javaClass.simpleName)
+        mAbTitleBar.titleTextButton.setTextColor(resources.getColor(R.color.black))
+        try {
+            titleBarTitle = intent.getStringExtra("titleBarTitle")?:titleBarTitle
+        }catch (e:Exception){
+        }
+        AbTitleBarHelper.initAbTitleBar3(mAbTitleBar, this, titleBarTitle)
         initOnCreate()
     }
 
-    protected fun startActivity( clazz: Class<*>) {
-        startActivity(this,clazz)
+    protected fun startActivity(clazz: Class<*>) {
+        startActivity(this, clazz)
     }
+
+    protected var titleBarTitle = this.javaClass.simpleName
 }

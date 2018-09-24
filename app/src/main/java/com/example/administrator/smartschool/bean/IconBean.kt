@@ -1,6 +1,7 @@
 package com.example.administrator.smartschool.bean
 
 import android.app.Activity
+import android.content.Intent
 import com.example.administrator.smartschool.R
 import com.example.administrator.smartschool.ui.UIInterface
 
@@ -9,13 +10,16 @@ import com.example.administrator.smartschool.ui.UIInterface
  */
 
 class IconBean(
-        val imageViewId: Int = R.drawable.ic_launcher,
+        var imageViewId: Int = R.drawable.ic_launcher,
         val string: String,
         var onClick: () -> Unit = {}
 ) : UIInterface {
-    constructor (string: String, activity: Activity, clazz: Class<*>) : this(string = string) {
+    constructor (imageViewId: Int = R.drawable.ic_launcher,string: String, activity: Activity, clazz: Class<*>) : this(string = string) {
+        this.imageViewId=imageViewId
         this.onClick = {
-            startActivity(activity, clazz)
+            val intent =Intent(activity,clazz)
+            intent.putExtra("titleBarTitle",string)
+            activity.startActivity(intent)
         }
     }
 }

@@ -1,7 +1,6 @@
 package com.example.administrator.smartschool.util
 
 import android.content.Context
-import android.view.View
 import android.widget.AdapterView
 import android.widget.ArrayAdapter
 import android.widget.Spinner
@@ -12,8 +11,9 @@ import com.example.administrator.smartschool.R
  */
 
 object SpinnerHelper {
-    fun setSpinner(spinner: Spinner, context: Context, list: List<String>) {
-        spinner.adapter = ArrayAdapter(context, R.layout.support_simple_spinner_dropdown_item, list)
+    fun setSpinner(spinner: Spinner, context: Context, list: List<String>,layoutId:Int= R.layout.view_spinner) {
+//        spinner.adapter = ArrayAdapter(context, R.layout.support_simple_spinner_dropdown_item, list)
+        spinner.adapter = ArrayAdapter(context, layoutId, list)
     }
 
     interface SpinnerOnItemSelectedListener : AdapterView.OnItemSelectedListener {

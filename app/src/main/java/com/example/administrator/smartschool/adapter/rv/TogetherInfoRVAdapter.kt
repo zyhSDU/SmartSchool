@@ -2,6 +2,7 @@ package com.example.administrator.smartschool.adapter.rv
 
 import android.annotation.SuppressLint
 import android.content.Context
+import android.view.View
 import android.widget.Button
 import android.widget.EditText
 import android.widget.TextView
@@ -56,21 +57,49 @@ class TogetherInfoRVAdapter(
         val tv_selfStatus_item_together = holder.views[8] as TextView
         val btn_join_item_together = holder.views[9] as Button
         val btn_see_joiner_item_together = holder.views[10] as Button
-        val btn_quitTog_item_together=holder.views[11] as Button
-
+        val btn_quitTog_item_together = holder.views[11] as Button
 
         val together = datum[position] as Together
+
         tv_id_item_together.text = together.id.toString()
         tv_schoolId_item_together.text = together.schoolId.toString()
         tv_time_item_together.text = together.time
 
-        tv_num_item_together.text = together.num.toString()
+        tv_num_item_together.text = "还可参加${together.num}人"
         tv_status_item_together.text = together.status.toString()
-        tv_subId_item_together.text = together.subId.toString()
+        tv_subId_item_together.text = "发起人：用户${together.subId}"
 
-        tv_type_item_together.text = together.type.toString()
-        tv_zdescribe_item_together.text = together.zdescribe
+        val type = if (together.type == 1) {
+            "约自习"
+        } else {
+            "约车"
+        }
+        tv_type_item_together.text = "类型：$type "
+        tv_zdescribe_item_together.text = "描述：${together.zdescribe}"
         tv_selfStatus_item_together.text = together.selfStatus.toString()
+        when {
+            together.selfStatus == 0 -> {
+                btn_see_joiner_item_together.visibility = View.GONE
+                btn_quitTog_item_together.visibility = View.GONE
+                btn_join_item_together.visibility = View.VISIBLE
+            }
+            together.selfStatus == 1 -> {
+                btn_see_joiner_item_together.visibility = View.VISIBLE
+                btn_quitTog_item_together.visibility = View.GONE
+                btn_join_item_together.visibility = View.GONE
+            }
+            together.selfStatus == 2 -> {
+                btn_see_joiner_item_together.visibility = View.GONE
+                btn_quitTog_item_together.visibility = View.VISIBLE
+                btn_join_item_together.visibility = View.GONE
+            }
+            else -> {
+                btn_see_joiner_item_together.visibility = View.GONE
+                btn_quitTog_item_together.visibility = View.GONE
+                btn_join_item_together.visibility = View.GONE
+            }
+        }
+
         btn_join_item_together.setOnClickListener {
             DialogHelper.build(
                     "我想加入",
@@ -91,27 +120,27 @@ class TogetherInfoRVAdapter(
             together_quitTog(together.id)
         }
     }
+
     private fun together_quitTog(toId: Int) {
         CallUtil {
             val baseBean = it.obj as BaseBean
-            showToast( baseBean.message)
+            showToast(baseBean.message)
         }.together_quitTog(toId)
     }
 
     private fun together_partTog(toId: Int, info: String) {
         CallUtil {
             val baseBean = it.obj as BaseBean
-            showToast( baseBean.message)
+            showToast(baseBean.message)
         }.together_partTog(toId, info)
     }
 
     private fun together_getParts(toId: Int) {
         CallUtil {
             val baseBean = it.obj as TogetherParterListBean
-            Temp.showToast(context, baseBean.message)
-            if (baseBean.code==0){
+            if (baseBean.code == 0) {
                 val list = baseBean.`object`!!
-                TogetherParterListActivity.start(context,list)
+                TogetherParterListActivity.start(context, list)
             }
         }.together_getParts(toId)
     }

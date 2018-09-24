@@ -1,13 +1,15 @@
 package com.example.administrator.smartschool.ui.ac.abac
 
+import android.content.Context
+import android.content.Intent
 import android.view.View
-
 import com.example.administrator.smartschool.R
 import com.example.administrator.smartschool.bean.BaseBean
-import com.example.administrator.smartschool.net.CallUtil
-import kotlinx.android.synthetic.main.ac_register.*
 import com.example.administrator.smartschool.bean.SchoolsBean
+import com.example.administrator.smartschool.net.CallUtil
+import com.example.administrator.smartschool.util.AbTitleBarHelper
 import com.example.administrator.smartschool.util.SpinnerHelper
+import kotlinx.android.synthetic.main.ac_register.*
 
 /**
  * Created by Administrator on 2018/7/18 0018.
@@ -19,6 +21,9 @@ class RegisterAbAc : BaseAbAc() {
     lateinit var linkedHashMap: LinkedHashMap<String, Int>
     lateinit var strings: List<String>
     override fun initOnCreate() {
+        AbTitleBarHelper.initAbTitleBar4(mAbTitleBar, this, titleBarTitle)
+
+        titleBar.visibility=View.GONE
         allUniversity()
         et_username_ac_register.setText("2")
         et_password_ac_register.setText("2")
@@ -58,10 +63,21 @@ class RegisterAbAc : BaseAbAc() {
                     linkedHashMap = schoolsBean.`object`!!
                     val keys = linkedHashMap.keys
                     strings = keys.map { it }
-                    SpinnerHelper.setSpinner(spinner_school_ac_register, this@RegisterAbAc, strings)
+                    SpinnerHelper.setSpinner(
+                            spinner_school_ac_register,
+                            this@RegisterAbAc,
+                            strings
+                    )
                     spinner_school_ac_register.setSelection(1)
                 }
             }
         }).allUniversity()
+    }
+
+    companion object {
+        fun start(context: Context) {
+            val starter = Intent(context, RegisterAbAc::class.java)
+            context.startActivity(starter)
+        }
     }
 }

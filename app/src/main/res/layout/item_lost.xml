@@ -1,46 +1,54 @@
 <?xml version="1.0" encoding="utf-8"?>
-<LinearLayout xmlns:android="http://schemas.android.com/apk/res/android"
+<android.support.v7.widget.CardView xmlns:android="http://schemas.android.com/apk/res/android"
+    xmlns:app="http://schemas.android.com/apk/res-auto"
     android:layout_width="match_parent"
     android:layout_height="wrap_content"
-    android:layout_marginEnd="16dp"
-    android:layout_marginStart="16dp"
     android:layout_marginTop="16dp"
-    android:orientation="vertical">
+    app:cardCornerRadius="4dp">
 
     <LinearLayout
-        android:id="@+id/ll_tvs_item_lost"
         android:layout_width="match_parent"
         android:layout_height="wrap_content"
-        android:orientation="vertical">
+        android:background="@color/white"
+        android:orientation="vertical"
+        android:padding="16dp">
 
-        <TextView
-            android:id="@+id/tv_zdescribe_item_lost"
+        <LinearLayout
+            android:id="@+id/ll_tvs_item_lost"
             android:layout_width="match_parent"
             android:layout_height="wrap_content"
-            android:textColor="@color/black" />
+            android:orientation="vertical">
 
-        <TextView
-            android:id="@+id/tv_time_item_lost"
+            <TextView
+                android:id="@+id/tv_zdescribe_item_lost"
+                style="@style/a_text_black_18sp_left_center"
+                android:layout_width="match_parent"
+                android:layout_height="wrap_content" />
+
+            <TextView
+                android:id="@+id/tv_status_item_lost"
+                style="@style/a_text_black_18sp_left_center"
+                android:layout_width="match_parent"
+                android:layout_height="wrap_content" />
+
+            <TextView
+                android:id="@+id/tv_time_item_lost"
+                style="@style/a_text_black_18sp_right_center"
+                android:layout_width="match_parent"
+                android:layout_height="wrap_content" />
+        </LinearLayout>
+
+        <ImageView
+            android:id="@+id/iv_item_lost"
             android:layout_width="match_parent"
             android:layout_height="wrap_content"
-            android:textColor="@color/black" />
+            android:visibility="gone" />
 
-        <TextView
-            android:id="@+id/tv_status_item_lost"
+        <Button
+            android:id="@+id/btn_finishLost_item_lost"
+            style="@style/a_text_white_16sp_center"
             android:layout_width="match_parent"
             android:layout_height="wrap_content"
-            android:textColor="@color/black" />
+            android:text="结束认领" />
     </LinearLayout>
-
-    <ImageView
-        android:id="@+id/iv_item_lost"
-        android:layout_width="match_parent"
-        android:layout_height="wrap_content"
-        android:visibility="gone" />
-
-    <Button
-        android:id="@+id/btn_finishLost_item_lost"
-        android:text="结束认领"
-        android:layout_width="match_parent"
-        android:layout_height="wrap_content" />
-</LinearLayout>
+</android.support.v7.widget.CardView>

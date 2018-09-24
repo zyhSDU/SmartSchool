@@ -2,88 +2,107 @@
 <LinearLayout xmlns:android="http://schemas.android.com/apk/res/android"
     android:layout_width="match_parent"
     android:layout_height="match_parent"
+    android:background="@color/gray"
     android:orientation="vertical">
 
     <LinearLayout
+        android:layout_marginTop="16dp"
         android:layout_width="match_parent"
-        android:layout_height="@dimen/height_bar"
-        android:orientation="horizontal">
+        android:layout_height="wrap_content"
+        android:background="@color/white"
+        android:orientation="vertical"
+        android:padding="16dp">
 
         <LinearLayout
-            android:layout_width="0dp"
-            android:layout_height="match_parent"
-            android:layout_weight="1"
+            android:layout_width="match_parent"
+            android:layout_height="@dimen/height_bar"
             android:orientation="horizontal">
 
-            <TextView
-                style="@style/a_text_black_18sp_center"
-                android:layout_width="wrap_content"
-                android:layout_height="wrap_content"
-                android:layout_gravity="center_vertical"
-                android:layout_marginStart="16dp"
-                android:text="从:" />
-
-            <TextView
-                android:id="@+id/tv_from_campus"
-                style="@style/a_text_black_18sp_center"
+            <LinearLayout
                 android:layout_width="0dp"
-                android:layout_height="wrap_content"
-                android:layout_gravity="center_vertical"
-                android:layout_margin="16dp"
-                android:layout_weight="1" />
+                android:layout_height="match_parent"
+                android:layout_weight="1"
+                android:orientation="horizontal">
 
-            <Spinner
-                android:id="@+id/spinner_from_campus"
+                <TextView
+                    style="@style/a_text_black_18sp_center"
+                    android:layout_width="wrap_content"
+                    android:layout_height="wrap_content"
+                    android:layout_gravity="center_vertical"
+                    android:text="从:" />
+
+                <TextView
+                    android:id="@+id/tv_from_campus"
+                    style="@style/a_text_black_18sp_center"
+                    android:layout_width="0dp"
+                    android:layout_height="wrap_content"
+                    android:layout_gravity="center_vertical"
+                    android:layout_margin="16dp"
+                    android:layout_weight="1" />
+
+                <Spinner
+                    android:id="@+id/spinner_from_campus"
+                    android:layout_width="0dp"
+                    android:layout_height="wrap_content"
+                    android:layout_gravity="center_vertical" />
+            </LinearLayout>
+
+            <LinearLayout
                 android:layout_width="0dp"
-                android:layout_height="wrap_content"
-                android:layout_gravity="center_vertical" />
+                android:layout_height="match_parent"
+                android:layout_weight="1"
+                android:orientation="horizontal">
+
+                <TextView
+                    style="@style/a_text_black_18sp_center"
+                    android:layout_width="wrap_content"
+                    android:layout_height="wrap_content"
+                    android:layout_gravity="center_vertical"
+                    android:layout_marginStart="16dp"
+                    android:text="到:" />
+
+                <TextView
+                    android:id="@+id/tv_to_campus"
+                    style="@style/a_text_black_18sp_center"
+                    android:layout_width="0dp"
+                    android:layout_height="wrap_content"
+                    android:layout_gravity="center_vertical"
+                    android:layout_weight="1" />
+
+                <Spinner
+                    android:id="@+id/spinner_to_campus"
+                    android:layout_width="0dp"
+                    android:layout_height="wrap_content"
+                    android:layout_gravity="center_vertical" />
+            </LinearLayout>
+
         </LinearLayout>
 
         <LinearLayout
-            android:layout_width="0dp"
-            android:layout_height="match_parent"
-            android:layout_weight="1"
+            android:layout_width="match_parent"
+            android:layout_height="wrap_content"
             android:orientation="horizontal">
 
-            <TextView
-                style="@style/a_text_black_18sp_center"
-                android:layout_width="wrap_content"
-                android:layout_height="wrap_content"
-                android:layout_gravity="center_vertical"
-                android:layout_marginStart="16dp"
-                android:text="到:" />
-
-            <TextView
-                android:id="@+id/tv_to_campus"
-                style="@style/a_text_black_18sp_center"
+            <Button
+                android:id="@+id/btn_search_bus_list"
+                style="@style/a_text_white_16sp_center"
                 android:layout_width="0dp"
                 android:layout_height="wrap_content"
-                android:layout_gravity="center_vertical"
-                android:layout_margin="16dp"
-                android:layout_weight="1" />
+                android:layout_marginEnd="8dp"
+                android:layout_weight="1"
+                android:text="查询" />
 
-            <Spinner
-                android:id="@+id/spinner_to_campus"
+            <Button
+                android:id="@+id/btn_search_all_bus_list"
+                style="@style/a_text_white_16sp_center"
                 android:layout_width="0dp"
                 android:layout_height="wrap_content"
-                android:layout_gravity="center_vertical" />
+                android:layout_marginEnd="8dp"
+                android:layout_weight="1"
+                android:text="查询所有" />
         </LinearLayout>
 
     </LinearLayout>
-
-    <Button
-        android:id="@+id/btn_search_bus_list"
-        style="@style/a_text_black_18sp_center"
-        android:layout_width="match_parent"
-        android:layout_height="wrap_content"
-        android:text="查询" />
-
-    <Button
-        android:id="@+id/btn_search_all_bus_list"
-        style="@style/a_text_black_18sp_center"
-        android:layout_width="match_parent"
-        android:layout_height="wrap_content"
-        android:text="查询所有" />
 
     <android.support.v7.widget.RecyclerView
         android:id="@+id/rv_bus"

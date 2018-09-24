@@ -16,35 +16,52 @@
         android:label="@string/app_name"
         android:roundIcon="@mipmap/ic_launcher_round"
         android:supportsRtl="true"
-        android:theme="@style/AppTheme">
+        android:theme="@style/SmartSchool">
         <activity
             android:name=".ui.ac.ac.MainActivity"
             android:label="@string/app_name"
             android:launchMode="singleTask"
-            android:theme="@style/AppTheme" />
+            android:theme="@style/SmartSchool.Main" />
         <activity android:name=".ui.ac.abac.SplashAbAc" />
-        <activity android:name=".ui.ac.abac.LoginAbAc" />
-        <activity android:name=".ui.ac.abac.RegisterAbAc" />
-        <activity android:name=".ui.ac.abac.StartAbAc">
+        <activity android:name=".ui.ac.abac.LoginAbAc">
             <intent-filter>
                 <action android:name="android.intent.action.MAIN" />
 
                 <category android:name="android.intent.category.LAUNCHER" />
             </intent-filter>
         </activity>
+        <activity android:name=".ui.ac.abac.RegisterAbAc" />
         <activity android:name=".ui.ac.abac.tab.WeatherAbAc" />
         <activity android:name=".ui.ac.abac.tab.BusAbAc" />
-        <activity android:name=".ui.ac.abac.tab.ReportAbAc" />
+        <activity
+            android:name=".ui.ac.abac.tab.ReportAbAc"
+            android:theme="@style/SmartSchool.Main">
+
+        </activity>
         <activity android:name=".ui.ac.abac.tab.AnswerReportAbAc" />
         <activity android:name=".ui.ac.abac.tab.ScoreAbAc" />
         <activity android:name=".ui.ac.abac.tab.TestScheduleAbAc" />
         <activity android:name=".ui.ac.abac.tab.LostActivity" />
         <activity android:name=".ui.ac.abac.tab.LostListActivity" />
-        <activity android:name=".ui.ac.abac.tab.TogetherListActivity" />
+        <activity
+            android:name=".ui.ac.abac.tab.TogetherListActivity"
+            android:theme="@style/SmartSchool.Main">
+
+        </activity>
         <activity android:name=".ui.ac.abac.tab.TogetherParterListActivity" />
         <activity android:name=".ui.ac.abac.tab.StartSignActivity" />
-        <activity android:name=".ui.ac.abac.tab.SignActivity"></activity>
-        <activity android:name="com.google.zxing.activity.CaptureActivity" />
+        <activity android:name=".ui.ac.abac.tab.SignActivity" />
+        <activity
+            android:name="com.google.zxing.activity.CaptureActivity"
+            android:theme="@style/SmartSchool.Main">
+
+        </activity>
+        <activity
+            android:name=".ui.ac.Main2Activity"
+            android:label="@string/app_name"
+            android:launchMode="singleTask"
+            android:theme="@style/SmartSchool.Main"></activity>
+        <activity android:name=".ui.ac.abac.tab.AddReportActivity"></activity>
     </application>
 
 </manifest>
